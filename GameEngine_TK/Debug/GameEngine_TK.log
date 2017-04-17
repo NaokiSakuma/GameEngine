@@ -1,0 +1,4 @@
+﻿  Game.cpp
+c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game.cpp(55): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  GameEngine_TK.vcxproj -> C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.exe
+  GameEngine_TK.vcxproj -> C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.pdb (Full PDB)
