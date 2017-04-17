@@ -47,12 +47,15 @@ void Game::Initialize(HWND window, int width, int height)
     m_timer.SetTargetElapsedSeconds(1.0 / 60);
     */
 	//独自の初期化はここに書く
+	//unique_ptr...スコープを抜けたら自動的にdeleteしてくれるので、メモリリークの必要がない
+	//smart_pointer.Get()で生のポインターを取得
 	primitiveBatch = std::make_unique<PrimitiveBatch<VertexPositionColor>>(m_d3dContext.Get());
 
 	basicEffect = std::make_unique<BasicEffect>(m_d3dDevice.Get());
-
+	//Projection...射影行列
 	basicEffect->SetProjection(XMMatrixOrthographicOffCenterRH(0,
 		m_outputWidth, m_outputHeight, 0, 0, 1));
+	//関数の呼び出しは、そのままで出来る
 	basicEffect->SetVertexColorEnabled(true);
 
 	void const* shaderByteCode;
@@ -101,19 +104,26 @@ void Game::Render()
 
     // TODO: Add your rendering code here.
 	//描画処理を追加する
+	//CommonState...描画するときの汎用的な設定
 	CommonStates states(m_d3dDevice.Get());
+	//Opaque...不透明
 	m_d3dContext->OMSetBlendState(states.Opaque(), nullptr, 0xFFFFFFFF);
+	//Depth...奥行き、描画するときの前後関係
 	m_d3dContext->OMSetDepthStencilState(states.DepthNone(), 0);
+	//Cull...背景カリングを有効にするかどうか
 	m_d3dContext->RSSetState(states.CullNone());
 
 	basicEffect->Apply(m_d3dContext.Get());
 	m_d3dContext->IASetInputLayout(inputLayout.Get());
-
+	//prmitiveBatchの描画開始時に必須
 	primitiveBatch->Begin();
+	//描画処理
 	primitiveBatch->DrawLine(
+		//										座標							色
 		VertexPositionColor(SimpleMath::Vector3(  0,   0, 0), SimpleMath::Color(1, 1, 1)),
 		VertexPositionColor(SimpleMath::Vector3(800, 600, 0), SimpleMath::Color(1, 0, 0))
 	);
+	//primitiveBatchの描画終了時に必須
 	primitiveBatch->End();
 
     Present();
