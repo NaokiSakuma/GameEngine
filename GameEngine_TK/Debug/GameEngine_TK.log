@@ -1,4 +1,7 @@
 ﻿  Game.cpp
-c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game.cpp(55): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  GameEngine_TK.vcxproj -> C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.exe
-  GameEngine_TK.vcxproj -> C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.pdb (Full PDB)
+c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game.cpp(53): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  コードを生成中...
+  コンパイル中...
+  Main.cpp
+  コードを生成中...
+LINK : fatal error LNK1201: プログラム データベース 'C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.pdb' に書き込み中にエラーが発生しました。ディスク容量の不足、無効なパス、または特権の不足が原因でないことを確認してください。

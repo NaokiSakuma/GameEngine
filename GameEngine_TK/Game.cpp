@@ -2,24 +2,17 @@
 // Game.cpp
 //
 
+//インクルード
 #include "pch.h"
 #include "Game.h"
-#include <PrimitiveBatch.h>
-#include <VertexTypes.h>
-#include <Effects.h>
-#include <CommonStates.h>
-#include <SimpleMath.h>
 
 extern void ExitGame();
 
+//名前空間
 using namespace DirectX;
-
+using namespace SimpleMath;
 using Microsoft::WRL::ComPtr;
 
-//グローバル変数
-std::unique_ptr<PrimitiveBatch<VertexPositionColor>> primitiveBatch;
-std::unique_ptr<BasicEffect> basicEffect;
-ComPtr<ID3D11InputLayout> inputLayout;
 
 Game::Game() :
     m_window(0),
@@ -49,24 +42,31 @@ void Game::Initialize(HWND window, int width, int height)
 	//独自の初期化はここに書く
 	//unique_ptr...スコープを抜けたら自動的にdeleteしてくれるので、メモリリークの必要がない
 	//smart_pointer.Get()で生のポインターを取得
-	primitiveBatch = std::make_unique<PrimitiveBatch<VertexPositionColor>>(m_d3dContext.Get());
+	//四角形用
+	m_batch = std::make_unique<PrimitiveBatch<VertexPositionNormal>>(m_d3dContext.Get());
+	//三角形用
+	//m_batch = std::make_unique<PrimitiveBatch<VertexPositionColor>>(m_d3dContext.Get());
 
-	basicEffect = std::make_unique<BasicEffect>(m_d3dDevice.Get());
+	m_effect = std::make_unique<BasicEffect>(m_d3dDevice.Get());
 	//Projection...射影行列
-	basicEffect->SetProjection(XMMatrixOrthographicOffCenterRH(0,
+	m_effect->SetProjection(XMMatrixOrthographicOffCenterRH(0,
 		m_outputWidth, m_outputHeight, 0, 0, 1));
 	//関数の呼び出しは、そのままで出来る
-	basicEffect->SetVertexColorEnabled(true);
+	m_effect->SetVertexColorEnabled(true);
 
 	void const* shaderByteCode;
 	size_t byteCodeLength;
 
-	basicEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
+	m_effect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
 
 	m_d3dDevice->CreateInputLayout(VertexPositionColor::InputElements,
 		VertexPositionColor::InputElementCount,
 		shaderByteCode, byteCodeLength,
-		inputLayout.GetAddressOf());
+		m_inputLayout.GetAddressOf());
+	//汎用ステート設定を生成
+	m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
+	//デバックカメラを生成
+	m_debugCamera = std::make_unique<DebugCamera>(m_outputWidth, m_outputHeight);
 }
 
 // Executes the basic game loop.
@@ -88,12 +88,27 @@ void Game::Update(DX::StepTimer const& timer)
     // TODO: Add your game logic here.
     elapsedTime;
 	//毎フレーム処理を追加する
-
+	m_debugCamera->Update();
 }
 
 // Draws the scene.
 void Game::Render()
 {
+	//頂点インデックス
+	uint16_t indices[] =
+	{
+		0,1,2,
+		2,1,3
+	};
+	//頂点座標
+	VertexPositionNormal vertices[] =
+	{//			座標						法線ベクトル
+		{ Vector3(-1.0f,+1.0f,0.0f),Vector3(0.0f,0.0f,+1.0f) },
+		{ Vector3(-1.0f,-1.0f,0.0f),Vector3(0.0f,0.0f,+1.0f) },
+		{ Vector3(+1.0f,+1.0f,0.0f),Vector3(0.0f,0.0f,+1.0f) },
+		{ Vector3(+1.0f,-1.0f,0.0f),Vector3(0.0f,0.0f,+1.0f) },
+
+	};
     // Don't try to render anything before the first Update.
     if (m_timer.GetFrameCount() == 0)
     {
@@ -103,28 +118,56 @@ void Game::Render()
     Clear();
 
     // TODO: Add your rendering code here.
-	//描画処理を追加する
-	//CommonState...描画するときの汎用的な設定
-	CommonStates states(m_d3dDevice.Get());
+	//ポインターなので、アロー演算子//
 	//Opaque...不透明
-	m_d3dContext->OMSetBlendState(states.Opaque(), nullptr, 0xFFFFFFFF);
+	m_d3dContext->OMSetBlendState(m_states->Opaque(), nullptr, 0xFFFFFFFF);
 	//Depth...奥行き、描画するときの前後関係
-	m_d3dContext->OMSetDepthStencilState(states.DepthNone(), 0);
+	m_d3dContext->OMSetDepthStencilState(m_states->DepthNone(), 0);
 	//Cull...背景カリングを有効にするかどうか
-	m_d3dContext->RSSetState(states.CullNone());
+	m_d3dContext->RSSetState(m_states->CullNone());
+	//ビュー行列を生成
+	//m_view = Matrix::CreateLookAt(
+	//	Vector3(2.f, 2.f, 2.f),//カメラ視点、z座標とカメラ参照点が同じだとエラーになる
+	//	Vector3::Zero,	//カメラ参照点
+	//	Vector3::UnitY);//上方向ベクトル、カメラがローリングする演出によく使う、変えることは少ない
+	//デバッグカメラからビュー行列を取得
+	m_view = m_debugCamera->GetCameraMatrix();
+	//プロジェクション行列を生成
+	m_proj = Matrix::CreatePerspectiveFieldOfView(
+		XM_PI / 4.f,	//視野角(上下方向)
+		float(m_outputWidth) / float(m_outputHeight),	//アスペクト比(画面の横幅と縦幅の比率)
+		0.1f,	//ニアクリップ(指定した数値よりも近いと描画しない)
+		10.f);	//ファークリップ（指定した数値より遠いと描画しない）
+	//渡す
+	m_effect->SetView(m_view);
+	m_effect->SetProjection(m_proj);
 
-	basicEffect->Apply(m_d3dContext.Get());
-	m_d3dContext->IASetInputLayout(inputLayout.Get());
+	m_effect->Apply(m_d3dContext.Get());
+	m_d3dContext->IASetInputLayout(m_inputLayout.Get());
 	//prmitiveBatchの描画開始時に必須
-	primitiveBatch->Begin();
+	m_batch->Begin();
 	//描画処理
-	primitiveBatch->DrawLine(
-		//										座標							色
-		VertexPositionColor(SimpleMath::Vector3(  0,   0, 0), SimpleMath::Color(1, 1, 1)),
-		VertexPositionColor(SimpleMath::Vector3(800, 600, 0), SimpleMath::Color(1, 0, 0))
-	);
-	//primitiveBatchの描画終了時に必須
-	primitiveBatch->End();
+	//四角形の描画
+	m_batch->DrawIndexed(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST, indices, 6, vertices, 4);
+	//////線を描く
+	////m_batch->DrawLine(
+	////	//										座標							色
+	////	VertexPositionColor(SimpleMath::Vector3(  0,   0, 0), SimpleMath::Color(1, 1, 1)),
+	////	VertexPositionColor(SimpleMath::Vector3(800, 600, 0), SimpleMath::Color(1, 0, 0))
+	////);
+
+	////三角形の描画
+	//VertexPositionColor v1(Vector3(0.f, 0.5f, 0.5f), Colors::Yellow);
+	//VertexPositionColor v2(Vector3(0.5f, -0.5f, 0.5f), Colors::Yellow);
+	//VertexPositionColor v3(Vector3(-0.5f, -0.5f, 0.5f), Colors::Yellow);
+
+	////VertexPositionColor v1(Vector3(400.f, 150.f, 0.f), Colors::Red);
+	////VertexPositionColor v2(Vector3(600.f, 450.f, 0.f), Colors::Blue);
+	////VertexPositionColor v3(Vector3(200.f, 450.f, 0.f), Colors::Green);
+	//m_batch->DrawTriangle(v1, v2, v3);
+
+	////primitiveBatchの描画終了時に必須
+	m_batch->End();
 
     Present();
 }
