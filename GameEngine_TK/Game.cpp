@@ -67,6 +67,16 @@ void Game::Initialize(HWND window, int width, int height)
 	m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
 	//デバックカメラを生成
 	m_debugCamera = std::make_unique<DebugCamera>(m_outputWidth, m_outputHeight);
+	
+	//エフェクトファクトリー生成
+	m_factory = std::make_unique<EffectFactory>(m_d3dDevice.Get());
+	//テクスチャのパスを指定(vcxprojから見てファイルの場所を指定)
+	m_factory->SetDirectory(L"Resources");
+	//モデルの生成					デバイス			cmoファイルの場所を指定  エフェクトファクトリー
+	m_modelSkydome = Model::CreateFromCMO(m_d3dDevice.Get(), L"Resources/skydome.cmo", *m_factory);
+	//モデルの生成					デバイス			cmoファイルの場所を指定  エフェクトファクトリー
+	m_modelGround = Model::CreateFromCMO(m_d3dDevice.Get(), L"Resources/ground1m.cmo", *m_factory);
+
 }
 
 // Executes the basic game loop.
@@ -137,13 +147,17 @@ void Game::Render()
 		XM_PI / 4.f,	//視野角(上下方向)
 		float(m_outputWidth) / float(m_outputHeight),	//アスペクト比(画面の横幅と縦幅の比率)
 		0.1f,	//ニアクリップ(指定した数値よりも近いと描画しない)
-		10.f);	//ファークリップ（指定した数値より遠いと描画しない）
+		500.0f);	//ファークリップ（指定した数値より遠いと描画しない）
 	//渡す
 	m_effect->SetView(m_view);
 	m_effect->SetProjection(m_proj);
 
 	m_effect->Apply(m_d3dContext.Get());
 	m_d3dContext->IASetInputLayout(m_inputLayout.Get());
+	//モデルの描画   デバイス     コモンステイト ワールド行列　ビュー行列　射影行列
+	m_modelSkydome->Draw(m_d3dContext.Get(), *m_states, m_world, m_view, m_proj);
+	//モデルの描画   デバイス     コモンステイト ワールド行列　ビュー行列　射影行列
+	m_modelGround->Draw(m_d3dContext.Get(), *m_states, m_world, m_view, m_proj);
 	//prmitiveBatchの描画開始時に必須
 	m_batch->Begin();
 	//描画処理
