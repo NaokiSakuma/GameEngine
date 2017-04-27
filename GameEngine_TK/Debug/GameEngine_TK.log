@@ -1,7 +1,9 @@
-﻿  Assets\ground1m.FBX
+﻿  Assets\ball.FBX
+  Assets\ground1m.FBX
   Assets\skydome.FBX
   Game.cpp
 c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game.cpp(53): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-cl : コマンド ライン warning D9028: 簡易リビルド時のエラーです、通常のビルドに戻します
+c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game.cpp(127): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game.cpp(137): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
   GameEngine_TK.vcxproj -> C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.exe
   GameEngine_TK.vcxproj -> C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.pdb (Full PDB)

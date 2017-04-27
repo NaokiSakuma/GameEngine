@@ -97,5 +97,12 @@ private:
 	std::unique_ptr<DirectX::Model> m_modelSkydome;
 	//地面モデル
 	std::unique_ptr<DirectX::Model> m_modelGround;
-
+	//球モデル
+	std::unique_ptr<DirectX::Model> m_modelBall;
+	//球のワールド行列
+	DirectX::SimpleMath::Matrix m_worldBall[20];
+	//地面のワールド行列
+	DirectX::SimpleMath::Matrix m_worldGround[40000];
+	//回転用の変数
+	int m_count;
 };

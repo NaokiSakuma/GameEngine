@@ -72,11 +72,14 @@ void Game::Initialize(HWND window, int width, int height)
 	m_factory = std::make_unique<EffectFactory>(m_d3dDevice.Get());
 	//テクスチャのパスを指定(vcxprojから見てファイルの場所を指定)
 	m_factory->SetDirectory(L"Resources");
-	//モデルの生成					デバイス			cmoファイルの場所を指定  エフェクトファクトリー
+	//モデルの生成(空)			デバイス			cmoファイルの場所を指定  エフェクトファクトリー
 	m_modelSkydome = Model::CreateFromCMO(m_d3dDevice.Get(), L"Resources/skydome.cmo", *m_factory);
-	//モデルの生成					デバイス			cmoファイルの場所を指定  エフェクトファクトリー
+	//モデルの生成(地面)			デバイス			cmoファイルの場所を指定  エフェクトファクトリー
 	m_modelGround = Model::CreateFromCMO(m_d3dDevice.Get(), L"Resources/ground1m.cmo", *m_factory);
-
+	//モデルの生成(球)				デバイス			cmoファイルの場所を指定  エフェクトファクトリー
+	m_modelBall = Model::CreateFromCMO(m_d3dDevice.Get(), L"Resources/ball.cmo", *m_factory);
+	//カウント
+	m_count = 0;
 }
 
 // Executes the basic game loop.
@@ -99,6 +102,42 @@ void Game::Update(DX::StepTimer const& timer)
     elapsedTime;
 	//毎フレーム処理を追加する
 	m_debugCamera->Update();
+	//カウントを増加
+	m_count++;
+	//ワールド行列を計算
+	for (int i = 0; i < 20; i++)
+	{
+		//スケーリング
+		Matrix scalemat = Matrix::CreateScale(1.0f);
+		//ロール
+		Matrix rotmatz;
+		//内側の球
+		if (i < 10)
+			rotmatz = Matrix::CreateRotationZ(XMConvertToRadians(36.0f * i + m_count));
+		//外側の球
+		else 
+			rotmatz = Matrix::CreateRotationZ(XMConvertToRadians(36.0f * i - m_count));
+		//ピッチ(仰角)
+		Matrix rotmatx = Matrix::CreateRotationX(0);
+		//ヨー(方位角)
+		Matrix rotmaty = Matrix::CreateRotationY(0);
+		//回転行列の合成(順番を変えると描画が変わる)
+		Matrix rotmat = rotmatz * rotmatx * rotmaty;
+		//平行移動
+		Matrix transmat = Matrix::CreateTranslation(20 + (i / 10 * 20), 0, 0);
+		//ワールド行列の合成(順番大事)、よくSRTの順番で掛け算する
+		m_worldBall[i] = scalemat * transmat * rotmat;
+	}
+	//ワールド行列を計算
+	for (int i = 0; i < 40000; i++)
+	{
+		//ピッチ(仰角)
+		Matrix rotmatx = Matrix::CreateRotationX(XMConvertToRadians(90));
+		//平行移動
+		Matrix transmat = Matrix::CreateTranslation( i / 200 - 100 , 0, i % 200 -100);
+		//ワールド行列の合成(順番大事)、よくSRTの順番で掛け算する
+		m_worldGround[i] = transmat * rotmatx;
+	}
 }
 
 // Draws the scene.
@@ -157,7 +196,15 @@ void Game::Render()
 	//モデルの描画   デバイス     コモンステイト ワールド行列　ビュー行列　射影行列
 	m_modelSkydome->Draw(m_d3dContext.Get(), *m_states, m_world, m_view, m_proj);
 	//モデルの描画   デバイス     コモンステイト ワールド行列　ビュー行列　射影行列
-	m_modelGround->Draw(m_d3dContext.Get(), *m_states, m_world, m_view, m_proj);
+	for (int i = 0; i < 40000; i++)
+	{
+		m_modelGround->Draw(m_d3dContext.Get(), *m_states, m_worldGround[i], m_view, m_proj);
+	}
+	//モデルの描画   デバイス     コモンステイト ワールド行列　ビュー行列　射影行列
+	for (int i = 0; i < 20; i++)
+	{
+		m_modelBall->Draw(m_d3dContext.Get(), *m_states, m_worldBall[i], m_view, m_proj);
+	}
 	//prmitiveBatchの描画開始時に必須
 	m_batch->Begin();
 	//描画処理
