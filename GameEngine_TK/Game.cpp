@@ -5,7 +5,7 @@
 //インクルード
 #include "pch.h"
 #include "Game.h"
-
+#include <time.h>
 extern void ExitGame();
 
 //名前空間
@@ -75,11 +75,24 @@ void Game::Initialize(HWND window, int width, int height)
 	//モデルの生成(空)			デバイス			cmoファイルの場所を指定  エフェクトファクトリー
 	m_modelSkydome = Model::CreateFromCMO(m_d3dDevice.Get(), L"Resources/skydome.cmo", *m_factory);
 	//モデルの生成(地面)			デバイス			cmoファイルの場所を指定  エフェクトファクトリー
-	m_modelGround = Model::CreateFromCMO(m_d3dDevice.Get(), L"Resources/ground1m.cmo", *m_factory);
+	m_modelGround = Model::CreateFromCMO(m_d3dDevice.Get(), L"Resources/ground200m.cmo", *m_factory);
 	//モデルの生成(球)				デバイス			cmoファイルの場所を指定  エフェクトファクトリー
 	m_modelBall = Model::CreateFromCMO(m_d3dDevice.Get(), L"Resources/ball.cmo", *m_factory);
+	//モデルの生成(ティーポット)
+	m_modelTeapot = Model::CreateFromCMO(m_d3dDevice.Get(), L"Resources/teapot.cmo", *m_factory);
 	//カウント
 	m_count = 0;
+	//大きさ
+	m_val = 0;
+	//時間
+	m_time = 0.0f;
+	//乱数の初期化
+	srand(static_cast<unsigned int>(time(nullptr)));
+	for (int i = 0; i < 20; i++)
+	{
+		m_randAngle[i] = std::rand() % 360;		//角度
+		m_randDistance[i] = std::rand() % 100;	//距離
+	}
 }
 
 // Executes the basic game loop.
@@ -96,47 +109,76 @@ void Game::Tick()
 // Updates the world.
 void Game::Update(DX::StepTimer const& timer)
 {
+	int count = 0.0f;
     float elapsedTime = float(timer.GetElapsedSeconds());
 
     // TODO: Add your game logic here.
     elapsedTime;
 	//毎フレーム処理を追加する
 	m_debugCamera->Update();
-	//カウントを増加
 	m_count++;
-	//ワールド行列を計算
+
+	m_time += 1.0f / 600.0f;
+	if (m_time > 1.0f)
+	{
+		m_time = 1.0f;
+	}
+	//天球
+	////ワールド行列を計算
+	//for (int i = 0; i < 20; i++)
+	//{
+	//	//スケーリング
+	//	Matrix scalemat = Matrix::CreateScale(1.0f);
+	//	//ロール
+	//	Matrix rotmatz;
+	//	//内側の球
+	//	if (i < 10)
+	//		rotmatz = Matrix::CreateRotationZ(XMConvertToRadians(36.0f * i + m_count));
+	//	//外側の球
+	//	else 
+	//		rotmatz = Matrix::CreateRotationZ(XMConvertToRadians(36.0f * i - m_count));
+	//	//ピッチ(仰角)
+	//	Matrix rotmatx = Matrix::CreateRotationX(0);
+	//	//ヨー(方位角)
+	//	Matrix rotmaty = Matrix::CreateRotationY(0);
+	//	//回転行列の合成(順番を変えると描画が変わる)
+	//	Matrix rotmat = rotmatz * rotmatx * rotmaty;
+	//	//平行移動
+	//	Matrix transmat = Matrix::CreateTranslation(20 + (i / 10 * 20), 0, 0);
+	//	//ワールド行列の合成(順番大事)、よくSRTの順番で掛け算する
+	//	m_worldBall[i] = scalemat * transmat * rotmat;
+	//}
+
+	//地面
+	////ワールド行列を計算
+	//for (int i = 0; i < 40000; i++)
+	//{
+	//	//ピッチ(仰角)
+	//	Matrix rotmatx = Matrix::CreateRotationX(XMConvertToRadians(90));
+	//	//平行移動
+	//	Matrix transmat = Matrix::CreateTranslation( i / 200 - 100 , 0, i % 200 -100);
+	//	//ワールド行列の合成(順番大事)、よくSRTの順番で掛け算する
+	//	m_worldGround[i] = transmat * rotmatx;
+	//}
+
+	//ティーポットのワールド行列を計算
 	for (int i = 0; i < 20; i++)
 	{
 		//スケーリング
-		Matrix scalemat = Matrix::CreateScale(1.0f);
+		Matrix scalemat = Matrix::CreateScale((sinf(XMConvertToRadians(m_count))+1.0f)*2.0f + 1.0f);
 		//ロール
-		Matrix rotmatz;
-		//内側の球
-		if (i < 10)
-			rotmatz = Matrix::CreateRotationZ(XMConvertToRadians(36.0f * i + m_count));
-		//外側の球
-		else 
-			rotmatz = Matrix::CreateRotationZ(XMConvertToRadians(36.0f * i - m_count));
+		Matrix rotmatz = Matrix::CreateRotationZ(0);
 		//ピッチ(仰角)
 		Matrix rotmatx = Matrix::CreateRotationX(0);
-		//ヨー(方位角)
-		Matrix rotmaty = Matrix::CreateRotationY(0);
-		//回転行列の合成(順番を変えると描画が変わる)
+		//ヨー(方位角)							回転させる
+		Matrix rotmaty = Matrix::CreateRotationY(m_count/60.0f);
+		//回転行列の合成
 		Matrix rotmat = rotmatz * rotmatx * rotmaty;
 		//平行移動
-		Matrix transmat = Matrix::CreateTranslation(20 + (i / 10 * 20), 0, 0);
-		//ワールド行列の合成(順番大事)、よくSRTの順番で掛け算する
-		m_worldBall[i] = scalemat * transmat * rotmat;
-	}
-	//ワールド行列を計算
-	for (int i = 0; i < 40000; i++)
-	{
-		//ピッチ(仰角)
-		Matrix rotmatx = Matrix::CreateRotationX(XMConvertToRadians(90));
-		//平行移動
-		Matrix transmat = Matrix::CreateTranslation( i / 200 - 100 , 0, i % 200 -100);
-		//ワールド行列の合成(順番大事)、よくSRTの順番で掛け算する
-		m_worldGround[i] = transmat * rotmatx;
+		m_trans = Lerp(Vector3(cosf(XMConvertToRadians(m_randAngle[i])) * m_randDistance[i], 0, sinf(XMConvertToRadians(m_randAngle[i])) * m_randDistance[i]),Vector3(0,0,0), m_time);
+		Matrix transmat = Matrix::CreateTranslation(m_trans);
+		//ワールド行列の合成			strだと先に距離を決めるので、全体的に回転してしまう
+		m_worldTeapot[i] = scalemat * rotmat * transmat;
 	}
 }
 
@@ -196,15 +238,17 @@ void Game::Render()
 	//モデルの描画   デバイス     コモンステイト ワールド行列　ビュー行列　射影行列
 	m_modelSkydome->Draw(m_d3dContext.Get(), *m_states, m_world, m_view, m_proj);
 	//モデルの描画   デバイス     コモンステイト ワールド行列　ビュー行列　射影行列
-	for (int i = 0; i < 40000; i++)
-	{
-		m_modelGround->Draw(m_d3dContext.Get(), *m_states, m_worldGround[i], m_view, m_proj);
-	}
-	//モデルの描画   デバイス     コモンステイト ワールド行列　ビュー行列　射影行列
+	m_modelGround->Draw(m_d3dContext.Get(), *m_states, Matrix::Identity, m_view, m_proj);
+	//ティーポットモデルの描画
 	for (int i = 0; i < 20; i++)
 	{
-		m_modelBall->Draw(m_d3dContext.Get(), *m_states, m_worldBall[i], m_view, m_proj);
+		m_modelTeapot->Draw(m_d3dContext.Get(), *m_states, m_worldTeapot[i], m_view, m_proj);
 	}
+	//モデルの描画   デバイス     コモンステイト ワールド行列　ビュー行列　射影行列
+	//for (int i = 0; i < 20; i++)
+	//{
+	//	m_modelBall->Draw(m_d3dContext.Get(), *m_states, m_worldBall[i], m_view, m_proj);
+	//}
 	//prmitiveBatchの描画開始時に必須
 	m_batch->Begin();
 	//描画処理
@@ -526,4 +570,17 @@ void Game::OnDeviceLost()
     CreateDevice();
 
     CreateResources();
+}
+//----------------------------------------------------------------------
+//! @brief 線形補間
+//!
+//! @param[in] 最初の場所、目標の場所、時間(０～１)
+//!
+//! @return 今の場所
+//----------------------------------------------------------------------
+Vector3 Game::Lerp(Vector3 startPos, Vector3 targetPos, float t)
+{
+	Vector3 lerpPos = Vector3(0,0,0);
+	lerpPos = (1 - t)* startPos + t * targetPos;
+	return lerpPos;
 }

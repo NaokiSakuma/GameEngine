@@ -99,10 +99,26 @@ private:
 	std::unique_ptr<DirectX::Model> m_modelGround;
 	//球モデル
 	std::unique_ptr<DirectX::Model> m_modelBall;
+	//ティーポットモデル
+	std::unique_ptr<DirectX::Model> m_modelTeapot;
 	//球のワールド行列
 	DirectX::SimpleMath::Matrix m_worldBall[20];
+	//ティーポットのワールド行列
+	DirectX::SimpleMath::Matrix m_worldTeapot[20];
 	//地面のワールド行列
 	DirectX::SimpleMath::Matrix m_worldGround[40000];
 	//回転用の変数
 	int m_count;
+	//角度を取るrand
+	float m_randAngle[20];
+	//距離を取るrand;
+	float m_randDistance[20];
+	//大きさ
+	float m_val;
+	//時間
+	float m_time;
+	//テスト
+	DirectX::SimpleMath::Vector3 m_trans;
+	//線形補間
+	static DirectX::SimpleMath::Vector3 Lerp(DirectX::SimpleMath::Vector3 startPos, DirectX::SimpleMath::Vector3 targetPos, float t);
 };
