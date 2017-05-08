@@ -80,12 +80,16 @@ void Game::Initialize(HWND window, int width, int height)
 	m_modelBall = Model::CreateFromCMO(m_d3dDevice.Get(), L"Resources/ball.cmo", *m_factory);
 	//モデルの生成(ティーポット)
 	m_modelTeapot = Model::CreateFromCMO(m_d3dDevice.Get(), L"Resources/teapot.cmo", *m_factory);
+	//頭モデルの生成
+	m_modelHead = Model::CreateFromCMO(m_d3dDevice.Get(), L"Resources/head.cmo", *m_factory);
 	//カウント
 	m_count = 0;
 	//大きさ
 	m_val = 0;
 	//時間
 	m_time = 0.0f;
+	//回転用
+	m_rot = 0;
 	//乱数の初期化
 	srand(static_cast<unsigned int>(time(nullptr)));
 	for (int i = 0; i < 20; i++)
@@ -93,6 +97,8 @@ void Game::Initialize(HWND window, int width, int height)
 		m_randAngle[i] = std::rand() % 360;		//角度
 		m_randDistance[i] = std::rand() % 100;	//距離
 	}
+	//キーボードの生成
+	m_keyboard = std::make_unique<Keyboard>();
 }
 
 // Executes the basic game loop.
@@ -180,6 +186,48 @@ void Game::Update(DX::StepTimer const& timer)
 		//ワールド行列の合成			strだと先に距離を決めるので、全体的に回転してしまう
 		m_worldTeapot[i] = scalemat * rotmat * transmat;
 	}
+	//キーボードの状態を取得
+	Keyboard::State key = m_keyboard->GetState();
+	{
+		Matrix rotmaty = Matrix::CreateRotationY(XMConvertToRadians(m_rot));
+		//Wキーが押されていたら
+		if (key.W)
+		{
+			//移動ベクトル
+			Vector3 moveV(0, 0, -0.1f);
+			//移動ベクトルを回転
+			moveV = SimpleMath::Vector3::TransformNormal(moveV, m_worldHead);
+			//自機の座標を移動
+			m_head_pos += moveV;
+		}
+		//Sキーが押されたら
+		else if (key.S)
+		{
+			//移動ベクトル
+			Vector3 moveV(0, 0, 0.1f);
+			//移動ベクトルを回転
+			moveV = SimpleMath::Vector3::TransformNormal(moveV, m_worldHead);
+			//自機の座標を移動
+			m_head_pos += moveV;
+		}
+		//Aキーが押されたら
+		else if (key.A)
+		{
+			//回転させる
+			m_rot++;
+		}
+		//Dキーが押されたら
+		else if (key.D)
+		{
+			//回転させる
+			m_rot--;
+		}
+		//自機のワールド行列を計算
+			//頭の平行移動
+		Matrix transmat = Matrix::CreateTranslation(m_head_pos);
+		//平行移動行列をワールド行列にコピー
+		m_worldHead = rotmaty * transmat;
+	}
 }
 
 // Draws the scene.
@@ -240,10 +288,12 @@ void Game::Render()
 	//モデルの描画   デバイス     コモンステイト ワールド行列　ビュー行列　射影行列
 	m_modelGround->Draw(m_d3dContext.Get(), *m_states, Matrix::Identity, m_view, m_proj);
 	//ティーポットモデルの描画
-	for (int i = 0; i < 20; i++)
-	{
-		m_modelTeapot->Draw(m_d3dContext.Get(), *m_states, m_worldTeapot[i], m_view, m_proj);
-	}
+	//for (int i = 0; i < 20; i++)
+	//{
+	//	m_modelTeapot->Draw(m_d3dContext.Get(), *m_states, m_worldTeapot[i], m_view, m_proj);
+	//}
+	//頭の描画   デバイス     コモンステイト ワールド行列　ビュー行列　射影行列
+	m_modelHead->Draw(m_d3dContext.Get(), *m_states, m_worldHead, m_view, m_proj);
 	//モデルの描画   デバイス     コモンステイト ワールド行列　ビュー行列　射影行列
 	//for (int i = 0; i < 20; i++)
 	//{

@@ -12,6 +12,7 @@
 #include <CommonStates.h>
 #include <SimpleMath.h>
 #include <Model.h>
+#include <Keyboard.h>
 
 // A basic game implementation that creates a D3D11 device and
 // provides a game loop.
@@ -101,12 +102,17 @@ private:
 	std::unique_ptr<DirectX::Model> m_modelBall;
 	//ティーポットモデル
 	std::unique_ptr<DirectX::Model> m_modelTeapot;
+	//頭のモデル
+	std::unique_ptr<DirectX::Model> m_modelHead;
+	//頭のワールド行列
+	DirectX::SimpleMath::Matrix m_worldHead;
 	//球のワールド行列
 	DirectX::SimpleMath::Matrix m_worldBall[20];
 	//ティーポットのワールド行列
 	DirectX::SimpleMath::Matrix m_worldTeapot[20];
 	//地面のワールド行列
 	DirectX::SimpleMath::Matrix m_worldGround[40000];
+	
 	//回転用の変数
 	int m_count;
 	//角度を取るrand
@@ -121,4 +127,11 @@ private:
 	DirectX::SimpleMath::Vector3 m_trans;
 	//線形補間
 	static DirectX::SimpleMath::Vector3 Lerp(DirectX::SimpleMath::Vector3 startPos, DirectX::SimpleMath::Vector3 targetPos, float t);
+
+	//キーボード
+	std::unique_ptr<DirectX::Keyboard> m_keyboard;
+	//頭の座標
+	DirectX::SimpleMath::Vector3 m_head_pos;
+	//回転用
+	int m_rot;
 };

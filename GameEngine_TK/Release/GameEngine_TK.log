@@ -1,9 +1,14 @@
 ﻿  Assets\ball.FBX
   Assets\ground1m.FBX
+  Assets\ground200m.FBX
+  Assets\head.FBX
   Assets\skydome.FBX
+  Assets\teapot.FBX
      ライブラリ C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Release\GameEngine_TK.lib とオブジェクト C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Release\GameEngine_TK.exp を作成中
   コード生成しています。
-  All 427 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  0 of 460 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
   GameEngine_TK.vcxproj -> C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Release\GameEngine_TK.exe
   GameEngine_TK.vcxproj -> C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Release\GameEngine_TK.pdb (Full PDB)
