@@ -11,7 +11,7 @@
 #include "Camera.h"
 
 using namespace DirectX;
-using namespace SimpleMath;
+using namespace DirectX::SimpleMath;
 
 //----------------------------------------------------------------------
 //! @brief コンストラクタ
@@ -64,7 +64,7 @@ void Camera::Update()
 //!
 //! @return ビュー行列
 //----------------------------------------------------------------------
-DirectX::SimpleMath::Matrix Camera::GetViewMatrix()
+const Matrix& Camera::GetViewMatrix()
 {
 	return m_view;
 }
@@ -76,7 +76,7 @@ DirectX::SimpleMath::Matrix Camera::GetViewMatrix()
 //!
 //! @return 射影行列
 //----------------------------------------------------------------------
-DirectX::SimpleMath::Matrix Camera::GetProjectionMatrix()
+const Matrix& Camera::GetProjectionMatrix()
 {
 	return m_proj;
 }
@@ -88,7 +88,7 @@ DirectX::SimpleMath::Matrix Camera::GetProjectionMatrix()
 //!
 //! @return なし
 //----------------------------------------------------------------------
-void Camera::SetEyePos(DirectX::SimpleMath::Vector3 eyepos)
+void Camera::SetEyePos(const Vector3& eyepos)
 {
 	m_eyepos = eyepos;
 }
@@ -100,7 +100,7 @@ void Camera::SetEyePos(DirectX::SimpleMath::Vector3 eyepos)
 //!
 //! @return なし
 //----------------------------------------------------------------------
-void Camera::SetRefPos(DirectX::SimpleMath::Vector3 refpos)
+void Camera::SetRefPos(const Vector3& refpos)
 {
 	m_refpos = refpos;
 }
@@ -112,7 +112,7 @@ void Camera::SetRefPos(DirectX::SimpleMath::Vector3 refpos)
 //!
 //! @return なし
 //----------------------------------------------------------------------
-void Camera::SetUpVec(DirectX::SimpleMath::Vector3 upvec)
+void Camera::SetUpVec(const Vector3& upvec)
 {
 	m_upvec = upvec;
 }

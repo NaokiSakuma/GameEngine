@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include <d3d11.h>
+#include <d3d11_1.h>
 #include <SimpleMath.h>
 
 class Camera
@@ -21,17 +21,17 @@ public:
 	//デストラクタ
 	virtual ~Camera();
 	//更新
-	void Update();
+	virtual void Update();
 	//ビュー行列の取得
-	DirectX::SimpleMath::Matrix GetViewMatrix();
+	const DirectX::SimpleMath::Matrix& Camera::GetViewMatrix();
 	//射影行列の取得
-	DirectX::SimpleMath::Matrix GetProjectionMatrix();
+	const DirectX::SimpleMath::Matrix& Camera::GetProjectionMatrix();
 	//視点座標のセット
-	void SetEyePos(DirectX::SimpleMath::Vector3 eyepos);
+	void SetEyePos(const DirectX::SimpleMath::Vector3& eyepos);
 	//目標座標のセット
-	void SetRefPos(DirectX::SimpleMath::Vector3 refpos);
+	void SetRefPos(const DirectX::SimpleMath::Vector3& refpos);
 	//カメラの上方向ベクトル
-	void SetUpVec(DirectX::SimpleMath::Vector3 upvec);
+	void SetUpVec(const DirectX::SimpleMath::Vector3& upvec);
 	//垂直方向視野角のセット
 	void SetFloV(float floV);
 	//アスペクト比のセット

@@ -100,7 +100,7 @@ void Game::Initialize(HWND window, int width, int height)
 	//キーボードの生成
 	m_keyboard = std::make_unique<Keyboard>();
 	//カメラの生成
-	m_camera = std::make_unique<Camera>(m_outputWidth, m_outputHeight);
+	m_camera = std::make_unique<FollowCamera>(m_outputWidth, m_outputHeight);
 	//頭の初期値
 	m_head_pos = Vector3(0, 0, 30);
 }
@@ -232,12 +232,16 @@ void Game::Update(DX::StepTimer const& timer)
 		//平行移動行列をワールド行列にコピー
 		m_worldHead = rotmaty * transmat;
 	}
-	//カメラの更新
-	m_camera->SetEyePos(m_head_pos + Vector3(sinf(XMConvertToRadians(m_rot)),0, cosf(XMConvertToRadians(m_rot))));
-	m_camera->SetRefPos(m_head_pos);
-	m_camera->Update();
-	m_view = m_camera->GetViewMatrix();
-	m_proj = m_camera->GetProjectionMatrix();
+	{//自機に追従するカメラ
+		//カメラの更新
+		//m_camera->SetEyePos(m_head_pos + Vector3(sinf(XMConvertToRadians(m_rot)), 0, cosf(XMConvertToRadians(m_rot))));
+		//m_camera->SetRefPos(m_head_pos);
+		m_camera->SetTargetPos(m_head_pos);
+		m_camera->SetTargetAngle(XMConvertToRadians(m_rot));
+		m_camera->Update();
+		m_view = m_camera->GetViewMatrix();
+		m_proj = m_camera->GetProjectionMatrix();
+	}
 }
 
 // Draws the scene.
