@@ -99,6 +99,10 @@ void Game::Initialize(HWND window, int width, int height)
 	}
 	//キーボードの生成
 	m_keyboard = std::make_unique<Keyboard>();
+	//カメラの生成
+	m_camera = std::make_unique<Camera>(m_outputWidth, m_outputHeight);
+	//頭の初期値
+	m_head_pos = Vector3(0, 0, 30);
 }
 
 // Executes the basic game loop.
@@ -228,6 +232,12 @@ void Game::Update(DX::StepTimer const& timer)
 		//平行移動行列をワールド行列にコピー
 		m_worldHead = rotmaty * transmat;
 	}
+	//カメラの更新
+	m_camera->SetEyePos(m_head_pos + Vector3(sinf(XMConvertToRadians(m_rot)),0, cosf(XMConvertToRadians(m_rot))));
+	m_camera->SetRefPos(m_head_pos);
+	m_camera->Update();
+	m_view = m_camera->GetViewMatrix();
+	m_proj = m_camera->GetProjectionMatrix();
 }
 
 // Draws the scene.
@@ -270,13 +280,36 @@ void Game::Render()
 	//	Vector3::Zero,	//カメラ参照点
 	//	Vector3::UnitY);//上方向ベクトル、カメラがローリングする演出によく使う、変えることは少ない
 	//デバッグカメラからビュー行列を取得
-	m_view = m_debugCamera->GetCameraMatrix();
+	//m_view = m_debugCamera->GetCameraMatrix();
+
 	//プロジェクション行列を生成
-	m_proj = Matrix::CreatePerspectiveFieldOfView(
-		XM_PI / 4.f,	//視野角(上下方向)
-		float(m_outputWidth) / float(m_outputHeight),	//アスペクト比(画面の横幅と縦幅の比率)
-		0.1f,	//ニアクリップ(指定した数値よりも近いと描画しない)
-		500.0f);	//ファークリップ（指定した数値より遠いと描画しない）
+	//垂直方向視野角
+	//float fovY = XMConvertToRadians(60.0f);
+	////アスペクト比(横縦の比率)
+	//float aspect = static_cast<float>(m_outputWidth) / m_outputHeight;
+	////ニアクリップ(手前の表示限界)
+	//float nearclip = 0.1f;
+	////ファークリップ(奥の表示限界)
+	//float farclip = 1000.0f;
+	////射影行列の生成
+	//m_proj = Matrix::CreatePerspectiveFieldOfView(
+	//	fovY,	//視野角(上下方向)
+	//	aspect,	//アスペクト比(画面の横幅と縦幅の比率)
+	//	nearclip,	//ニアクリップ(指定した数値よりも近いと描画しない)
+	//	farclip);	//ファークリップ（指定した数値より遠いと描画しない）
+
+	////カメラの位置(視点座標)
+	//Vector3 eyepos(0, 0, 5);
+	////カメラの見ている先(注視点/参照点/注目点)
+	//Vector3 refpos(0, 0, 0);
+	////カメラの上方向ベクトル(基本0or1)
+	//static float angle = 0.0f;
+	//angle += 0.1f;
+	//Vector3 upvec(cosf(angle),sinf(angle), 0);
+	//upvec.Normalize();
+	////ビュー行列の生成
+	//m_view = Matrix::CreateLookAt(eyepos, refpos, upvec);
+
 	//渡す
 	m_effect->SetView(m_view);
 	m_effect->SetProjection(m_proj);

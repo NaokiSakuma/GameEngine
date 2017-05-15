@@ -13,6 +13,7 @@
 #include <SimpleMath.h>
 #include <Model.h>
 #include <Keyboard.h>
+#include "Camera.h"
 
 // A basic game implementation that creates a D3D11 device and
 // provides a game loop.
@@ -134,4 +135,7 @@ private:
 	DirectX::SimpleMath::Vector3 m_head_pos;
 	//‰ñ“]—p
 	int m_rot;
+	
+	//ƒJƒƒ‰
+	std::unique_ptr<Camera> m_camera;
 };
