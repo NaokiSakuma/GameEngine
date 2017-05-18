@@ -101,6 +101,7 @@ void Game::Initialize(HWND window, int width, int height)
 	m_keyboard = std::make_unique<Keyboard>();
 	//ƒJƒƒ‰‚Ì¶¬
 	m_camera = std::make_unique<FollowCamera>(m_outputWidth, m_outputHeight);
+	m_camera->SetKeyboard(m_keyboard.get());
 	//“ª‚Ì‰Šú’l
 	m_head_pos = Vector3(0, 0, 30);
 }
