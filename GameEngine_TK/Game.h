@@ -14,13 +14,23 @@
 #include <Model.h>
 #include <Keyboard.h>
 #include "Follow.h"
+#include "Obj3d.h"
+#include <vector>
 
 // A basic game implementation that creates a D3D11 device and
 // provides a game loop.
 class Game
 {
 public:
+	enum  PLAYER_PARTS
+	{
+		HEAD1,		//頭
+		HEAD2,		//頭
+		HEAD3,		//頭
+		HEAD4,		//頭
 
+		PLAYER_PARTS_NUM,	//パーツ数
+	};
     Game();
 
     // Initialization and management
@@ -96,17 +106,19 @@ private:
 	//エフェクトファクトリー
 	std::unique_ptr<DirectX::EffectFactory> m_factory;
 	//天球モデル 奥にあるものを先に描画した方がよい。
-	std::unique_ptr<DirectX::Model> m_modelSkydome;
+	Obj3d m_objSkydome;
 	//地面モデル
 	std::unique_ptr<DirectX::Model> m_modelGround;
 	//球モデル
 	std::unique_ptr<DirectX::Model> m_modelBall;
 	//ティーポットモデル
 	std::unique_ptr<DirectX::Model> m_modelTeapot;
-	//頭のモデル
-	std::unique_ptr<DirectX::Model> m_modelHead;
-	//頭のワールド行列
-	DirectX::SimpleMath::Matrix m_worldHead;
+	////頭のモデル
+	//std::unique_ptr<DirectX::Model> m_modelHead;
+	////頭のワールド行列
+	//DirectX::SimpleMath::Matrix m_worldHead;
+	////頭のワールド行列
+	//DirectX::SimpleMath::Matrix m_worldHead2;
 	//球のワールド行列
 	DirectX::SimpleMath::Matrix m_worldBall[20];
 	//ティーポットのワールド行列
@@ -138,4 +150,6 @@ private:
 	
 	//カメラ
 	std::unique_ptr<FollowCamera> m_camera;
+	//頭
+	std::vector<Obj3d> m_ObjPlayer;
 };

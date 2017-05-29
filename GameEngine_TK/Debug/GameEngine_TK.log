@@ -2,15 +2,11 @@
   Assets\ground1m.FBX
   Assets\ground200m.FBX
   Assets\head.FBX
+  Assets\head2.FBX
+  Assets\head3.FBX
+  Assets\head4.FBX
   Assets\skydome.FBX
   Assets\teapot.FBX
-  Game.cpp
-c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game.cpp(53): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game.cpp(97): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
-c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game.cpp(98): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
-c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game.cpp(123): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
-c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game.cpp(179): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game.cpp(197): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game.cpp(241): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+     ライブラリ C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.lib とオブジェクト C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.exp を作成中
   GameEngine_TK.vcxproj -> C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.exe
   GameEngine_TK.vcxproj -> C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.pdb (Full PDB)

@@ -40,6 +40,14 @@ void Game::Initialize(HWND window, int width, int height)
     m_timer.SetTargetElapsedSeconds(1.0 / 60);
     */
 	//独自の初期化はここに書く
+	//キーボードの生成
+	m_keyboard = std::make_unique<Keyboard>();
+	//カメラの生成
+	m_camera = std::make_unique<FollowCamera>(m_outputWidth, m_outputHeight);
+	m_camera->SetKeyboard(m_keyboard.get());
+	//3dオブジェクトの静的メンバ変数を初期化
+	Obj3d::InitializeStatic(m_d3dDevice, m_d3dContext, m_camera.get());
+
 	//unique_ptr...スコープを抜けたら自動的にdeleteしてくれるので、メモリリークの必要がない
 	//smart_pointer.Get()で生のポインターを取得
 	//四角形用
@@ -72,8 +80,7 @@ void Game::Initialize(HWND window, int width, int height)
 	m_factory = std::make_unique<EffectFactory>(m_d3dDevice.Get());
 	//テクスチャのパスを指定(vcxprojから見てファイルの場所を指定)
 	m_factory->SetDirectory(L"Resources");
-	//モデルの生成(空)			デバイス			cmoファイルの場所を指定  エフェクトファクトリー
-	m_modelSkydome = Model::CreateFromCMO(m_d3dDevice.Get(), L"Resources/skydome.cmo", *m_factory);
+	m_objSkydome.LoadModel(L"Resources/skydome.cmo");
 	//モデルの生成(地面)			デバイス			cmoファイルの場所を指定  エフェクトファクトリー
 	m_modelGround = Model::CreateFromCMO(m_d3dDevice.Get(), L"Resources/ground200m.cmo", *m_factory);
 	//モデルの生成(球)				デバイス			cmoファイルの場所を指定  エフェクトファクトリー
@@ -81,7 +88,7 @@ void Game::Initialize(HWND window, int width, int height)
 	//モデルの生成(ティーポット)
 	m_modelTeapot = Model::CreateFromCMO(m_d3dDevice.Get(), L"Resources/teapot.cmo", *m_factory);
 	//頭モデルの生成
-	m_modelHead = Model::CreateFromCMO(m_d3dDevice.Get(), L"Resources/head.cmo", *m_factory);
+	//m_modelHead = Model::CreateFromCMO(m_d3dDevice.Get(), L"Resources/head.cmo", *m_factory);
 	//カウント
 	m_count = 0;
 	//大きさ
@@ -97,13 +104,16 @@ void Game::Initialize(HWND window, int width, int height)
 		m_randAngle[i] = std::rand() % 360;		//角度
 		m_randDistance[i] = std::rand() % 100;	//距離
 	}
-	//キーボードの生成
-	m_keyboard = std::make_unique<Keyboard>();
-	//カメラの生成
-	m_camera = std::make_unique<FollowCamera>(m_outputWidth, m_outputHeight);
-	m_camera->SetKeyboard(m_keyboard.get());
 	//頭の初期値
 	m_head_pos = Vector3(0, 0, 30);
+
+	//要素数分にリサイズする
+	m_ObjPlayer.resize(PLAYER_PARTS_NUM);
+	m_ObjPlayer[HEAD1].LoadModel(L"Resources/head.cmo");
+	m_ObjPlayer[HEAD2].LoadModel(L"Resources/head2.cmo");
+	m_ObjPlayer[HEAD3].LoadModel(L"Resources/head3.cmo");
+	m_ObjPlayer[HEAD4].LoadModel(L"Resources/head4.cmo");
+
 }
 
 // Executes the basic game loop.
@@ -194,14 +204,13 @@ void Game::Update(DX::StepTimer const& timer)
 	//キーボードの状態を取得
 	Keyboard::State key = m_keyboard->GetState();
 	{
-		Matrix rotmaty = Matrix::CreateRotationY(XMConvertToRadians(m_rot));
 		//Wキーが押されていたら
 		if (key.W)
 		{
 			//移動ベクトル
 			Vector3 moveV(0, 0, -0.1f);
 			//移動ベクトルを回転
-			moveV = SimpleMath::Vector3::TransformNormal(moveV, m_worldHead);
+			//moveV = SimpleMath::Vector3::TransformNormal(moveV, m_worldHead);
 			//自機の座標を移動
 			m_head_pos += moveV;
 		}
@@ -211,7 +220,7 @@ void Game::Update(DX::StepTimer const& timer)
 			//移動ベクトル
 			Vector3 moveV(0, 0, 0.1f);
 			//移動ベクトルを回転
-			moveV = SimpleMath::Vector3::TransformNormal(moveV, m_worldHead);
+			//moveV = SimpleMath::Vector3::TransformNormal(moveV, m_worldHead);
 			//自機の座標を移動
 			m_head_pos += moveV;
 		}
@@ -227,12 +236,25 @@ void Game::Update(DX::StepTimer const& timer)
 			//回転させる
 			m_rot--;
 		}
-		//自機のワールド行列を計算
-			//頭の平行移動
-		Matrix transmat = Matrix::CreateTranslation(m_head_pos);
-		//平行移動行列をワールド行列にコピー
-		m_worldHead = rotmaty * transmat;
+		//{
+		//	//自機のワールド行列を計算
+		//		//頭の平行移動
+		//	Matrix rotmaty = Matrix::CreateRotationY(XMConvertToRadians(m_rot));
+		//	Matrix transmat = Matrix::CreateTranslation(m_head_pos);
+		//	//平行移動行列をワールド行列にコピー
+		//	m_worldHead = rotmaty * transmat;
+		//}
+		//{
+		//	//自機のワールド行列を計算
+		//	//頭の平行移動
+		//	Matrix rotmat2 = Matrix::CreateRotationZ(XM_PIDIV2) * Matrix::CreateRotationY(0);
+		//	Matrix transmat2 = Matrix::CreateTranslation(Vector3(0,0.5f,0));
+		//	//平行移動行列をワールド行列にコピー  親のワールド行列をかけると親子関係 ※子供、親の順番でかける
+		//	m_worldHead2 = rotmat2 * transmat2 * m_worldHead;
+		//}
+
 	}
+
 	{//自機に追従するカメラ
 		//カメラの更新
 		//m_camera->SetEyePos(m_head_pos + Vector3(sinf(XMConvertToRadians(m_rot)), 0, cosf(XMConvertToRadians(m_rot))));
@@ -242,6 +264,11 @@ void Game::Update(DX::StepTimer const& timer)
 		m_camera->Update();
 		m_view = m_camera->GetViewMatrix();
 		m_proj = m_camera->GetProjectionMatrix();
+	}
+	m_objSkydome.Update();
+	for (std::vector<Obj3d>::iterator it = m_ObjPlayer.begin(); it != m_ObjPlayer.end(); it++)
+	{
+		it->Update();
 	}
 }
 
@@ -322,16 +349,24 @@ void Game::Render()
 	m_effect->Apply(m_d3dContext.Get());
 	m_d3dContext->IASetInputLayout(m_inputLayout.Get());
 	//モデルの描画   デバイス     コモンステイト ワールド行列　ビュー行列　射影行列
-	m_modelSkydome->Draw(m_d3dContext.Get(), *m_states, m_world, m_view, m_proj);
+	//m_modelSkydome->Draw(m_d3dContext.Get(), *m_states, m_world, m_view, m_proj);
+	m_objSkydome.Draw();
 	//モデルの描画   デバイス     コモンステイト ワールド行列　ビュー行列　射影行列
 	m_modelGround->Draw(m_d3dContext.Get(), *m_states, Matrix::Identity, m_view, m_proj);
+
+	for (std::vector<Obj3d>::iterator it = m_ObjPlayer.begin(); it != m_ObjPlayer.end(); it++)
+	{
+		it->Draw();
+	}
+
 	//ティーポットモデルの描画
 	//for (int i = 0; i < 20; i++)
 	//{
 	//	m_modelTeapot->Draw(m_d3dContext.Get(), *m_states, m_worldTeapot[i], m_view, m_proj);
 	//}
 	//頭の描画   デバイス     コモンステイト ワールド行列　ビュー行列　射影行列
-	m_modelHead->Draw(m_d3dContext.Get(), *m_states, m_worldHead, m_view, m_proj);
+	//m_modelHead->Draw(m_d3dContext.Get(), *m_states, m_worldHead, m_view, m_proj);
+	//m_modelHead->Draw(m_d3dContext.Get(), *m_states, m_worldHead2, m_view, m_proj);
 	//モデルの描画   デバイス     コモンステイト ワールド行列　ビュー行列　射影行列
 	//for (int i = 0; i < 20; i++)
 	//{
