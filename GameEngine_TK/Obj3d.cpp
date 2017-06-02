@@ -20,7 +20,7 @@ Microsoft::WRL::ComPtr<ID3D11Device>            Obj3d::m_d3dDevice;
 //デバイスコンテキスト
 Microsoft::WRL::ComPtr<ID3D11DeviceContext>     Obj3d::m_d3dContext;
 //カメラ
-Camera* Obj3d::m_camera;
+const Camera* Obj3d::m_camera;
 //汎用的ステート設定
 std::unique_ptr<DirectX::CommonStates> Obj3d::m_states;
 //エフェクトファクトリー
@@ -99,7 +99,7 @@ void Obj3d::Update()
 //!
 //! @return なし
 //----------------------------------------------------------------------
-void Obj3d::Draw()
+void Obj3d::Render() const
 {
 	//オブジェクトが存在していたら
 	if (m_model)
@@ -169,7 +169,7 @@ void Obj3d::SetObjParent(Obj3d * objParent)
 //!
 //! @return なし
 //----------------------------------------------------------------------
-const DirectX::SimpleMath::Vector3& Obj3d::GetScale()
+const DirectX::SimpleMath::Vector3& Obj3d::GetScale() const
 {
 	return m_scale;
 }
@@ -181,7 +181,7 @@ const DirectX::SimpleMath::Vector3& Obj3d::GetScale()
 //!
 //! @return なし
 //----------------------------------------------------------------------
-const DirectX::SimpleMath::Vector3& Obj3d::GetRot()
+const DirectX::SimpleMath::Vector3& Obj3d::GetRot() const
 {
 	return m_rotation;
 }
@@ -193,7 +193,7 @@ const DirectX::SimpleMath::Vector3& Obj3d::GetRot()
 //!
 //! @return なし
 //----------------------------------------------------------------------
-const DirectX::SimpleMath::Vector3& Obj3d::GetTrans()
+const DirectX::SimpleMath::Vector3& Obj3d::GetTrans() const
 {
 	return m_translation;
 }
@@ -205,7 +205,7 @@ const DirectX::SimpleMath::Vector3& Obj3d::GetTrans()
 //!
 //! @return なし
 //----------------------------------------------------------------------
-const DirectX::SimpleMath::Matrix& Obj3d::GetWorld()
+const DirectX::SimpleMath::Matrix& Obj3d::GetWorld() const
 {
 	return m_world;
 }

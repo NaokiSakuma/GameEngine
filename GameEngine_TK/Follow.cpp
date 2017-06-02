@@ -14,7 +14,7 @@ using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
 //静的メンバ変数の初期化
-const float FollowCamera::CAMERA_DISTANCE = 5.0f;
+const float FollowCamera::CAMERA_DISTANCE = 10.0f;
 
 //----------------------------------------------------------------------
 //! @brief コンストラクタ

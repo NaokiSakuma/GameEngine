@@ -7,6 +7,11 @@
   Assets\head4.FBX
   Assets\skydome.FBX
   Assets\teapot.FBX
-     ライブラリ C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.lib とオブジェクト C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.exp を作成中
+  Game.cpp
+c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game.cpp(61): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game.cpp(104): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game.cpp(105): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game.cpp(166): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game.cpp(222): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
   GameEngine_TK.vcxproj -> C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.exe
   GameEngine_TK.vcxproj -> C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.pdb (Full PDB)

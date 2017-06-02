@@ -16,6 +16,7 @@
 #include "Follow.h"
 #include "Obj3d.h"
 #include <vector>
+#include "DebugText.h"
 
 // A basic game implementation that creates a D3D11 device and
 // provides a game loop.
@@ -29,7 +30,7 @@ public:
 		HEAD3,		//頭
 		HEAD4,		//頭
 
-		PLAYER_PARTS_NUM,	//パーツ数
+		PLAYER_PARTS_NUM = 10,	//パーツ数
 	};
     Game();
 
@@ -152,4 +153,14 @@ private:
 	std::unique_ptr<FollowCamera> m_camera;
 	//頭
 	std::vector<Obj3d> m_ObjPlayer;
+	//サイン用の角度
+	float m_cycle;
+	//スプライトバッチ
+	std::unique_ptr<DirectX::SpriteBatch> m_spriteBatch;
+	//文字列
+	std::unique_ptr<DebugText> m_debugText;
+
+	//関数
+	void SetW();	//Wが押されたとき
+	void SetS();	//Sが押されたとき
 };

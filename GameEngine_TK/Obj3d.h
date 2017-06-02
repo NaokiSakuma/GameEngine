@@ -20,7 +20,6 @@
 #include <Model.h>
 
 #include "Camera.h"
-
 class Obj3d
 {
 	//静的
@@ -36,7 +35,7 @@ private:
 	//デバイスコンテキスト
 	static Microsoft::WRL::ComPtr<ID3D11DeviceContext>     m_d3dContext;
 	//カメラ
-	static Camera* m_camera;
+	static const Camera* m_camera;
 	//汎用的ステート設定
 	static std::unique_ptr<DirectX::CommonStates> m_states;
 	//エフェクトファクトリー
@@ -49,9 +48,9 @@ public:
 	//CMOモデルのロード
 	void LoadModel(const wchar_t* fileName);
 	//更新
-	void Update();
+	virtual void Update();
 	//描画
-	void Draw();
+	virtual void Render() const;
 
 	//Setter
 	//スケーリング
@@ -64,14 +63,14 @@ public:
 	void SetObjParent(Obj3d* objParent);
 	//Getter
 	//スケーリング
-	const DirectX::SimpleMath::Vector3& GetScale();
+	const DirectX::SimpleMath::Vector3& GetScale() const;
 	//回転
-	const DirectX::SimpleMath::Vector3& GetRot();
+	const DirectX::SimpleMath::Vector3& GetRot() const;
 	//平行移動
-	const DirectX::SimpleMath::Vector3& GetTrans();
+	const DirectX::SimpleMath::Vector3& GetTrans() const;
 	//ワールド行列
-	const DirectX::SimpleMath::Matrix& GetWorld();
-private:
+	const DirectX::SimpleMath::Matrix& GetWorld() const;
+protected:
 	//モデル
 	std::unique_ptr<DirectX::Model> m_model;
 	//スケーリング
@@ -84,4 +83,5 @@ private:
 	DirectX::SimpleMath::Matrix m_world;
 	//親のObj3dへのポインタ
 	Obj3d* m_ObjParent;
+
 };

@@ -23,9 +23,9 @@ public:
 	//更新
 	virtual void Update();
 	//ビュー行列の取得
-	const DirectX::SimpleMath::Matrix& Camera::GetViewMatrix();
+	const DirectX::SimpleMath::Matrix& Camera::GetViewMatrix() const;
 	//射影行列の取得
-	const DirectX::SimpleMath::Matrix& Camera::GetProjectionMatrix();
+	const DirectX::SimpleMath::Matrix& Camera::GetProjectionMatrix() const;
 	//視点座標のセット
 	void SetEyePos(const DirectX::SimpleMath::Vector3& eyepos);
 	//目標座標のセット

@@ -64,7 +64,7 @@ void Camera::Update()
 //!
 //! @return ビュー行列
 //----------------------------------------------------------------------
-const Matrix& Camera::GetViewMatrix()
+const Matrix& Camera::GetViewMatrix() const
 {
 	return m_view;
 }
@@ -76,7 +76,7 @@ const Matrix& Camera::GetViewMatrix()
 //!
 //! @return 射影行列
 //----------------------------------------------------------------------
-const Matrix& Camera::GetProjectionMatrix()
+const Matrix& Camera::GetProjectionMatrix() const
 {
 	return m_proj;
 }
