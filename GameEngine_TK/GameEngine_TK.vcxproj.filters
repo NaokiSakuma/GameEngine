@@ -5,33 +5,57 @@
       <UniqueIdentifier>7a522753-5ca0-4ce6-8662-e423ef0ccb27</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dds;dlg;fbx;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="StepTimer.h" />
-    <ClInclude Include="DebugCamera.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Follow.h" />
-    <ClInclude Include="Obj3d.h" />
-    <ClInclude Include="DebugText.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Character.h" />
-    <ClInclude Include="State.h" />
-    <ClInclude Include="PlayerState.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="pch.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="DebugCamera.cpp" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Follow.cpp" />
-    <ClCompile Include="Obj3d.cpp" />
-    <ClCompile Include="DebugText.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Character.cpp" />
-    <ClCompile Include="PlayerState.cpp" />
+    <Filter Include="Game">
+      <UniqueIdentifier>{bfd5c5f0-dc7e-4f4c-9cf3-75fcf2ae730b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Camera">
+      <UniqueIdentifier>{71eb6e02-d456-493c-b0be-b718117c7869}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Character">
+      <UniqueIdentifier>{8bbd3980-9769-499f-9f88-bead6def08fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Obj3d">
+      <UniqueIdentifier>{83f229ef-f23e-4a66-befa-0f6ae8eff877}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\pch">
+      <UniqueIdentifier>{0f1718fe-4439-4a4d-b100-070d8461709d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\State">
+      <UniqueIdentifier>{49f928cd-daf0-43c5-978d-d9a7a0a86d93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Text">
+      <UniqueIdentifier>{0de22099-bba9-401f-afbf-5748d1fb5c82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Camera\DebugCamera">
+      <UniqueIdentifier>{a0b39916-6c23-4b49-9714-c8950c2e1dfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Camera\FollowCamera">
+      <UniqueIdentifier>{090ffa97-5445-4ec5-b910-d9fe739218c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Character\Player">
+      <UniqueIdentifier>{7e005f03-7207-4126-9428-c3f2b0cd79c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\State\PlayerState">
+      <UniqueIdentifier>{eb1bbb0a-7978-44df-9a9f-b86857ba0436}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Device">
+      <UniqueIdentifier>{730b9ae7-3eed-45cd-bd09-61eafb1f8751}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Command">
+      <UniqueIdentifier>{d2eaad15-224b-494a-a8d1-b35bd9c730bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Command\PlayerCommand">
+      <UniqueIdentifier>{c0b50a6c-ac9f-4cfd-9595-2c0906669f79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Character\Enemy">
+      <UniqueIdentifier>{38b24def-d79b-4c59-aa5e-3bf505bb2bd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\State\EnemyState">
+      <UniqueIdentifier>{8081ac88-9970-41a8-bcad-f34da634babf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Obj3d\Bullet">
+      <UniqueIdentifier>{b079f9eb-1e2f-4214-9a8d-3f264aca1743}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
@@ -47,19 +71,10 @@
     </Manifest>
   </ItemGroup>
   <ItemGroup>
-    <MeshContentTask Include="Assets\ground1m.FBX">
-      <Filter>Assets</Filter>
-    </MeshContentTask>
     <MeshContentTask Include="Assets\skydome.FBX">
       <Filter>Assets</Filter>
     </MeshContentTask>
-    <MeshContentTask Include="Assets\ball.FBX">
-      <Filter>Assets</Filter>
-    </MeshContentTask>
     <MeshContentTask Include="Assets\ground200m.FBX">
-      <Filter>Assets</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\teapot.FBX">
       <Filter>Assets</Filter>
     </MeshContentTask>
     <MeshContentTask Include="Assets\head.FBX">
@@ -74,5 +89,108 @@
     <MeshContentTask Include="Assets\head3.FBX">
       <Filter>Assets</Filter>
     </MeshContentTask>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game\Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Main.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Camera\Camera.cpp">
+      <Filter>Game\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Camera\DebugCamera\DebugCamera.cpp">
+      <Filter>Game\Camera\DebugCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Camera\FollowCamera\Follow.cpp">
+      <Filter>Game\Camera\FollowCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Character\Player\Player.cpp">
+      <Filter>Game\Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Text\DebugText.cpp">
+      <Filter>Game\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\State\PlayerState\PlayerState.cpp">
+      <Filter>Game\State\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\pch\pch.cpp">
+      <Filter>Game\pch</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Obj3d\Obj3d.cpp">
+      <Filter>Game\Obj3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Device\Device.cpp">
+      <Filter>Game\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Command\PlayerCommand\PlayerCommands.cpp">
+      <Filter>Game\Command\PlayerCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Character\Enemy\Enemy.cpp">
+      <Filter>Game\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\State\EnemyState\EnemyState.cpp">
+      <Filter>Game\State\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Obj3d\Bullet\Bullet.cpp">
+      <Filter>Game\Obj3d\Bullet</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game\Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\StepTimer.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Camera\Camera.h">
+      <Filter>Game\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Camera\DebugCamera\DebugCamera.h">
+      <Filter>Game\Camera\DebugCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Camera\FollowCamera\Follow.h">
+      <Filter>Game\Camera\FollowCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Character\Character.h">
+      <Filter>Game\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Character\Player\Player.h">
+      <Filter>Game\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Text\DebugText.h">
+      <Filter>Game\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\State\State.h">
+      <Filter>Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\State\PlayerState\PlayerState.h">
+      <Filter>Game\State\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\pch\pch.h">
+      <Filter>Game\pch</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Obj3d\Obj3d.h">
+      <Filter>Game\Obj3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Device\Device.h">
+      <Filter>Game\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Command\Command.h">
+      <Filter>Game\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Command\PlayerCommand\PlayerCommands.h">
+      <Filter>Game\Command\PlayerCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Character\Enemy\Enemy.h">
+      <Filter>Game\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\State\EnemyState\EnemyState.h">
+      <Filter>Game\State\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Obj3d\Bullet\Bullet.h">
+      <Filter>Game\Obj3d\Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
