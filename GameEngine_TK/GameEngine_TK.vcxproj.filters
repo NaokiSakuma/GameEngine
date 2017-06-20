@@ -56,6 +56,12 @@
     <Filter Include="Game\Obj3d\Bullet">
       <UniqueIdentifier>{b079f9eb-1e2f-4214-9a8d-3f264aca1743}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Collision">
+      <UniqueIdentifier>{fa68f206-5c8b-426b-9aec-89f32ee787ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\CollisionNode">
+      <UniqueIdentifier>{f48dbc6f-fd0e-40d5-badd-ec74338d9550}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
@@ -87,6 +93,9 @@
       <Filter>Assets</Filter>
     </MeshContentTask>
     <MeshContentTask Include="Assets\head3.FBX">
+      <Filter>Assets</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Resources\SphereNode.FBX">
       <Filter>Assets</Filter>
     </MeshContentTask>
   </ItemGroup>
@@ -135,6 +144,12 @@
     </ClCompile>
     <ClCompile Include="Game\Obj3d\Bullet\Bullet.cpp">
       <Filter>Game\Obj3d\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Collision\Collision.cpp">
+      <Filter>Game\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\CollisionNode\CollisionNode.cpp">
+      <Filter>Game\CollisionNode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +206,12 @@
     </ClInclude>
     <ClInclude Include="Game\Obj3d\Bullet\Bullet.h">
       <Filter>Game\Obj3d\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Collision\Collision.h">
+      <Filter>Game\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\CollisionNode\CollisionNode.h">
+      <Filter>Game\CollisionNode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

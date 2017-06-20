@@ -30,9 +30,6 @@ public:
 	//描画
 	virtual void Render() = 0;
 
-	//テスト
-	virtual void ParentFreed() {};
-
 	//ステイトの変更
 	virtual void ChangeState(State* state) {};
 	//Setter

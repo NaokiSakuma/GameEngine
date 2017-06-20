@@ -11,6 +11,7 @@
 
 #include "..\Character.h"
 #include "..\..\Obj3d\Bullet\Bullet.h"
+#include "..\..\CollisionNode\CollisionNode.h"
 
 class Player final :public Character
 {
@@ -58,13 +59,15 @@ public:
 	const DirectX::SimpleMath::Matrix&	GetWorld()			const	override;
 	//オブジェクト
 	Obj3d*								GetObj3d(int num)			override;
+	//弾丸用の当たり判定
+	const CollisionNode::SphereNode& GetCollisionNodeBullet() const;
 	//弾
 	Bullet* m_bullet;
 	//クリエイト関数
 	static Player* Create();
 
 	//テスト
-	void ParentFreed() override;
+	void ParentFreed();
 
 private:
 	//コンストラクタ
@@ -74,5 +77,8 @@ private:
 
 	//再発射するための時間
 	int m_nextFireTimer;
+
+	//弾丸用の当たり判定
+	CollisionNode::SphereNode m_collisionNodeBullet;
 };
 

@@ -64,7 +64,14 @@ void Player::Initialize()
 	//大きさ
 	m_obj3d[HEAD1].SetScale(Vector3(2, 2, 2));
 	m_obj3d[HEAD2].SetScale(Vector3(2, 2, 2));
-
+	//弾丸用の当たり判定ノードの設定
+	m_collisionNodeBullet.Initialize();
+	//親パーツを設定
+	m_collisionNodeBullet.SetParent(m_bullet);
+	//スケールを変える
+	m_collisionNodeBullet.SetLocalRadius(0.3f);
+	//オフセット
+	m_collisionNodeBullet.SetTrans(Vector3(0,0.2f,0));
 
 }
 
@@ -84,7 +91,7 @@ void Player::Update()
 	{
 		it->Update();
 	}
-	//弾の移動
+	//弾の更新
 	m_bullet->Update();
 
 	//弾に親がいない場合
@@ -95,6 +102,8 @@ void Player::Update()
 			//装填
 			ResetBullet();
 	}
+	//弾丸用の当たり判定の更新
+	m_collisionNodeBullet.Update();
 }
 
 //----------------------------------------------------------------------
@@ -112,6 +121,7 @@ void Player::Render()
 	}
 	//弾の描画
 	m_bullet->Render();
+	m_collisionNodeBullet.Render();
 }
 
 //----------------------------------------------------------------------
@@ -123,7 +133,6 @@ void Player::Render()
 //----------------------------------------------------------------------
 void Player::ResetBullet()
 {
-	//
 	m_bullet->SetObjParent(&m_obj3d[HEAD1]);
 	m_bullet->SetScale(Vector3(2, 2, 2));
 	m_bullet->SetRot(Vector3(0, 0, 0));
@@ -146,6 +155,13 @@ Player* Player::Create()
 	return player;
 }
 
+//----------------------------------------------------------------------
+//! @brief テスト
+//!
+//! @param[in] なし
+//!
+//! @return なし
+//----------------------------------------------------------------------
 void Player::ParentFreed()
 {
 	if (m_bullet->GetObjParent())
@@ -260,4 +276,16 @@ const DirectX::SimpleMath::Matrix& Player::GetWorld() const
 Obj3d* Player::GetObj3d(int num)
 {
 	return &m_obj3d[num];
+}
+
+//----------------------------------------------------------------------
+//! @brief 弾丸用の当たり判定のGetter
+//!
+//! @param[in] なし
+//!
+//! @return 弾丸用の当たり判定
+//----------------------------------------------------------------------
+const CollisionNode::SphereNode & Player::GetCollisionNodeBullet() const
+{
+	return m_collisionNodeBullet;
 }

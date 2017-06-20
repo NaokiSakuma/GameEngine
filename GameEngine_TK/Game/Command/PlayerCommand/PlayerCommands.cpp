@@ -132,31 +132,7 @@ void PlayerCommands::RotRightCommand::RotRight(Character* character)
 //----------------------------------------------------------------------
 void PlayerCommands::BulletCommand::BulletsFire(Character* character)
 {
-	character->ParentFreed();
-	////発射するパーツのワールド行列を取得
-	//Matrix worldm = character->GetObj3d(9)->GetWorld();
-	////抽出した情報をしまっておく変数
-	//Vector3 scale;			//ワールドスケーリング
-	//Quaternion rotation;	//ワールド回転
-	//Vector3 translation;	//ワールド座標
-
-	//						//ワールド行列から各要素を抽出
-	//worldm.Decompose(scale, rotation, translation);
-
-	////親パーツから分離、独立させる
-	//character->GetObj3d(9)->SetObjParent(nullptr);
-	//character->GetObj3d(9)->SetScale(scale);
-	//character->GetObj3d(9)->SetRotQ(rotation);
-	//character->GetObj3d(9)->SetTrans(translation);
-
-	////弾丸パーツの速度を設定
-	//Vector3 BulletVel = Vector3(0, 0, -0.1f);
-	////パーツの向きに合わせて速度ベクトルを回転
-	//BulletVel = Vector3::Transform(BulletVel, rotation);
-	//{
-	//	Vector3 pos = character->GetObj3d(9)->GetTrans();
-	//	character->GetObj3d(9)->SetTrans(pos + BulletVel);
-	//}
+	dynamic_cast<Player*>(character)->ParentFreed();
 }
 //----------------------------------------------------------------------
 //! @brief 解散コマンド

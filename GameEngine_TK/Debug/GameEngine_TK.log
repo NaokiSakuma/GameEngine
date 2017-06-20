@@ -4,6 +4,10 @@
   Assets\head3.FBX
   Assets\head4.FBX
   Assets\skydome.FBX
-  Game.cpp
+  Resources\SphereNode.FBX
+  Player.cpp
+c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game\character\character.h(45): warning C4172: ローカル変数またはテンポラリのアドレスを返します
+c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game\character\character.h(47): warning C4172: ローカル変数またはテンポラリのアドレスを返します
+c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game\character\character.h(49): warning C4172: ローカル変数またはテンポラリのアドレスを返します
   GameEngine_TK.vcxproj -> C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.exe
   GameEngine_TK.vcxproj -> C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.pdb (Full PDB)
