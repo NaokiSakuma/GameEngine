@@ -35,3 +35,27 @@ bool CheckSphere2Sphere(const Collision::Sphere& sphereA, const Collision::Spher
 	//当たっている
 	return true;
 }
+
+//----------------------------------------------------------------------
+//! @brief 3点から三角形を構築
+//!
+//! @param[in] 頂点p1、p2、p3、三角形(結果出力用)
+//!
+//! @return 当たっているかどうか
+//----------------------------------------------------------------------
+void ComputeTriangle(const Vector3& _p0, const Vector3& _p1, const Vector3& _p2, Collision::Triangle* _triangle)
+{
+	//座標をコピー
+	_triangle->P0 = _p0;
+	_triangle->P1 = _p1; 
+	_triangle->P2 = _p2;
+
+	//法線ベクトルを計算
+	Vector3 P0_P1 = _p1 - _p0;
+	Vector3 P1_P2 = _p2 - _p1;
+	
+	//２ベクトルに垂直なベクトルを得る(法線ベクトル)
+	_triangle->Normal = P0_P1.Cross(P1_P2);
+	//正規化
+	_triangle->Normal.Normalize();
+}

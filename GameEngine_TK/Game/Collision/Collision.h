@@ -35,7 +35,20 @@ namespace Collision
 		//終点座標
 		DirectX::SimpleMath::Vector3 End;
 	};
+	//三角形
+	class Triangle
+	{
+	public:
+		//頂点座標
+		DirectX::SimpleMath::Vector3 P0;
+		DirectX::SimpleMath::Vector3 P1;
+		DirectX::SimpleMath::Vector3 P2;
+		//法線ベクトル
+		DirectX::SimpleMath::Vector3 Normal;
+	};
 }
 
 //球と球との当たり判定
 bool CheckSphere2Sphere(const Collision::Sphere & sphereA, const Collision::Sphere & sphereB);
+//３点から三角形を構築
+void ComputeTriangle(const DirectX::SimpleMath::Vector3 & _p0, const DirectX::SimpleMath::Vector3 & _p1, const DirectX::SimpleMath::Vector3 & _p2, Collision::Triangle * _triangle);

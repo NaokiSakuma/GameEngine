@@ -27,6 +27,8 @@ std::unique_ptr<DirectX::CommonStates> Obj3d::m_states;
 std::unique_ptr<DirectX::EffectFactory> Obj3d::m_factory;
 //モデルコンテナ
 std::map<std::wstring, std::unique_ptr<DirectX::Model>> Obj3d::m_modelarray;
+//ブレンドステイト
+ID3D11BlendState* Obj3d::m_BlendStateSubtract;
 //----------------------------------------------------------------------
 //! @brief 3dオブジェクトのInitialize
 //!
@@ -46,6 +48,23 @@ void Obj3d::InitializeStatic(Microsoft::WRL::ComPtr<ID3D11Device> d3dDevice, Mic
 	//テクスチャのパスを指定(vcxprojから見てファイルの場所を指定)
 	m_factory->SetDirectory(L"Resources");
 
+	D3D11_BLEND_DESC desc;
+	desc.AlphaToCoverageEnable                 = false;
+	desc.IndependentBlendEnable                = false;
+	desc.RenderTarget[0].BlendEnable           = true;
+	desc.RenderTarget[0].SrcBlend              = D3D11_BLEND_ONE;
+	desc.RenderTarget[0].DestBlend             = D3D11_BLEND_ONE;
+	desc.RenderTarget[0].BlendOp               = D3D11_BLEND_OP_REV_SUBTRACT;
+	desc.RenderTarget[0].SrcBlendAlpha         = D3D11_BLEND_ONE;
+	desc.RenderTarget[0].DestBlendAlpha        = D3D11_BLEND_ONE;
+	desc.RenderTarget[0].BlendOpAlpha          = D3D11_BLEND_OP_REV_SUBTRACT;
+	desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+	HRESULT ret                                = m_d3dDevice->CreateBlendState(&desc, &m_BlendStateSubtract);
+}
+
+void Obj3d::SetSubtractive()
+{
+	m_d3dContext->OMSetBlendState(m_BlendStateSubtract, nullptr, 0xffffff);
 }
 
 //----------------------------------------------------------------------
@@ -59,6 +78,18 @@ Obj3d::Obj3d()
 	, m_UseQuaternion(false)
 {
 }
+
+//----------------------------------------------------------------------
+//! @brief コピーコンストラクタ
+//!
+//! @param[in] オブジェクト
+//----------------------------------------------------------------------
+//Obj3d::Obj3d(const Obj3d & obj)
+//{
+//	this->m_model = std::move(obj.m_model);
+//
+//
+//}
 
 //----------------------------------------------------------------------
 //! @brief CMOモデルのロード
@@ -129,6 +160,48 @@ void Obj3d::Render() const
 	}
 }
 
+void Obj3d::DrawSubtractive()
+{
+	//if (m_model)
+	//{
+	//	assert(m_camera);
+	//	const Matrix& view = m_camera->GetViewMatrix();
+	//	const Matrix& projection = m_camera->GetProjectionMatrix();
+	//	assert(m_d3dContext);
+	//	assert(m_states);
+	//	m_model->Draw(m_d3dContext, *m_states, m_world, view, projection, false, Obj3d::SetSubtractive);
+	//}
+}
+
+void Obj3d::DisableLighting()
+{
+	if (m_model)
+	{
+		ModelMesh::Collection::const_iterator it_mesh = m_model->meshes.begin();
+		for (; it_mesh != m_model->meshes.end(); it_mesh++)
+		{
+			ModelMesh* modelmesh = it_mesh->get();
+			assert(modelmesh);
+			std::vector<std::unique_ptr<ModelMeshPart>>::iterator it_meshpart = modelmesh->meshParts.begin();
+			for (; it_meshpart != modelmesh->meshParts.end(); it_meshpart++)
+			{
+				ModelMeshPart* meshpart = it_meshpart->get();
+				assert(meshpart);
+				std::shared_ptr<IEffect> ieff = meshpart->effect;
+				BasicEffect* eff = dynamic_cast<BasicEffect*>(ieff.get());
+				if (eff != nullptr)
+				{
+					eff->SetEmissiveColor(Vector3(1, 1, 1));
+					for (int i = 0; i < BasicEffect::MaxDirectionalLights; i++)
+					{
+						eff->SetLightEnabled(i, false);
+					}
+				}
+			}
+		}
+	}
+}
+
 //----------------------------------------------------------------------
 //! @brief スケーリングのSetter
 //!
@@ -178,6 +251,18 @@ void Obj3d::SetRotQ(const DirectX::SimpleMath::Quaternion & quaternion)
 void Obj3d::SetTrans(const DirectX::SimpleMath::Vector3& trans)
 {
 	m_translation = trans;
+}
+
+//----------------------------------------------------------------------
+//! @brief ワールド行列のSetter
+//!
+//! @param[in] ワールド行列
+//!
+//! @return なし
+//----------------------------------------------------------------------
+void Obj3d::SetWorld(const DirectX::SimpleMath::Matrix & world)
+{
+	m_world = world;
 }
 
 //----------------------------------------------------------------------

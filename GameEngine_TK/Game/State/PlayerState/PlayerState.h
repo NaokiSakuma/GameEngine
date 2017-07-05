@@ -26,6 +26,7 @@ namespace PlayerState
 		Command* m_putKeyQ;
 		Command* m_putKeyE;
 		Command* m_putKeySpace;
+		Command* m_putKey1;
 	public:
 		//デストラクタ
 		~Stand();

@@ -35,7 +35,7 @@ Bullet::Bullet()
 {
 	m_ObjParent = nullptr;
 	m_scale = Vector3(2, 2, 2);
-	m_translation = Vector3(0, 1, 0);
+	m_translation = Vector3(0, 0, 0);
 	m_UseQuaternion = false;
 
 }

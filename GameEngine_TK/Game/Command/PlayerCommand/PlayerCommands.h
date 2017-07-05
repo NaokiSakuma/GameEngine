@@ -72,4 +72,12 @@ namespace PlayerCommands
 	private:
 		void Assembly(Character* character);
 	};
+	//“–‚½‚è”»’è
+	class CollisionCommand : public Command
+	{
+	public:
+		void Execute(Character* character) override;
+	private:
+		void CollisionChange(Character* character);
+	};
 }

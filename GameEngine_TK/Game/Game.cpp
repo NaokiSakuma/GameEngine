@@ -48,6 +48,12 @@ void Game::Initialize(HWND window, int width, int height)
 	//3dオブジェクトの静的メンバ変数を初期化
 	Obj3d::InitializeStatic(m_d3dDevice, m_d3dContext, m_camera.get());
 
+	LandShapeCommonDef lscDef;
+	lscDef.pDevice = m_d3dDevice.Get();
+	lscDef.pDeviceContext = m_d3dContext.Get();
+	lscDef.pCamera = m_camera.get();
+	LandShape::InitializeCommon(lscDef);
+
 	//unique_ptr...スコープを抜けたら自動的にdeleteしてくれるので、メモリリークの必要がない
 	//smart_pointer.Get()で生のポインターを取得
 	//四角形用
@@ -72,9 +78,12 @@ void Game::Initialize(HWND window, int width, int height)
 	m_states = std::make_unique<CommonStates>(m_d3dDevice.Get());
 	//デバックカメラを生成
 	m_debugCamera = std::make_unique<DebugCamera>(m_outputWidth, m_outputHeight);
+	//m_objSkydome.DisableLighting();
 	m_objSkydome.LoadModel(L"Resources/skydome.cmo");
-	//モデルの生成(地面)			デバイス			cmoファイルの場所を指定  エフェクトファクトリー
-	m_modelGround.LoadModel(L"Resources/ground200m.cmo");
+	////モデルの生成(地面)			デバイス			cmoファイルの場所を指定  エフェクトファクトリー
+	//m_modelGround.LoadModel(L"Resources/ground200m.cmo");
+	//地形データの読み込み
+	m_landShapeGround.Initialize(L"ground200m", L"ground200m");
 	//乱数の初期化
 	srand(static_cast<unsigned int>(time(nullptr)));
 	//プレイヤーの生成
@@ -90,7 +99,8 @@ void Game::Initialize(HWND window, int width, int height)
 	m_spriteBatch = std::make_unique<SpriteBatch>(m_d3dContext.Get());
 	// デバッグテキストを作成
 	m_debugText = std::make_unique<DebugText>(m_d3dDevice.Get(), m_spriteBatch.get());
-
+	//初期化
+	isDebug = false;
 }
 
 // Executes the basic game loop.
@@ -113,20 +123,61 @@ void Game::Update(DX::StepTimer const& timer)
 	m_debugText->AddText(Vector2(0, 60), L"E         :Assembly");
 	m_debugText->AddText(Vector2(0, 80), L"C         :ChangeCamera");
 	m_debugText->AddText(Vector2(0, 100), L"Space :FireBullet");
+	m_debugText->AddText(Vector2(0, 120), L"1          :Collision");
 	float elapsedTime = float(timer.GetElapsedSeconds());
 
 	// TODO: Add your game logic here.
 	elapsedTime;
 	//毎フレーム処理を追加する
 	m_debugCamera->Update();
-
+	//デバッグ表示
+	if (Device::m_keyboardTracker.pressed.D1)
+	{
+		m_player->ChangeCollision();
+		for (std::vector<Character*>::iterator it = m_enemy.begin(); it != m_enemy.end(); it++)
+		{
+			(*it)->ChangeCollision();
+		}
+	}
 	//プレイヤーのアップデート
 	m_player->Update();
+	//敵の当たり判定
 	for (std::vector<Character*>::iterator it = m_enemy.begin(); it != m_enemy.end(); it++)
 	{
 		(*it)->Update();
 	}
-
+	{//弾丸と敵の当たり判定
+		const CollisionNode::SphereNode& bulletSphere = dynamic_cast<Player*>(m_player)->GetCollisionNodeBullet();
+		//敵の数だけ処理する i++をなくすことで進みすぎないようにする
+		for (std::vector<Character*>::iterator it = m_enemy.begin();
+			it != m_enemy.end();)
+		{
+			Character* enemy = (*it);
+			//敵の判定球を取得
+			const CollisionNode::CollisionNode* enemySphereConst = enemy->GetCollisionNode();
+			CollisionNode::CollisionNode* enemySphere = const_cast<CollisionNode::CollisionNode*>(enemySphereConst);
+			//２つの弾が当たっていたら
+			if (CheckSphere2Sphere(bulletSphere, *(dynamic_cast<Collision::Sphere*>(enemySphere))))
+			{
+				//エフェクトを発生させる
+				ModelEffectManager::getInstance()->Entry(L"Resources/HitEffect.cmo", 10, enemy->GetTrans(), Vector3(0.0f), Vector3(0.0f), Vector3(0.0f), Vector3(0.0f), Vector3(0.0f), Vector3(10.0f));
+				//敵を消す
+				//消した要素の次の要素を指すイテレータ
+				delete enemy;
+				it = m_enemy.erase(it);
+			}
+			else
+			{
+				//消さなかった場合にイテレータを進める
+				it++;
+			}
+		}
+	}
+	if (m_enemy.empty())
+	{
+		m_debugText->AddText(Vector2(350, 300), L"CLEAR");
+	}
+	ModelEffectManager::getInstance()->Update();
 	{//自機に追従するカメラ
 	 //カメラの更新
 		m_camera->SetTargetPos(m_player->GetTrans());
@@ -136,6 +187,7 @@ void Game::Update(DX::StepTimer const& timer)
 		m_proj = m_camera->GetProjectionMatrix();
 	}
 	m_objSkydome.Update();
+	m_landShapeGround.Update();
 }
 
 // Draws the scene.
@@ -180,14 +232,15 @@ void Game::Render()
 	//モデルの描画   デバイス     コモンステイト ワールド行列　ビュー行列　射影行列
 	m_objSkydome.Render();
 	//モデルの描画   デバイス     コモンステイト ワールド行列　ビュー行列　射影行列
-	m_modelGround.Render();
-
+	//m_modelGround.Render();
+	m_landShapeGround.Draw();
 	//プレイヤーの描画
 	m_player->Render();
 	for (std::vector<Character*>::iterator it = m_enemy.begin(); it != m_enemy.end(); it++)
 	{
 		(*it)->Render();
 	}
+	ModelEffectManager::getInstance()->Render();
 
 	//prmitiveBatchの描画開始時に必須
 	m_batch->Begin();

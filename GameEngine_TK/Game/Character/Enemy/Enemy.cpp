@@ -59,6 +59,19 @@ void Enemy::Initialize()
 	//‘å‚«‚³
 	m_obj3d[HEAD1].SetScale(Vector3(4, 2, 2));
 	m_obj3d[HEAD2].SetScale(Vector3(2, 4, 2));
+
+	//‰ŠúˆÊ’u
+	Vector3 pos;
+	pos.x = rand() % 20;
+	pos.z = rand() % 20;
+	SetTrans(pos);
+
+	//“–‚½‚è”»’è
+	m_collisionNode = new CollisionNode::SphereNode();
+	m_collisionNode->Initialize();
+	m_collisionNode->SetParent(&m_obj3d[HEAD1]);
+	dynamic_cast<CollisionNode::SphereNode*>(m_collisionNode)->SetLocalRadius(0.3f);
+
 }
 
 //----------------------------------------------------------------------
@@ -106,7 +119,7 @@ void Enemy::Update()
 	{
 		it->Update();
 	}
-
+	m_collisionNode->Update();
 
 }
 
@@ -123,6 +136,9 @@ void Enemy::Render()
 	{
 		it->Render();
 	}
+	//’eŠÛ—p‚Ì“–‚½‚è”»’è‚Ì•`‰æ
+	if (m_isRenderColl)
+		m_collisionNode->Render();
 }
 
 //----------------------------------------------------------------------

@@ -19,6 +19,14 @@ namespace CollisionNode
 	class CollisionNode
 	{
 	public:
+		//デバッグ表示のsetter
+		static bool SetDebugVisible(bool visible) { m_debugVisible = visible; };
+		//デバッグ表示のgetter
+		static bool GetDebugVisible()			  { return m_debugVisible; };
+	protected:
+		//デバッグ表示
+		static bool m_debugVisible;
+	public:
 		//初期化
 		virtual void Initialize() = 0;
 		//更新

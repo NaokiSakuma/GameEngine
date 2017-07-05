@@ -3,7 +3,7 @@
 //!
 //! @brief  プレイヤーのコマンドのソースファイル
 //!
-//! @date   2017/06/04
+//! @date   2017/06/04(06/20更新 : N.Sakuma)
 //!
 //! @author Y.Yamada
 //__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/
@@ -28,6 +28,7 @@ void PlayerCommands::RotRightCommand::Execute(Character* character) { RotRight(c
 void PlayerCommands::BreakUpCommand::Execute(Character* character)	{ BreakUp(character); }
 void PlayerCommands::AssemblyCommand::Execute(Character* character) { Assembly(character); }
 void PlayerCommands::BulletCommand::Execute(Character* character)   { BulletsFire(character); }
+void PlayerCommands::CollisionCommand::Execute(Character* charcter) { CollisionChange(charcter); }
 //----------------------------------------------------------------------
 //! @brief 前進コマンド
 //!
@@ -208,4 +209,16 @@ void PlayerCommands::AssemblyCommand::Assembly(Character* character)
 		character->GetObj3d(i)->SetRot(Vector3(0, atan2f((character->GetObj3d(i)->GetTrans().x - character->GetObj3d(i - 1)->GetTrans().x),
 			(character->GetObj3d(i)->GetTrans().z - character->GetObj3d(i - 1)->GetTrans().z)), 0));
 	}
+}
+
+//----------------------------------------------------------------------
+//! @brief 当たり判定コマンド
+//!
+//! @param[in] Characterのポインタ
+//!
+//! @return なし
+//----------------------------------------------------------------------
+void PlayerCommands::CollisionCommand::CollisionChange(Character * character)
+{
+	//character->ChangeCollision();
 }

@@ -42,10 +42,14 @@ private:
 	static std::unique_ptr<DirectX::EffectFactory> m_factory;
 	//モデルコンテナ
 	static std::map<std::wstring, std::unique_ptr<DirectX::Model>> m_modelarray;
-
+	//ブレンドステイト
+	static ID3D11BlendState* m_BlendStateSubtract;
 public:
+	static void SetSubtractive();
 	//コンストラクタ
 	Obj3d();
+	//コピーコンストラクタ
+	//Obj3d(const Obj3d& obj);
 	//CMOモデルのロード
 	void LoadModel(const wchar_t* fileName);
 	//更新
@@ -53,6 +57,8 @@ public:
 	//描画
 	virtual void Render() const;
 
+	void DrawSubtractive();
+	void DisableLighting();
 	//Setter
 	//スケーリング
 	void SetScale(const DirectX::SimpleMath::Vector3& scale);
@@ -62,6 +68,8 @@ public:
 	void SetRotQ(const DirectX::SimpleMath::Quaternion& quaternion);
 	//平行移動
 	void SetTrans(const DirectX::SimpleMath::Vector3& trans);
+	//ワールド行列
+	void SetWorld(const DirectX::SimpleMath::Matrix& world);
 	//親の3dオブジェクト
 	void SetObjParent(Obj3d* objParent);
 	//Getter

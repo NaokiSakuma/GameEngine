@@ -195,7 +195,10 @@
     <ClCompile Include="Game\Command\PlayerCommand\PlayerCommands.cpp" />
     <ClCompile Include="Game\Device\Device.cpp" />
     <ClCompile Include="Game\Game.cpp" />
+    <ClCompile Include="Game\LandShape\LandShape.cpp" />
+    <ClCompile Include="Game\LandShepeData\LandShapeData.cpp" />
     <ClCompile Include="Game\Main.cpp" />
+    <ClCompile Include="Game\ModelEffect\ModelEffect.cpp" />
     <ClCompile Include="Game\Obj3d\Bullet\Bullet.cpp" />
     <ClCompile Include="Game\Obj3d\Obj3d.cpp" />
     <ClCompile Include="Game\pch\pch.cpp" />
@@ -216,6 +219,9 @@
     <ClInclude Include="Game\Command\PlayerCommand\PlayerCommands.h" />
     <ClInclude Include="Game\Device\Device.h" />
     <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="Game\LandShape\LandShape.h" />
+    <ClInclude Include="Game\LandShepeData\LandShapeData.h" />
+    <ClInclude Include="Game\ModelEffect\ModelEffect.h" />
     <ClInclude Include="Game\Obj3d\Bullet\Bullet.h" />
     <ClInclude Include="Game\Obj3d\Obj3d.h" />
     <ClInclude Include="Game\pch\pch.h" />

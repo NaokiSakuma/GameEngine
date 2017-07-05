@@ -62,6 +62,15 @@
     <Filter Include="Game\CollisionNode">
       <UniqueIdentifier>{f48dbc6f-fd0e-40d5-badd-ec74338d9550}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\ModelEffect">
+      <UniqueIdentifier>{66017a5c-58dc-4f40-a6b0-56dffd057122}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\LandShape">
+      <UniqueIdentifier>{5fc53898-f602-4cd7-a1a6-6932e1c3332d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\LandShapeData">
+      <UniqueIdentifier>{19f61065-f6cf-45b8-9c52-7434a0bbe704}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
@@ -151,6 +160,15 @@
     <ClCompile Include="Game\CollisionNode\CollisionNode.cpp">
       <Filter>Game\CollisionNode</Filter>
     </ClCompile>
+    <ClCompile Include="Game\ModelEffect\ModelEffect.cpp">
+      <Filter>Game\ModelEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\LandShape\LandShape.cpp">
+      <Filter>Game\LandShape</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\LandShepeData\LandShapeData.cpp">
+      <Filter>Game\LandShapeData</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Game.h">
@@ -212,6 +230,15 @@
     </ClInclude>
     <ClInclude Include="Game\CollisionNode\CollisionNode.h">
       <Filter>Game\CollisionNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ModelEffect\ModelEffect.h">
+      <Filter>Game\ModelEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\LandShape\LandShape.h">
+      <Filter>Game\LandShape</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\LandShepeData\LandShapeData.h">
+      <Filter>Game\LandShapeData</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

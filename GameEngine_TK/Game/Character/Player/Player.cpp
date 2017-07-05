@@ -59,7 +59,7 @@ void Player::Initialize()
 	//m_obj3d[HEAD9].SetObjParent(&m_obj3d[HEAD1]);
 	m_bullet->SetObjParent(&m_obj3d[HEAD1]);
 	//子パーツの親からのオフセット(座標のズレ)をセット
-	m_obj3d[HEAD2].SetTrans(Vector3(0, 0, 2));
+	m_obj3d[HEAD2].SetTrans(Vector3(0, 0, -2));
 
 	//大きさ
 	m_obj3d[HEAD1].SetScale(Vector3(2, 2, 2));
@@ -121,7 +121,9 @@ void Player::Render()
 	}
 	//弾の描画
 	m_bullet->Render();
-	m_collisionNodeBullet.Render();
+	//弾丸用の当たり判定の描画
+	if(m_isRenderColl)
+		m_collisionNodeBullet.Render();
 }
 
 //----------------------------------------------------------------------
@@ -136,7 +138,7 @@ void Player::ResetBullet()
 	m_bullet->SetObjParent(&m_obj3d[HEAD1]);
 	m_bullet->SetScale(Vector3(2, 2, 2));
 	m_bullet->SetRot(Vector3(0, 0, 0));
-	m_bullet->SetTrans(Vector3(0, 1, 0));
+	m_bullet->SetTrans(Vector3(0, 0, 0));
 	m_nextFireTimer = 0;
 }
 
@@ -156,7 +158,7 @@ Player* Player::Create()
 }
 
 //----------------------------------------------------------------------
-//! @brief テスト
+//! @brief 弾を発射する
 //!
 //! @param[in] なし
 //!
@@ -164,9 +166,13 @@ Player* Player::Create()
 //----------------------------------------------------------------------
 void Player::ParentFreed()
 {
+	//親子関係がある場合
 	if (m_bullet->GetObjParent())
+		//切り離す
 		m_bullet->SetObjParent(nullptr);
+	//ない場合
 	else if (!m_bullet->GetObjParent())
+		//再装填する
 		ResetBullet();
 }
 

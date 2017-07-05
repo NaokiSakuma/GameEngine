@@ -45,11 +45,12 @@ State* PlayerState::Stand::GetInstance()
 void PlayerState::Stand::Initialize()
 {
 	//各キーにコマンドを割り当て
-	m_putKeyA = new PlayerCommands::RotLeftCommand;
-	m_putKeyD = new PlayerCommands::RotRightCommand;
-	m_putKeyE = new PlayerCommands::AssemblyCommand;
-	m_putKeyQ = new PlayerCommands::BreakUpCommand;
+	m_putKeyA     = new PlayerCommands::RotLeftCommand;
+	m_putKeyD     = new PlayerCommands::RotRightCommand;
+	m_putKeyE     = new PlayerCommands::AssemblyCommand;
+	m_putKeyQ     = new PlayerCommands::BreakUpCommand;
 	m_putKeySpace = new PlayerCommands::BulletCommand;
+	m_putKey1	  = new PlayerCommands::CollisionCommand;
 }
 
 //----------------------------------------------------------------------
@@ -102,7 +103,10 @@ void PlayerState::Stand::Execute(Character * character)
 		//集合
 		m_putKeyE->Execute(character);
 	}
-
+	if (Device::m_keyboardTracker.pressed.D1)
+	{
+		m_putKey1->Execute(character);
+	}
 }
 
 //----------------------------------------------------------------------
@@ -115,6 +119,7 @@ PlayerState::Stand::~Stand()
 	delete m_putKeyE;
 	delete m_putKeyQ;
 	delete m_putKeySpace;
+	delete m_putKey1;
 }
 
 //----------------------------------------------------------------------

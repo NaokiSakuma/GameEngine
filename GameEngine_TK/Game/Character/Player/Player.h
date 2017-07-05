@@ -11,7 +11,6 @@
 
 #include "..\Character.h"
 #include "..\..\Obj3d\Bullet\Bullet.h"
-#include "..\..\CollisionNode\CollisionNode.h"
 
 class Player final :public Character
 {
@@ -43,20 +42,20 @@ public:
 
 	//Setter
 	//スケーリング
-	void SetScale(const DirectX::SimpleMath::Vector3& scale)	override;
+	void SetScale(const DirectX::SimpleMath::Vector3& scale)	    override;
 	//回転
-	void SetRot(const DirectX::SimpleMath::Vector3& rot)		override;
+	void SetRot(const DirectX::SimpleMath::Vector3& rot)		    override;
 	//平行移動
-	void SetTrans(const DirectX::SimpleMath::Vector3& trans)	override;
+	void SetTrans(const DirectX::SimpleMath::Vector3& trans)	    override;
 	//Getter
 	//スケーリング
-	const DirectX::SimpleMath::Vector3& GetScale()			const	override;
+	const DirectX::SimpleMath::Vector3& GetScale()			  const	override;
 	//回転
-	const DirectX::SimpleMath::Vector3& GetRot()			const	override;
+	const DirectX::SimpleMath::Vector3& GetRot()			  const	override;
 	//平行移動
-	const DirectX::SimpleMath::Vector3& GetTrans()			const	override;
+	const DirectX::SimpleMath::Vector3& GetTrans()			  const	override;
 	//ワールド行列
-	const DirectX::SimpleMath::Matrix&	GetWorld()			const	override;
+	const DirectX::SimpleMath::Matrix&	GetWorld()			  const	override;
 	//オブジェクト
 	Obj3d*								GetObj3d(int num)			override;
 	//弾丸用の当たり判定
@@ -66,7 +65,7 @@ public:
 	//クリエイト関数
 	static Player* Create();
 
-	//テスト
+	//弾を発射する
 	void ParentFreed();
 
 private:

@@ -37,11 +37,11 @@ public:
 
 	//Setter
 	//スケーリング
-	void SetScale(const DirectX::SimpleMath::Vector3& scale)	override;
+	void SetScale(const DirectX::SimpleMath::Vector3& scale)	    override;
 	//回転
-	void SetRot(const DirectX::SimpleMath::Vector3& rot)		override;
+	void SetRot  (const DirectX::SimpleMath::Vector3& rot)		    override;
 	//平行移動
-	void SetTrans(const DirectX::SimpleMath::Vector3& trans)	override;
+	void SetTrans(const DirectX::SimpleMath::Vector3& trans)	    override;
 
 	//Getter
 	//スケーリング

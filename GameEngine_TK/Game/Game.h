@@ -19,6 +19,8 @@
 #include "Text\DebugText.h"
 #include "Character\Player\Player.h"
 #include "Character\Enemy\Enemy.h"
+#include "ModelEffect\ModelEffect.h"
+#include "LandShape\LandShape.h"
 
 // A basic game implementation that creates a D3D11 device and
 // provides a game loop.
@@ -94,8 +96,9 @@ private:
 	std::unique_ptr<DebugCamera> m_debugCamera;
 	//天球モデル 奥にあるものを先に描画した方がよい。
 	Obj3d m_objSkydome;
-	//地面モデル
-	Obj3d m_modelGround;
+	////地面モデル
+	//Obj3d m_modelGround;
+	LandShape m_landShapeGround;
 	//線形補間
 	static DirectX::SimpleMath::Vector3 Lerp(DirectX::SimpleMath::Vector3 startPos, DirectX::SimpleMath::Vector3 targetPos, float t);
 	//プレイヤー
@@ -108,4 +111,7 @@ private:
 	std::unique_ptr<DirectX::SpriteBatch> m_spriteBatch;
 	//文字列
 	std::unique_ptr<DebugText> m_debugText;
+public:
+	//デバッグ表示
+	bool isDebug;
 };
