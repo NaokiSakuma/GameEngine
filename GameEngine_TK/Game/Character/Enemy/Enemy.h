@@ -14,11 +14,15 @@
 
 class Enemy final : public Character
 {
+private:
+	//シリアルナンバーのカウント
+	static unsigned int s_serialCount;
 public:
 	enum ENEMY_PARTS
 	{
 		HEAD1,
 		HEAD2,
+		BOSS,
 		ENEMY_PARTS_NUM,
 	};
 
@@ -54,9 +58,10 @@ public:
 	const DirectX::SimpleMath::Matrix&	GetWorld()			const	override;
 	//オブジェクト
 	Obj3d*								GetObj3d(int num)			override;
-
+	//シリアルナンバー
+	const unsigned int                  GetSerialNum();
 	//クリエイト関数
-	static Enemy* Create();
+	static std::unique_ptr<Enemy> Create();
 
 private:
 	//コンストラクタ
@@ -65,4 +70,6 @@ private:
 	int m_timer;
 	//目標角度
 	float m_DistAngle;
+	//シリアルナンバー
+	unsigned int m_serialNum;
 };

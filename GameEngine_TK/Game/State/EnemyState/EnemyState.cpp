@@ -93,7 +93,7 @@ void EnemyState::Move::Execute(Character* character)
 	//ˆ—
 	float angle = character->GetRot().y;
 	Matrix rotmat = Matrix::CreateRotationY(angle);
-	Vector3 moveV(0, 0, -0.1f);
+	Vector3 moveV(0, 0, -0.05f);
 	moveV = Vector3::TransformNormal(moveV, rotmat);
 	Vector3 pos = character->GetTrans();
 	character->SetTrans(pos + moveV);

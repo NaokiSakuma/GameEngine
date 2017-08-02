@@ -14,6 +14,7 @@
 
 #include <Keyboard.h>
 #include "..\Camera.h"
+#include "..\..\Character\Character.h"
 
 class FollowCamera : public Camera
 {
@@ -22,19 +23,26 @@ public:
 	static const float CAMERA_DISTANCE;
 	//コンストラクタ
 	FollowCamera(int width, int height);
+	//デストラクタ
+	~FollowCamera();
 	//更新
 	void Update() override;
-	//追従対象の座標をセット
+	//setter
+	//追従対象
+	void SetTarget(Character* targetChara);
+	//追従対象の座標
 	void SetTargetPos(const DirectX::SimpleMath::Vector3& targetpos);
-	//追従対象の回転角をセット
-	void SetTargetAngle(float targetangle);
-	//キーボードをセット
+	//追従対象の回転角
+	void SetTargetAngle(const DirectX::SimpleMath::Vector3& targetangle);
+	//キーボード
 	void SetKeyboard(DirectX::Keyboard* keyboard);
 protected:
+	//追従対象
+	Character* m_target;
 	//追従対象の座標
 	DirectX::SimpleMath::Vector3 m_targetPos;
 	//追従対象の回転角
-	float m_targetAngle;
+	DirectX::SimpleMath::Vector3 m_targetAngle;
 	//キーボード(シングルトンを使う)
 	DirectX::Keyboard* m_keyboard;
 	//キーボードトラッカー

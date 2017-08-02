@@ -9,7 +9,7 @@
 //__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/
 
 #include "Obj3d.h"
-
+//#include <d3d9types.h>
 //名前空間
 using namespace DirectX;
 using namespace SimpleMath;
@@ -60,6 +60,8 @@ void Obj3d::InitializeStatic(Microsoft::WRL::ComPtr<ID3D11Device> d3dDevice, Mic
 	desc.RenderTarget[0].BlendOpAlpha          = D3D11_BLEND_OP_REV_SUBTRACT;
 	desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 	HRESULT ret                                = m_d3dDevice->CreateBlendState(&desc, &m_BlendStateSubtract);
+
+	//D3DPRESENT_PARAMETERS
 }
 
 void Obj3d::SetSubtractive()
@@ -76,6 +78,7 @@ Obj3d::Obj3d()
 	: m_ObjParent(nullptr)
 	, m_scale(1, 1, 1)
 	, m_UseQuaternion(false)
+	, m_model(nullptr)
 {
 }
 
@@ -145,7 +148,7 @@ void Obj3d::Update()
 //!
 //! @return なし
 //----------------------------------------------------------------------
-void Obj3d::Render() const
+void Obj3d::Render()
 {
 	//オブジェクトが存在していたら
 	if (m_model)
@@ -162,21 +165,22 @@ void Obj3d::Render() const
 
 void Obj3d::DrawSubtractive()
 {
-	//if (m_model)
-	//{
-	//	assert(m_camera);
-	//	const Matrix& view = m_camera->GetViewMatrix();
-	//	const Matrix& projection = m_camera->GetProjectionMatrix();
-	//	assert(m_d3dContext);
-	//	assert(m_states);
-	//	m_model->Draw(m_d3dContext, *m_states, m_world, view, projection, false, Obj3d::SetSubtractive);
-	//}
+	if (m_model)
+	{
+		assert(m_camera);
+		const Matrix& view = m_camera->GetViewMatrix();
+		const Matrix& projection = m_camera->GetProjectionMatrix();
+		assert(m_d3dContext);
+		assert(m_states);
+		m_model->Draw(m_d3dContext.Get(), *m_states, m_world, view, projection, false, Obj3d::SetSubtractive);
+	}
 }
 
 void Obj3d::DisableLighting()
 {
 	if (m_model)
 	{
+		//モデル内の全メッシュ分回す
 		ModelMesh::Collection::const_iterator it_mesh = m_model->meshes.begin();
 		for (; it_mesh != m_model->meshes.end(); it_mesh++)
 		{
@@ -187,13 +191,17 @@ void Obj3d::DisableLighting()
 			{
 				ModelMeshPart* meshpart = it_meshpart->get();
 				assert(meshpart);
+				//メッシュパーツにセットされたエフェクトをBasicEffectとして取得
 				std::shared_ptr<IEffect> ieff = meshpart->effect;
 				BasicEffect* eff = dynamic_cast<BasicEffect*>(ieff.get());
-				if (eff != nullptr)
+				if (eff)
 				{
+					//自己発光を最大値に
 					eff->SetEmissiveColor(Vector3(1, 1, 1));
+					//エフェクトに含むすべての平行光源分について処理する
 					for (int i = 0; i < BasicEffect::MaxDirectionalLights; i++)
 					{
+						//ライトを無効にする
 						eff->SetLightEnabled(i, false);
 					}
 				}
@@ -333,5 +341,61 @@ const bool Obj3d::GetObjParent() const
 	else if(!m_ObjParent)
 		areThereParent = false;
 	return areThereParent;
+}
+
+void Obj3d::DrawBillboard()
+{
+	if (m_model)
+	{
+		assert(m_camera);
+		const Matrix& view = m_camera->GetViewMatrix();
+		const Matrix& projection = m_camera->GetProjectionMatrix();
+		//ビルボード行列をワールド行列に合成
+		Matrix world = m_camera->GetBillboard()* m_world;
+		assert(m_d3dContext);
+		assert(m_states);
+		//減算描画用の設定関数を渡して描画
+		m_model->Draw(m_d3dContext.Get(), *m_states, world, view, projection);
+	}
+}
+
+void Obj3d::DrawBillboardaxisY()
+{
+	if (m_model)
+	{
+		assert(m_camera);
+		const Matrix& view = m_camera->GetViewMatrix();
+		const Matrix& projection = m_camera->GetProjectionMatrix();
+		//ビルボード行列をワールド行列に合成
+		Matrix world = m_camera->GetBillboardAxisY()*m_world;
+		assert(m_d3dContext);
+		assert(m_states);
+		//減算用の設定関数を渡して描画
+		m_model->Draw(m_d3dContext.Get(), *m_states, world, view, projection);
+	}
+}
+
+void Obj3d::EnbleAlpha()
+{
+	if (m_model)
+	{
+		//モデル内の全メッシュ分回す
+		ModelMesh::Collection::const_iterator it_mesh = m_model->meshes.begin();
+		for (; it_mesh != m_model->meshes.end(); it_mesh++)
+		{
+			ModelMesh* modelmesh = it_mesh->get();
+			assert(modelmesh);
+			//メッシュ内の全メッシュパーツ分回す
+			std::vector<std::unique_ptr<ModelMeshPart>>::iterator it_meshpart = modelmesh->meshParts.begin();
+			for (; it_meshpart != modelmesh->meshParts.end(); it_meshpart++)
+			{
+				ModelMeshPart* meshpart = it_meshpart->get();
+				assert(meshpart);
+				//メッシュパーツにセットされたエフェクトをBasicEffectとして取得
+				std::shared_ptr<IEffect>& ieff = meshpart->effect;
+				meshpart->ModifyEffect(m_d3dDevice.Get(), ieff, true);
+			}
+		}
+	}
 }
 

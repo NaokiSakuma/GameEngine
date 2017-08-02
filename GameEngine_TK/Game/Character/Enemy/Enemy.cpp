@@ -15,6 +15,7 @@
 using namespace DirectX;
 using namespace SimpleMath;
 
+unsigned int Enemy::s_serialCount = 0;
 //----------------------------------------------------------------------
 //! @brief コンストラクタ
 //!
@@ -23,6 +24,7 @@ using namespace SimpleMath;
 Enemy::Enemy()
 	:m_timer(0)
 	,m_DistAngle(0)
+	,m_serialNum(s_serialCount++)
 {
 
 }
@@ -67,11 +69,12 @@ void Enemy::Initialize()
 	SetTrans(pos);
 
 	//当たり判定
-	m_collisionNode = new CollisionNode::SphereNode();
-	m_collisionNode->Initialize();
-	m_collisionNode->SetParent(&m_obj3d[HEAD1]);
-	dynamic_cast<CollisionNode::SphereNode*>(m_collisionNode)->SetLocalRadius(0.3f);
-
+	{
+		m_collisionNode = new CollisionNode::SphereNode();
+		m_collisionNode->Initialize();
+		m_collisionNode->SetParent(&m_obj3d[HEAD1]);
+		dynamic_cast<CollisionNode::SphereNode*>(m_collisionNode)->SetLocalRadius(0.5f);
+	}
 }
 
 //----------------------------------------------------------------------
@@ -148,9 +151,10 @@ void Enemy::Render()
 //!
 //! @return Playerのポインタ
 //----------------------------------------------------------------------
-Enemy* Enemy::Create()
+std::unique_ptr<Enemy> Enemy::Create()
 {
-	Enemy* enemy = new Enemy;
+	//std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>();
+	std::unique_ptr<Enemy> enemy(new Enemy());
 	enemy->Initialize();
 
 	return enemy;
@@ -262,4 +266,9 @@ const DirectX::SimpleMath::Matrix& Enemy::GetWorld() const
 Obj3d* Enemy::GetObj3d(int num)
 {
 	return &m_obj3d[num];
+}
+
+const unsigned int Enemy::GetSerialNum()
+{
+	return m_serialNum;
 }

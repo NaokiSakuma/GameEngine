@@ -71,14 +71,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\DirectXTK\Inc;$(IncludePath)</IncludePath>
+    <IncludePath>C:\cri\pc\include;C:\DirectXTK\Inc;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\cri\pc\libs\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\DirectXTK\Inc;$(IncludePath)</IncludePath>
+    <IncludePath>C:\cri\pc\include;C:\DirectXTK\Inc;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\cri\pc\libs\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -176,27 +178,43 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <MeshContentTask Include="Assets\bomb.FBX" />
+    <MeshContentTask Include="Assets\BombEffect.FBX" />
+    <MeshContentTask Include="Assets\boss.FBX" />
+    <MeshContentTask Include="Assets\effect.FBX" />
+    <MeshContentTask Include="Assets\Effects.FBX" />
+    <MeshContentTask Include="Assets\explosion.FBX" />
+    <MeshContentTask Include="Assets\Fighter.FBX" />
     <MeshContentTask Include="Assets\ground200m.FBX" />
+    <MeshContentTask Include="Assets\gun.FBX" />
     <MeshContentTask Include="Assets\head.FBX" />
     <MeshContentTask Include="Assets\head2.FBX" />
     <MeshContentTask Include="Assets\head3.FBX" />
     <MeshContentTask Include="Assets\head4.FBX" />
+    <MeshContentTask Include="Assets\Lockon.FBX" />
+    <MeshContentTask Include="Assets\LockonTest.FBX" />
+    <MeshContentTask Include="Assets\shield.FBX" />
     <MeshContentTask Include="Assets\skydome.FBX" />
     <MeshContentTask Include="Resources\SphereNode.FBX" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Game\ADX2Le\ADX2Le.cpp" />
     <ClCompile Include="Game\Camera\Camera.cpp" />
     <ClCompile Include="Game\Camera\DebugCamera\DebugCamera.cpp" />
     <ClCompile Include="Game\Camera\FollowCamera\Follow.cpp" />
+    <ClCompile Include="Game\Camera\LockonCamera\LockonCamera.cpp" />
+    <ClCompile Include="Game\Character\Boss\Boss.cpp" />
     <ClCompile Include="Game\Character\Enemy\Enemy.cpp" />
     <ClCompile Include="Game\Character\Player\Player.cpp" />
     <ClCompile Include="Game\CollisionNode\CollisionNode.cpp" />
     <ClCompile Include="Game\Collision\Collision.cpp" />
     <ClCompile Include="Game\Command\PlayerCommand\PlayerCommands.cpp" />
+    <ClCompile Include="Game\DebugFont\DebugFont.cpp" />
     <ClCompile Include="Game\Device\Device.cpp" />
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Game\LandShape\LandShape.cpp" />
     <ClCompile Include="Game\LandShepeData\LandShapeData.cpp" />
+    <ClCompile Include="Game\Lockon\Lockon.cpp" />
     <ClCompile Include="Game\Main.cpp" />
     <ClCompile Include="Game\ModelEffect\ModelEffect.cpp" />
     <ClCompile Include="Game\Obj3d\Bullet\Bullet.cpp" />
@@ -207,9 +225,12 @@
     <ClCompile Include="Game\Text\DebugText.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game\ADX2Le\ADX2Le.h" />
     <ClInclude Include="Game\Camera\Camera.h" />
     <ClInclude Include="Game\Camera\DebugCamera\DebugCamera.h" />
     <ClInclude Include="Game\Camera\FollowCamera\Follow.h" />
+    <ClInclude Include="Game\Camera\LockonCamera\LockonCamera.h" />
+    <ClInclude Include="Game\Character\Boss\Boss.h" />
     <ClInclude Include="Game\Character\Character.h" />
     <ClInclude Include="Game\Character\Enemy\Enemy.h" />
     <ClInclude Include="Game\Character\Player\Player.h" />
@@ -217,10 +238,13 @@
     <ClInclude Include="Game\Collision\Collision.h" />
     <ClInclude Include="Game\Command\Command.h" />
     <ClInclude Include="Game\Command\PlayerCommand\PlayerCommands.h" />
+    <ClInclude Include="Game\CueSheet\CueSheet_0.h" />
+    <ClInclude Include="Game\DebugFont\DebugFont.h" />
     <ClInclude Include="Game\Device\Device.h" />
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Game\LandShape\LandShape.h" />
     <ClInclude Include="Game\LandShepeData\LandShapeData.h" />
+    <ClInclude Include="Game\Lockon\Lockon.h" />
     <ClInclude Include="Game\ModelEffect\ModelEffect.h" />
     <ClInclude Include="Game\Obj3d\Bullet\Bullet.h" />
     <ClInclude Include="Game\Obj3d\Obj3d.h" />
@@ -230,6 +254,9 @@
     <ClInclude Include="Game\State\State.h" />
     <ClInclude Include="Game\StepTimer.h" />
     <ClInclude Include="Game\Text\DebugText.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

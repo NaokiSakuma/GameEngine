@@ -55,7 +55,7 @@ public:
 	//更新
 	virtual void Update();
 	//描画
-	virtual void Render() const;
+	virtual void Render();
 
 	void DrawSubtractive();
 	void DisableLighting();
@@ -84,6 +84,12 @@ public:
 	//親の3dオブジェクト
 	const bool GetObjParent() const;
 
+	//ビルボード行列の描画
+	void DrawBillboard();
+	//Y軸回りのビルボード行列の描画
+	void DrawBillboardaxisY();
+	//アルファブレンドを有効化
+	void EnbleAlpha();
 protected:
 	//モデル
 	const DirectX::Model* m_model;

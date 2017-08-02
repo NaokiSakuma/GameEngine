@@ -14,7 +14,7 @@ using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
 //静的メンバ変数の初期化
-const float FollowCamera::CAMERA_DISTANCE = 10.0f;
+const float FollowCamera::CAMERA_DISTANCE = 2.0f;
 
 //----------------------------------------------------------------------
 //! @brief コンストラクタ
@@ -27,7 +27,19 @@ FollowCamera::FollowCamera(int width, int height)
 	, m_targetAngle(0.0f)
 	, m_keyboard(nullptr)
 	, m_isFPS(false)
+	,m_target(nullptr)
 {
+}
+
+//----------------------------------------------------------------------
+//! @brief デストラクタ
+//!
+//! @param[in] なし
+//----------------------------------------------------------------------
+FollowCamera::~FollowCamera()
+{
+	delete m_target;
+	m_target = nullptr;
 }
 
 //----------------------------------------------------------------------
@@ -57,7 +69,7 @@ void FollowCamera::Update()
 		//自機からカメラ座標への差分
 		Vector3 cameraV(0, 0, -CAMERA_DISTANCE);
 		//自機の後ろに回り込むための回転行列
-		Matrix rotmat = Matrix::CreateRotationY(m_targetAngle);
+		Matrix rotmat = Matrix::CreateRotationY(m_targetAngle.y);
 		//カメラへのベクトルを計算
 		cameraV = Vector3::TransformNormal(cameraV, rotmat);
 		//カメラ座標を計算
@@ -73,7 +85,9 @@ void FollowCamera::Update()
 		//自機からカメラ座標への差分
 		Vector3 cameraV(0, 0, CAMERA_DISTANCE);
 		//自機の後ろに回り込むための回転行列
-		Matrix rotmat = Matrix::CreateRotationY(m_targetAngle);
+		Matrix rotmatY = Matrix::CreateRotationY(m_targetAngle.y);
+		Matrix rotmatX = Matrix::CreateRotationX(m_targetAngle.x);
+		Matrix rotmat = rotmatX * rotmatY;
 		//カメラへのベクトルを計算
 		cameraV = Vector3::TransformNormal(cameraV, rotmat);
 		//カメラ座標を計算
@@ -91,16 +105,49 @@ void FollowCamera::Update()
 	Camera::Update();
 }
 
+//----------------------------------------------------------------------
+//! @brief 追従対象のsetter
+//!
+//! @param[in] キャラクター
+//!
+//! @return なし
+//----------------------------------------------------------------------
+void FollowCamera::SetTarget(Character * targetChara)
+{
+	m_target = targetChara;
+}
+
+//----------------------------------------------------------------------
+//! @brief 追従対象の座標のsetter
+//!
+//! @param[in] ターゲットの座標
+//!
+//! @return なし
+//----------------------------------------------------------------------
 void FollowCamera::SetTargetPos(const DirectX::SimpleMath::Vector3 & targetpos)
 {
 	m_targetPos = targetpos;
 }
 
-void FollowCamera::SetTargetAngle(float targetangle)
+//----------------------------------------------------------------------
+//! @brief 追従対象の回転角のsetter
+//!
+//! @param[in] ターゲットの回転角
+//!
+//! @return なし
+//----------------------------------------------------------------------
+void FollowCamera::SetTargetAngle(const DirectX::SimpleMath::Vector3 & targetangle)
 {
 	m_targetAngle = targetangle;
 }
 
+//----------------------------------------------------------------------
+//! @brief キーボード
+//!
+//! @param[in] キーボード
+//!
+//! @return なし
+//----------------------------------------------------------------------
 void FollowCamera::SetKeyboard(DirectX::Keyboard * keyboard)
 {
 	m_keyboard = keyboard;

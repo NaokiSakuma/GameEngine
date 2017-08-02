@@ -52,3 +52,7 @@ namespace Collision
 bool CheckSphere2Sphere(const Collision::Sphere & sphereA, const Collision::Sphere & sphereB);
 //ÇRì_Ç©ÇÁéOäpå`Çç\íz
 void ComputeTriangle(const DirectX::SimpleMath::Vector3 & _p0, const DirectX::SimpleMath::Vector3 & _p1, const DirectX::SimpleMath::Vector3 & _p2, Collision::Triangle * _triangle);
+
+bool CheckSphere2Triangle(const Collision::Sphere & _sphere, const Collision::Triangle & _triangle, DirectX::SimpleMath::Vector3 * _inter);
+
+bool CheckSegment2Triangle(const Collision::Segment & _segment, const Collision::Triangle & _triangle, DirectX::SimpleMath::Vector3 * _inter);

@@ -5,7 +5,7 @@
 //!
 //! @date   2017/06/04
 //!
-//! @author Y.Yamada
+//! @author N.Sakuma
 //__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/
 #pragma once
 #include "..\Command.h"
@@ -79,5 +79,21 @@ namespace PlayerCommands
 		void Execute(Character* character) override;
 	private:
 		void CollisionChange(Character* character);
+	};
+	//ジャンプ
+	class JumpCommand :public Command
+	{
+	public:
+		void Execute(Character* character) override;
+	private:
+		void Jump(Character* character);
+	};
+	//ロックオン
+	class LockonCommand : public Command
+	{
+	public:
+		void Execute(Character* character) override;
+	private:
+		void Lockon(Character* character);
 	};
 }

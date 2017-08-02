@@ -71,6 +71,24 @@
     <Filter Include="Game\LandShapeData">
       <UniqueIdentifier>{19f61065-f6cf-45b8-9c52-7434a0bbe704}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Lockon">
+      <UniqueIdentifier>{a12d2a76-1195-41df-ab0e-26607206629c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Camera\LockonCamera">
+      <UniqueIdentifier>{1a90274a-06b5-436c-9069-8a061f2a435a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\DebugFont">
+      <UniqueIdentifier>{c0f71c44-24a7-4323-beb8-165166acced1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Character\Boss">
+      <UniqueIdentifier>{9e80ea57-a91a-497f-acae-f8aebf249660}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\ADX2Le">
+      <UniqueIdentifier>{763bcac7-e740-4406-b5ca-4091ce98cc8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\CueSheet">
+      <UniqueIdentifier>{f7a18351-a8bb-46ad-b2ab-d79ec023ce1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
@@ -105,6 +123,39 @@
       <Filter>Assets</Filter>
     </MeshContentTask>
     <MeshContentTask Include="Resources\SphereNode.FBX">
+      <Filter>Assets</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\Lockon.FBX">
+      <Filter>Assets</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\LockonTest.FBX">
+      <Filter>Assets</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\Fighter.FBX">
+      <Filter>Assets</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\gun.FBX">
+      <Filter>Assets</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\shield.FBX">
+      <Filter>Assets</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\boss.FBX">
+      <Filter>Assets</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\effect.FBX">
+      <Filter>Assets</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\Effects.FBX">
+      <Filter>Assets</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\BombEffect.FBX">
+      <Filter>Assets</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\bomb.FBX">
+      <Filter>Assets</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\explosion.FBX">
       <Filter>Assets</Filter>
     </MeshContentTask>
   </ItemGroup>
@@ -168,6 +219,21 @@
     </ClCompile>
     <ClCompile Include="Game\LandShepeData\LandShapeData.cpp">
       <Filter>Game\LandShapeData</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Lockon\Lockon.cpp">
+      <Filter>Game\Lockon</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Camera\LockonCamera\LockonCamera.cpp">
+      <Filter>Game\Camera\LockonCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\DebugFont\DebugFont.cpp">
+      <Filter>Game\DebugFont</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Character\Boss\Boss.cpp">
+      <Filter>Game\Character\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ADX2Le\ADX2Le.cpp">
+      <Filter>Game\ADX2Le</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -240,5 +306,26 @@
     <ClInclude Include="Game\LandShepeData\LandShapeData.h">
       <Filter>Game\LandShapeData</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Lockon\Lockon.h">
+      <Filter>Game\Lockon</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Camera\LockonCamera\LockonCamera.h">
+      <Filter>Game\Camera\LockonCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\DebugFont\DebugFont.h">
+      <Filter>Game\DebugFont</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Character\Boss\Boss.h">
+      <Filter>Game\Character\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ADX2Le\ADX2Le.h">
+      <Filter>Game\ADX2Le</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\CueSheet\CueSheet_0.h">
+      <Filter>Game\CueSheet</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

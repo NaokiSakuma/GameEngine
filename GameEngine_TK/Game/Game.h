@@ -1,6 +1,13 @@
-//
-// Game.h
-//
+//__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/
+//! @file   Game.h
+//!
+//! @brief  ゲームのヘッダファイル
+//!
+//! @date   2017/06/04
+//!
+//! @author N.Sakuma
+//__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/
+
 
 #pragma once
 
@@ -19,16 +26,17 @@
 #include "Text\DebugText.h"
 #include "Character\Player\Player.h"
 #include "Character\Enemy\Enemy.h"
+#include "Character\Boss\Boss.h"
 #include "ModelEffect\ModelEffect.h"
 #include "LandShape\LandShape.h"
-
+#include "Lockon\Lockon.h"
 // A basic game implementation that creates a D3D11 device and
 // provides a game loop.
 class Game
 {
 public:
 	Game();
-
+	~Game();
 	// Initialization and management
 	void Initialize(HWND window, int width, int height);
 
@@ -95,23 +103,77 @@ private:
 	//デバッグカメラ
 	std::unique_ptr<DebugCamera> m_debugCamera;
 	//天球モデル 奥にあるものを先に描画した方がよい。
-	Obj3d m_objSkydome;
+	//Obj3d m_objSkydome;
+	LandShape m_landShapeobjSkydome;
 	////地面モデル
 	//Obj3d m_modelGround;
 	LandShape m_landShapeGround;
 	//線形補間
 	static DirectX::SimpleMath::Vector3 Lerp(DirectX::SimpleMath::Vector3 startPos, DirectX::SimpleMath::Vector3 targetPos, float t);
+
+	//線形補間
+	int Lerp(int startPos, int targetPos, float t);
+
 	//プレイヤー
 	Character* m_player;
 	//敵
-	std::vector<Character*> m_enemy;
+	std::vector<std::unique_ptr<Enemy>> m_enemy;
+	//ボス
+	std::unique_ptr<Boss> m_boss;
 	//カメラ
 	std::unique_ptr<FollowCamera> m_camera;
+	//ロックオンの対象
+	std::vector<Obj3d> m_lockonTarget;
 	//スプライトバッチ
 	std::unique_ptr<DirectX::SpriteBatch> m_spriteBatch;
 	//文字列
 	std::unique_ptr<DebugText> m_debugText;
+	//ロックオン
+	std::unique_ptr<Lockon> m_lockon;
+	//テクスチャ
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_HpGreentexture[2];
+	//テクスチャ
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_HpRedtexture[2];
+	//テクスチャ
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_HpWhitetexture[2];
+	//ゲームクリアテクスチャ
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_clearTexture;
+	//ゲームオーバーテクスチャ
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_overTexture;
+	//スプライトを表示するスクリーン座標
+	DirectX::SimpleMath::Vector2 m_screenPos;
+	//スプライトの原点
+	DirectX::SimpleMath::Vector2 m_origin;
+
+	int m_count;
+	int m_m_count;
+	
+	int m_bosshp;
+	int m_bosshpOld;
+
+	int m_timer1;
+	int m_timer2;
+	bool m_bossFlag;
+	bool m_clearFlag;
+	bool m_playerExplosion;
+	////Textureハンドル
+	//Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;
+	////四角形の頂点データ
+	//DirectX::VertexPositionTexture m_vertx[4];
+	////インデックスデータ
+	//uint16_t m_index[6];
+	////プリミティブバッチ
+	//std::unique_ptr < DirectX::PrimitiveBatch<DirectX::VertexPositionTexture>> m_primitiveBatch;
+	////ベーシックエフェクト
+	//std::unique_ptr<DirectX::BasicEffect> m_bassicEffect;
 public:
 	//デバッグ表示
 	bool isDebug;
+	//ゲームのインスタンス
+	static Game* GetInstance();
+	//ロックオンのgetter
+	Lockon* GetLockon() { return m_lockon.get(); }
+private: 
+	//ゲームのインスタンス
+	static Game* m_instance;
 };
