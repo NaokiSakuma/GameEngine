@@ -328,4 +328,8 @@
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Point.hlsl" />
+    <FxCompile Include="Simple.hlsl" />
+  </ItemGroup>
 </Project>

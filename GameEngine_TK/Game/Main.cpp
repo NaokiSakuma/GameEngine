@@ -2,7 +2,7 @@
 // Main.cpp
 //
 
-#include "pch\pch.h"
+//#include "pch\pch.h"
 #include "Game.h"
 
 using namespace DirectX;

@@ -8,7 +8,7 @@
 //! @author N.Sakuma
 //__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/
 #pragma once
-#include <d3d11.h>
+#include <d3d11_1.h>
 #include <Keyboard.h>
 #include <Memory>
 

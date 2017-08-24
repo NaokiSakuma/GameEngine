@@ -16,6 +16,9 @@
   Assets\shield.FBX
   Assets\skydome.FBX
   Resources\SphereNode.FBX
-  Bullet.cpp
+  Game.cpp
+c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game\game.cpp(181): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game\game.cpp(437): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+c:\users\s162087\documents\gameengine\gameengine_tk\gameengine_tk\game\game.cpp(1174): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
   GameEngine_TK.vcxproj -> C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.exe
   GameEngine_TK.vcxproj -> C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Debug\GameEngine_TK.pdb (Full PDB)

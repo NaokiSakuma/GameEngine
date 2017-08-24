@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include <d3d11.h>
+#include <d3d11_1.h>
 #include <SimpleMath.h>
 #include <vector>
 #include "..\Obj3d\Obj3d.h"

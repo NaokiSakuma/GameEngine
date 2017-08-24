@@ -9,7 +9,7 @@
 //__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/
 
 //インクルード
-#include "pch\pch.h"
+//#include "pch\pch.h"
 #include "DebugFont\DebugFont.h"
 #include <WICTextureLoader.h>
 #include "Game.h"
@@ -51,11 +51,11 @@ Game::~Game()
 }
 
 // Initialize the Direct3D resources required to run.
-void Game::Initialize(HWND window, int width, int height)
+HRESULT Game::Initialize(HWND window, int width, int height)
 {
 	m_window = window;
-	m_outputWidth = std::max(width, 1);
-	m_outputHeight = std::max(height, 1);
+	m_outputWidth = max(width, 1);
+	m_outputHeight = max(height, 1);
 
 	CreateDevice();
 
@@ -68,6 +68,7 @@ void Game::Initialize(HWND window, int width, int height)
 	m_timer.SetTargetElapsedSeconds(1.0 / 60);
 	*/
 	//独自の初期化はここに書く
+
 	//デバイスの生成
 	Device::Initialize();
 	//カメラの生成
@@ -208,32 +209,57 @@ void Game::Initialize(HWND window, int width, int height)
 	ADX2Le::LoadAcb("Resources/Music/CueSheet_0.acb");
 	//音の再生
 	ADX2Le::Play(CRI_CUESHEET_0_CHESS);
+	
+	//hlslファイル読み込み　ブロブ作成
+	ID3DBlob* pCompiledShader = NULL;
+	//バーテックスシェーダー
+	if (FAILED(MakeShader("Point.hlsl", "VS", "vs_5_0", (void**)&m_vertexShader, &pCompiledShader))) return E_FAIL;
+	//頂点インプットレイアウトを定義
+	D3D11_INPUT_ELEMENT_DESC layout[] =
+	{
+		{"POSITION",0,DXGI_FORMAT_R32G32B32_FLOAT,0,0,D3D11_INPUT_PER_VERTEX_DATA,0},
+	};
+	UINT numElements = sizeof(layout) / sizeof(layout[0]);
+	//頂点インプットレイアウトを作成
+	if (FAILED(m_d3dDevice->CreateInputLayout(layout, numElements, pCompiledShader->GetBufferPointer(), pCompiledShader->GetBufferSize(), &m_inputLayout)))
+	{
+		return FALSE;
+	}
+	SAFE_RELEASE(pCompiledShader);
+	//ピクセルシェーダー作成
+	if (FAILED(MakeShader("Point.hlsl", "PS", "ps_5_0", (void**)&m_pixelShader, &pCompiledShader))) return E_FAIL;
+	SAFE_RELEASE(pCompiledShader);
+	//コンスタントバッファー作成
+	D3D11_BUFFER_DESC cb;
+	cb.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	cb.ByteWidth = sizeof(SIMPLESHADER_CONSTANT_BUFFER);
+	cb.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	cb.MiscFlags = 0;
+	cb.StructureByteStride = 0;
+	cb.Usage = D3D11_USAGE_DYNAMIC;
 
-	//m_vertx[0] = { Vector3(-0.5f, 0.5f,0.0f),Vector2(0.0f,0.0f) };
-	//m_vertx[1] = { Vector3(0.5f, 0.5f,0.0f),Vector2(1.0f,0.0f) };
-	//m_vertx[2] = { Vector3(0.5f,-0.5f,0.0f),Vector2(1.0f,1.0f) };
-	//m_vertx[3] = { Vector3(-0.5f,-0.5f,0.0f),Vector2(0.0f,1.0f) };
-	//m_index[0] = 0;
-	//m_index[1] = 1;
-	//m_index[2] = 2;	
-	//m_index[3] = 0;
-	//m_index[4] = 2;
-	//m_index[5] = 3;
-	//CreateWICTextureFromFile(m_d3dDevice.Get(), L"Assets/Lockon.png", nullptr, m_texture.GetAddressOf());
-	//m_primitiveBatch = std::make_unique<DirectX::PrimitiveBatch<DirectX::VertexPositionTexture>>(m_d3dContext.Get());
-	//m_bassicEffect = std::make_unique<BasicEffect>(m_d3dDevice.Get());
-	//m_bassicEffect->SetVertexColorEnabled(false);
-	//m_bassicEffect->SetLightingEnabled(false);
-	//m_bassicEffect->SetTextureEnabled(true);
-	//m_bassicEffect->SetPerPixelLighting(false);
-	////使用するシェーダー(プログラム)を取得
-	//void const* shaderByteCode1;	//プログラムの先頭アドレス
-	//size_t byteCodeLength1;		//プログラムのサイズ
-	//m_bassicEffect->GetVertexShaderBytecode(&shaderByteCode1, &byteCodeLength1);
+	if (FAILED(m_d3dDevice->CreateBuffer(&cb, NULL, &m_constantBuffer)))
+	{
+		return E_FAIL;
+	}
+	//点としてのバーテックスバッファー作成
+	if (FAILED(InitModel()))
+	{
+		return E_FAIL;
+	}
 
-	//ComPtr<ID3D11InputLayout>inputLayout;
-	//m_d3dDevice->CreateInputLayout(DirectX::VertexPositionTexture::InputElements, DirectX::VertexPositionTexture::InputElementCount, shaderByteCode1, byteCodeLength1, inputLayout.GetAddressOf());
+	//シェーダー初期化
+	if (FAILED(InitShader()))
+	{
+		return E_FAIL;
+	}
+	//ポリゴン作成
+	if (FAILED(InitPolygon()))
+	{
+		return E_FAIL;
+	}
 
+	return S_OK;
 }
 
 // Executes the basic game loop.
@@ -283,29 +309,29 @@ void Game::Update(DX::StepTimer const& timer)
 		m_playerExplosion = true;
 		ModelEffectManager::getInstance()->Entry(L"Resources/explosion.cmo", 30, m_player->GetTrans(), Vector3(0.0f), Vector3(0.0f), Vector3(0.0f), Vector3(0.0f), Vector3(0.0f), Vector3(15.0f));
 	}
-	{//天球とプレイヤーの当たり判定
-		Collision::Sphere* sphere = dynamic_cast<Collision::Sphere*>(m_player->GetCollisionNode());
-		//自機のワールド座標
-		Vector3 trans = m_player->GetTrans();
-		//球からプレイヤーへのベクトル
-		Vector3 sphrere2player = trans - sphere->Center;
-		//めり込み排斥ベクトル
-		Vector3 reject;
-		if (m_landShapeobjSkydome.IntersectSphere(*sphere, &reject))
-		{
-			if (dynamic_cast<Player*>(m_player)->GetInvincible() <= 110)
-			{
-				//dynamic_cast<Player*>(m_player)->SetInvincible(120);
-				//m_count += 15;
-				Vector3 playerAngle = m_player->GetRot();
-				m_player->SetRot(Vector3(playerAngle.x, playerAngle.y + XMConvertToRadians(180), playerAngle.z));
-				dynamic_cast<Player*>(m_player)->SetInvincible(120);
-			}
-			//めり込みを解消するように球をズラす
-			//sphere->Center += reject;
-		}
+	//{//天球とプレイヤーの当たり判定
+	//	Collision::Sphere* sphere = dynamic_cast<Collision::Sphere*>(m_player->GetCollisionNode());
+	//	//自機のワールド座標
+	//	Vector3 trans = m_player->GetTrans();
+	//	//球からプレイヤーへのベクトル
+	//	Vector3 sphrere2player = trans - sphere->Center;
+	//	//めり込み排斥ベクトル
+	//	Vector3 reject;
+	//	if (m_landShapeobjSkydome.IntersectSphere(*sphere, &reject))
+	//	{
+	//		if (dynamic_cast<Player*>(m_player)->GetInvincible() <= 110)
+	//		{
+	//			//dynamic_cast<Player*>(m_player)->SetInvincible(120);
+	//			//m_count += 15;
+	//			Vector3 playerAngle = m_player->GetRot();
+	//			m_player->SetRot(Vector3(playerAngle.x, playerAngle.y + XMConvertToRadians(180), playerAngle.z));
+	//			dynamic_cast<Player*>(m_player)->SetInvincible(120);
+	//		}
+	//		//めり込みを解消するように球をズラす
+	//		//sphere->Center += reject;
+	//	}
 
-	}
+	//}
 	//自機の地形へのめり込みを解消する
 	{
 		Collision::Sphere* sphere = dynamic_cast<Collision::Sphere*>(m_player->GetCollisionNode());
@@ -622,169 +648,214 @@ void Game::Render()
 
 	Clear();
 
-	// TODO: Add your rendering code here.
-	//ポインターなので、アロー演算子//
-	//Opaque...不透明
-	m_d3dContext->OMSetBlendState(m_states->Opaque(), nullptr, 0xFFFFFFFF);
-	//Depth...奥行き、描画するときの前後関係
-	m_d3dContext->OMSetDepthStencilState(m_states->DepthNone(), 0);
-	//Cull...背景カリングを有効にするかどうか
-	m_d3dContext->RSSetState(m_states->CullNone());
+#pragma region test
+	//// TODO: Add your rendering code here.
+	////ポインターなので、アロー演算子//
+	////Opaque...不透明
+	//m_d3dContext->OMSetBlendState(m_states->Opaque(), nullptr, 0xFFFFFFFF);
+	////Depth...奥行き、描画するときの前後関係
+	//m_d3dContext->OMSetDepthStencilState(m_states->DepthNone(), 0);
+	////Cull...背景カリングを有効にするかどうか
+	//m_d3dContext->RSSetState(m_states->CullNone());
 
-
-	//m_bassicEffect->SetView(m_view);
-	//m_bassicEffect->SetProjection(m_proj);
-	//m_bassicEffect->SetTexture(m_texture.Get());
-	//m_bassicEffect->SetLightEnabled(0, true);
-	//m_bassicEffect->SetLightEnabled(1, false);
-	//m_bassicEffect->SetLightEnabled(2, false);
-	//m_bassicEffect->SetLightDiffuseColor(0, Colors::White);
-	////ライトの方向
-	//static float angle = 0;
-	//angle += 0.01f;
-	//Vector3 lightDir(1, -1, 0);
-	//lightDir.Normalize();	//長さを1にする
-	//Matrix rot = Matrix::CreateRotationY(angle);
-	//lightDir = Vector3::Transform(lightDir, rot);
-	//m_bassicEffect->SetLightDirection(0, lightDir);
-	//m_bassicEffect->Apply(m_d3dContext.Get());
-
-	//渡す
-	m_effect->SetView(m_view);
-	m_effect->SetProjection(m_proj);
-	m_effect->Apply(m_d3dContext.Get());
-	m_d3dContext->IASetInputLayout(m_inputLayout.Get());
-	//スカイドームの描画
-	//m_objSkydome.Render();
+	////渡す
+	//m_effect->SetView(m_view);
+	//m_effect->SetProjection(m_proj);
+	//m_effect->Apply(m_d3dContext.Get());
+	//m_d3dContext->IASetInputLayout(m_inputLayout.Get());
+	////スカイドームの描画
+	////m_objSkydome.Render();
 	m_landShapeobjSkydome.Draw();
-	//地面の描画
-	m_landShapeGround.Draw();
+	////地面の描画
+	////m_landShapeGround.Draw();
 
 
-	//敵の描画
-	for (std::vector<std::unique_ptr<Enemy>>::iterator it = m_enemy.begin(); it != m_enemy.end(); it++)
+	////敵の描画
+	//for (std::vector<std::unique_ptr<Enemy>>::iterator it = m_enemy.begin(); it != m_enemy.end(); it++)
+	//{
+	//	(*it)->Render();
+	//}
+	//if(m_boss)
+	//	m_boss->Render();
+	////m_primitiveBatch->Begin();
+	////m_primitiveBatch->DrawIndexed(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST, m_index, 6, m_vertx, 4);
+	////m_primitiveBatch->End();
+
+	////プレイヤーの描画
+	////if(m_count % 15 == 0)
+	//if(m_count < 150)
+	//	m_player->Render();
+	////ロックオンの対象の描画
+	//for (unsigned int i = 0; i < m_lockonTarget.size(); i++)
+	//{
+	//	if (m_lockon->SearchEnemy())
+	//		m_lockonTarget[i].DrawBillboard();
+	//}
+	////モデルエフェクトの描画
+	//ModelEffectManager::getInstance()->Render();
+
+	////prmitiveBatchの描画開始時に必須
+	//m_batch->Begin();
+	////描画処理
+	////四角形の描画
+	//m_batch->DrawIndexed(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST,
+	//	indices, 6, vertices, 4);
+	//////primitiveBatchの描画終了時に必須
+	//m_batch->End();
+	//CommonStates states(m_d3dDevice.Get());
+	//m_spriteBatch->Begin(SpriteSortMode_Deferred,states.NonPremultiplied());
+	////テクスチャの切り取り矩形
+	//RECT rect{ 0,m_count,25,150 };
+	//RECT rect1{ 0,m_m_count,25,150 };
+	//m_spriteBatch->Draw(
+	//	m_HpWhitetexture[0].Get(),			//テクスチャの情報 
+	//	DirectX::SimpleMath::Vector2(m_screenPos.x, m_screenPos.y),//位置
+	//	nullptr,					//画像の切り取り(AABB)
+	//	Colors::White,				//色
+	//	XMConvertToRadians(0),		//角度(ラジアン)、角度をラジアンにする関数
+	//	m_origin,					//回転中心点
+	//	1.0f);						//大きさの倍率(指定しないとデフォルトで1.0f)
+
+	////スプライトの描画
+	//m_spriteBatch->Draw(
+	//	m_HpRedtexture[0].Get(),			//テクスチャの情報 
+	//	DirectX::SimpleMath::Vector2(m_screenPos.x, m_screenPos.y + m_m_count),//位置
+	//	&rect1,					//画像の切り取り(AABB)
+	//	Colors::White,				//色
+	//	XMConvertToRadians(0),		//角度(ラジアン)、角度をラジアンにする関数
+	//	m_origin,					//回転中心点
+	//	1.0f);						//大きさの倍率(指定しないとデフォルトで1.0f)
+	//m_spriteBatch->Draw(
+	//	m_HpGreentexture[0].Get(),			//テクスチャの情報 
+	//	DirectX::SimpleMath::Vector2(m_screenPos.x, m_screenPos.y + m_count),//位置
+	//	&rect,					//画像の切り取り(AABB)
+	//	Colors::White,				//色
+	//	XMConvertToRadians(0),		//角度(ラジアン)、角度をラジアンにする関数
+	//	m_origin,					//回転中心点
+	//	1.0f);						//大きさの倍率(指定しないとデフォルトで1.0f)
+
+	//if (m_boss)
+	//{
+	//	RECT rect2{ 0,0,200 - m_bosshp,50 };
+	//	RECT rect3{ 0,0,200 - m_bosshpOld,50 };
+
+	//									//スプライトの描画
+
+	//	m_spriteBatch->Draw(
+	//		m_HpWhitetexture[1].Get(),			//テクスチャの情報 
+	//		DirectX::SimpleMath::Vector2(300, 20),//位置
+	//		nullptr,					//画像の切り取り(AABB)
+	//		Colors::White,				//色
+	//		XMConvertToRadians(0),		//角度(ラジアン)、角度をラジアンにする関数
+	//		m_origin,					//回転中心点
+	//		1.0f);						//大きさの倍率(指定しないとデフォルトで1.0f)
+
+	//	m_spriteBatch->Draw(
+	//		m_HpRedtexture[1].Get(),			//テクスチャの情報 
+	//		DirectX::SimpleMath::Vector2(300, 20),//位置
+	//		&rect3,					//画像の切り取り(AABB)
+	//		Colors::White,				//色
+	//		XMConvertToRadians(0),		//角度(ラジアン)、角度をラジアンにする関数
+	//		m_origin,					//回転中心点
+	//		1.0f);						//大きさの倍率(指定しないとデフォルトで1.0f)
+
+	//	m_spriteBatch->Draw(
+	//		m_HpGreentexture[1].Get(),			//テクスチャの情報 
+	//		DirectX::SimpleMath::Vector2(300, 20),//位置
+	//		&rect2,					//画像の切り取り(AABB)
+	//		Colors::White,				//色
+	//		XMConvertToRadians(0),		//角度(ラジアン)、角度をラジアンにする関数
+	//		m_origin,					//回転中心点
+	//		1.0f);						//大きさの倍率(指定しないとデフォルトで1.0f)
+
+	//}
+	//if (m_count >= 150 && !m_clearFlag)
+	//{
+	//	m_spriteBatch->Draw(
+	//		m_overTexture.Get(),			//テクスチャの情報 
+	//		DirectX::SimpleMath::Vector2(400, 300),//位置
+	//		nullptr,					//画像の切り取り(AABB)
+	//		Colors::White,				//色
+	//		XMConvertToRadians(0),		//角度(ラジアン)、角度をラジアンにする関数
+	//		Vector2(331.f / 2.f,195.f /2.f),					//回転中心点
+	//		1.0f);						//大きさの倍率(指定しないとデフォルトで1.0f)
+	//}
+	//if (m_clearFlag)
+	//{
+	//	m_spriteBatch->Draw(
+	//		m_clearTexture.Get(),			//テクスチャの情報 
+	//		DirectX::SimpleMath::Vector2(400, 300),//位置
+	//		nullptr,					//画像の切り取り(AABB)
+	//		Colors::White,				//色
+	//		XMConvertToRadians(0),		//角度(ラジアン)、角度をラジアンにする関数
+	//		Vector2(400.f / 2.f, 74.f / 2.f),					//回転中心点
+	//		1.0f);						//大きさの倍率(指定しないとデフォルトで1.0f)
+	//}
+#pragma endregion comment 
+	D3DXMATRIX World;
+	D3DXMATRIX View;
+	D3DXMATRIX Proj;
+	////ワールドトランスフォーム
+	//static float x = 0;
+	//x += 0.00001;
+	//D3DXMATRIX Tran;
+	//D3DXMatrixTranslation(&Tran,x,0,0);
+	//World = Tran;
+	//ワールドトランスフォーム（絶対座標変換）
+	D3DXMatrixRotationY(&World, timeGetTime() / 110.0f);//単純にyaw回転させる
+	//ビュートランスフォーム
+	D3DXVECTOR3 vEyePt(0.0f, 0.0f, -2.0f);	//視点位置
+	D3DXVECTOR3 vLookatPt(0.0f, 0.0f, 0.0f);//注視位置
+	D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);	//上方位置
+	D3DXMatrixLookAtRH(&View, &vEyePt, &vLookatPt, &vUpVec);
+	//プロジェクショントランスフォーム
+	D3DXMatrixPerspectiveFovRH(&Proj, D3DX_PI / 4, (FLOAT)WINDOW_WIDTH / (FLOAT)WINDOW_HEIGHT, 0.1f, 110.0f);
+	//使用するシェーダーのセット
+	m_d3dContext->VSSetShader(m_vertexShader, NULL, 0);
+	m_d3dContext->GSSetShader(NULL, NULL, 0);
+	m_d3dContext->PSSetShader(m_pixelShader, NULL, 0);
+	//shaderのコンスタントバッファーに各種データを渡す
+	D3D11_MAPPED_SUBRESOURCE pDate;
+	SIMPLESHADER_CONSTANT_BUFFER cb;
+	if (SUCCEEDED(m_d3dContext->Map(m_constantBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &pDate)))
 	{
-		(*it)->Render();
+		//ワールド、カメラ、射影行列を渡す
+		D3DXMATRIX m = World * View * Proj;
+		D3DXMatrixTranspose(&m, &m);
+		cb.mWVP = m;
+		//カラーを変化させる
+		static D3DXVECTOR4 vColor(1,1,0,1);
+		vColor.x-=0.01f;
+		vColor.y+=0.01f;
+		if(vColor.x<=0)
+		{
+			vColor.x=1;
+			vColor.y=0;
+		}
+		cb.vColor=vColor;
+		memcpy_s(pDate.pData, pDate.RowPitch, (void*)(&cb), sizeof(cb));
+		m_d3dContext->Unmap(m_constantBuffer, 0);
 	}
-	if(m_boss)
-		m_boss->Render();
-	//m_primitiveBatch->Begin();
-	//m_primitiveBatch->DrawIndexed(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST, m_index, 6, m_vertx, 4);
-	//m_primitiveBatch->End();
+	//このコンスタントバッファーをどのシェーダーで使うか
+	m_d3dContext->VSSetConstantBuffers(0, 1, &m_constantBuffer);
+	m_d3dContext->PSSetConstantBuffers(0, 1, &m_constantBuffer);
+	//バーテックスバッファーをセット
+	UINT stride = sizeof(SimpleVertex);
+	UINT offset = 0;
+	m_d3dContext->IASetVertexBuffers(0, 1, &m_vertexBuffer, &stride, &offset);
+	//頂点インプットレイアウトをセット
+	m_d3dContext->IASetInputLayout(m_inputLayout.Get());
+	//プリミティブ・トポロジーをセット
+	m_d3dContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 
-	//プレイヤーの描画
-	//if(m_count % 15 == 0)
-	if(m_count < 150)
-		m_player->Render();
-	//ロックオンの対象の描画
-	for (unsigned int i = 0; i < m_lockonTarget.size(); i++)
-	{
-		if (m_lockon->SearchEnemy())
-			m_lockonTarget[i].DrawBillboard();
-	}
-	//モデルエフェクトの描画
-	ModelEffectManager::getInstance()->Render();
-
-	//prmitiveBatchの描画開始時に必須
-	m_batch->Begin();
-	//描画処理
-	//四角形の描画
-	m_batch->DrawIndexed(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST,
-		indices, 6, vertices, 4);
-	////primitiveBatchの描画終了時に必須
-	m_batch->End();
-	CommonStates states(m_d3dDevice.Get());
-	m_spriteBatch->Begin(SpriteSortMode_Deferred,states.NonPremultiplied());
-	//テクスチャの切り取り矩形
-	RECT rect{ 0,m_count,25,150 };
-	RECT rect1{ 0,m_m_count,25,150 };
-	m_spriteBatch->Draw(
-		m_HpWhitetexture[0].Get(),			//テクスチャの情報 
-		DirectX::SimpleMath::Vector2(m_screenPos.x, m_screenPos.y),//位置
-		nullptr,					//画像の切り取り(AABB)
-		Colors::White,				//色
-		XMConvertToRadians(0),		//角度(ラジアン)、角度をラジアンにする関数
-		m_origin,					//回転中心点
-		1.0f);						//大きさの倍率(指定しないとデフォルトで1.0f)
-
-	//スプライトの描画
-	m_spriteBatch->Draw(
-		m_HpRedtexture[0].Get(),			//テクスチャの情報 
-		DirectX::SimpleMath::Vector2(m_screenPos.x, m_screenPos.y + m_m_count),//位置
-		&rect1,					//画像の切り取り(AABB)
-		Colors::White,				//色
-		XMConvertToRadians(0),		//角度(ラジアン)、角度をラジアンにする関数
-		m_origin,					//回転中心点
-		1.0f);						//大きさの倍率(指定しないとデフォルトで1.0f)
-	m_spriteBatch->Draw(
-		m_HpGreentexture[0].Get(),			//テクスチャの情報 
-		DirectX::SimpleMath::Vector2(m_screenPos.x, m_screenPos.y + m_count),//位置
-		&rect,					//画像の切り取り(AABB)
-		Colors::White,				//色
-		XMConvertToRadians(0),		//角度(ラジアン)、角度をラジアンにする関数
-		m_origin,					//回転中心点
-		1.0f);						//大きさの倍率(指定しないとデフォルトで1.0f)
-
-	if (m_boss)
-	{
-		RECT rect2{ 0,0,200 - m_bosshp,50 };
-		RECT rect3{ 0,0,200 - m_bosshpOld,50 };
-
-										//スプライトの描画
-
-		m_spriteBatch->Draw(
-			m_HpWhitetexture[1].Get(),			//テクスチャの情報 
-			DirectX::SimpleMath::Vector2(300, 20),//位置
-			nullptr,					//画像の切り取り(AABB)
-			Colors::White,				//色
-			XMConvertToRadians(0),		//角度(ラジアン)、角度をラジアンにする関数
-			m_origin,					//回転中心点
-			1.0f);						//大きさの倍率(指定しないとデフォルトで1.0f)
-
-		m_spriteBatch->Draw(
-			m_HpRedtexture[1].Get(),			//テクスチャの情報 
-			DirectX::SimpleMath::Vector2(300, 20),//位置
-			&rect3,					//画像の切り取り(AABB)
-			Colors::White,				//色
-			XMConvertToRadians(0),		//角度(ラジアン)、角度をラジアンにする関数
-			m_origin,					//回転中心点
-			1.0f);						//大きさの倍率(指定しないとデフォルトで1.0f)
-
-		m_spriteBatch->Draw(
-			m_HpGreentexture[1].Get(),			//テクスチャの情報 
-			DirectX::SimpleMath::Vector2(300, 20),//位置
-			&rect2,					//画像の切り取り(AABB)
-			Colors::White,				//色
-			XMConvertToRadians(0),		//角度(ラジアン)、角度をラジアンにする関数
-			m_origin,					//回転中心点
-			1.0f);						//大きさの倍率(指定しないとデフォルトで1.0f)
-
-	}
-	if (m_count >= 150 && !m_clearFlag)
-	{
-		m_spriteBatch->Draw(
-			m_overTexture.Get(),			//テクスチャの情報 
-			DirectX::SimpleMath::Vector2(400, 300),//位置
-			nullptr,					//画像の切り取り(AABB)
-			Colors::White,				//色
-			XMConvertToRadians(0),		//角度(ラジアン)、角度をラジアンにする関数
-			Vector2(331.f / 2.f,195.f /2.f),					//回転中心点
-			1.0f);						//大きさの倍率(指定しないとデフォルトで1.0f)
-	}
-	if (m_clearFlag)
-	{
-		m_spriteBatch->Draw(
-			m_clearTexture.Get(),			//テクスチャの情報 
-			DirectX::SimpleMath::Vector2(400, 300),//位置
-			nullptr,					//画像の切り取り(AABB)
-			Colors::White,				//色
-			XMConvertToRadians(0),		//角度(ラジアン)、角度をラジアンにする関数
-			Vector2(400.f / 2.f, 74.f / 2.f),					//回転中心点
-			1.0f);						//大きさの倍率(指定しないとデフォルトで1.0f)
-	}
-
-	m_debugText->Draw();
-	m_spriteBatch->End();
+	//m_d3dContext->OMSetDepthStencilState(m_states->DepthNone(), 0);
+	//m_d3dContext->OMSetBlendState(m_states->Opaque(), NULL, 0xffffffff);
+	m_d3dContext->RSSetState(m_states->CullNone());
+	//プリミティブをレンダリング
+	m_d3dContext->Draw(4, 0);
+	
+	//m_debugText->Draw();
+	//m_spriteBatch->End();
 
 	Present();
 }
@@ -847,8 +918,8 @@ void Game::OnResuming()
 
 void Game::OnWindowSizeChanged(int width, int height)
 {
-	m_outputWidth = std::max(width, 1);
-	m_outputHeight = std::max(height, 1);
+	m_outputWidth = max(width, 1);
+	m_outputHeight = max(height, 1);
 
 	CreateResources();
 
@@ -1104,6 +1175,168 @@ int Game::Lerp(int startPos, int targetPos, float t)
 	return lerpPos;
 }
 
+//hlslファイルを読み込みシェーダーを作成する
+HRESULT Game::MakeShader(LPSTR szFileName, LPSTR szFuncName, LPSTR szProfileName, void** ppShader, ID3DBlob** ppBlob)
+{
+	ID3DBlob *pErrors = NULL;
+	if (FAILED(D3DX11CompileFromFileA(szFileName, NULL, NULL, szFuncName, szProfileName, D3D10_SHADER_DEBUG | D3D10_SHADER_SKIP_OPTIMIZATION, 0, NULL, ppBlob, &pErrors, NULL)))
+	{
+		char*p = (char*)pErrors->GetBufferPointer();
+		MessageBoxA(0, p, 0, MB_OK);
+		return E_FAIL;
+	}
+	SAFE_RELEASE(pErrors);
+	char szProfile[3] = { 0 };
+	memcpy(szProfile, szProfileName, 2);
+	if (strcmp(szProfile, "vs") == 0)//Vertex Shader
+	{
+		if (FAILED(m_d3dDevice->CreateVertexShader((*ppBlob)->GetBufferPointer(), (*ppBlob)->GetBufferSize(), NULL, (ID3D11VertexShader**)ppShader))) return E_FAIL;
+	}
+	if (strcmp(szProfile, "ps") == 0)//Pixel Shader
+	{
+		if (FAILED(m_d3dDevice->CreatePixelShader((*ppBlob)->GetBufferPointer(), (*ppBlob)->GetBufferSize(), NULL, (ID3D11PixelShader**)ppShader))) return E_FAIL;
+	}
+	if (strcmp(szProfile, "gs") == 0)//Geometry Shader
+	{
+		if (FAILED(m_d3dDevice->CreateGeometryShader((*ppBlob)->GetBufferPointer(), (*ppBlob)->GetBufferSize(), NULL, (ID3D11GeometryShader**)ppShader))) return E_FAIL;
+	}
+	if (strcmp(szProfile, "hs") == 0)//Hull Shader
+	{
+		if (FAILED(m_d3dDevice->CreateHullShader((*ppBlob)->GetBufferPointer(), (*ppBlob)->GetBufferSize(), NULL, (ID3D11HullShader**)ppShader))) return E_FAIL;
+	}
+	if (strcmp(szProfile, "ds") == 0)//Domain Shader
+	{
+		if (FAILED(m_d3dDevice->CreateDomainShader((*ppBlob)->GetBufferPointer(), (*ppBlob)->GetBufferSize(), NULL, (ID3D11DomainShader**)ppShader))) return E_FAIL;
+	}
+	if (strcmp(szProfile, "cs") == 0)//Compute Shader
+	{
+		if (FAILED(m_d3dDevice->CreateComputeShader((*ppBlob)->GetBufferPointer(), (*ppBlob)->GetBufferSize(), NULL, (ID3D11ComputeShader**)ppShader))) return E_FAIL;
+	}
+	return S_OK;
+}
+
+//ポリゴン、メッシュなどのジオメトリ関連を初期化
+HRESULT Game::InitModel()
+{
+	//バーテックスバッファー作成
+	SimpleVertex vertices[]=
+	{
+		D3DXVECTOR3(-0.2f, 0.7f, 0.0f),
+		D3DXVECTOR3(-0.5f,0.5f,0.0f),
+	};
+	D3D11_BUFFER_DESC bd;
+	bd.Usage = D3D11_USAGE_DEFAULT;
+	bd.ByteWidth = sizeof(SimpleVertex) * 1;
+	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	bd.CPUAccessFlags = 0;
+	bd.MiscFlags = 0;
+
+	D3D11_SUBRESOURCE_DATA InitData;
+	InitData.pSysMem = vertices;
+	if (FAILED(m_d3dDevice->CreateBuffer(&bd, &InitData, &m_vertexBuffer)))
+	{
+		return E_FAIL;
+	}
+	//バーテックスバッファーをセット
+	UINT stride = sizeof(SimpleVertex);
+	UINT offset = 0;
+	m_d3dContext->IAGetVertexBuffers(0, 1, &m_vertexBuffer, &stride, &offset);
+
+	return S_OK;
+}
+
+HRESULT Game::InitPolygon()
+{
+	//頂点を定義
+	SimpleVertex vertices[] =
+	{
+		D3DXVECTOR3(-0.5,-0.5,0),//頂点1	
+		D3DXVECTOR3(-0.5,0.5,0), //頂点2
+		D3DXVECTOR3(0.5,-0.5,0),  //頂点3
+		D3DXVECTOR3(0.5,0.5,0), //頂点4	
+	};
+	//上の頂点でバーテックスバッファー作成
+	D3D11_BUFFER_DESC bd;
+	bd.Usage = D3D11_USAGE_DEFAULT;
+	bd.ByteWidth = sizeof(SimpleVertex) * 4;
+	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	bd.CPUAccessFlags = 0;
+	bd.MiscFlags = 0;
+
+	D3D11_SUBRESOURCE_DATA InitData;
+	InitData.pSysMem = vertices;
+	if (FAILED(m_d3dDevice->CreateBuffer(&bd, &InitData, &m_vertexBuffer)))
+	{
+		return E_FAIL;
+	}
+	//バーテックスバッファーをセット
+	UINT stride = sizeof(SimpleVertex);
+	UINT offset = 0;
+	m_d3dContext->IASetVertexBuffers(0, 1, &m_vertexBuffer, &stride, &offset);
+
+	return S_OK;
+}
+
+HRESULT Game::InitShader()
+{
+	//hlslファイル読み込み ブロブ作成　ブロブとはシェーダーの塊みたいなもの。XXシェーダーとして特徴を持たない。後で各種シェーダーに成り得る。
+	ID3DBlob *pCompiledShader = NULL;
+	ID3DBlob *pErrors = NULL;
+	//ブロブからバーテックスシェーダー作成
+	if (FAILED(D3DX11CompileFromFile(L"Point.hlsl", NULL, NULL, "VS", "vs_5_0", 0, 0, NULL, &pCompiledShader, &pErrors, NULL)))
+	{
+		MessageBox(0, L"hlsl読み込み失敗", NULL, MB_OK);
+		return E_FAIL;
+	}
+	SAFE_RELEASE(pErrors);
+
+	if (FAILED(m_d3dDevice->CreateVertexShader(pCompiledShader->GetBufferPointer(), pCompiledShader->GetBufferSize(), NULL, &m_vertexShader)))
+	{
+		SAFE_RELEASE(pCompiledShader);
+		MessageBox(0, L"バーテックスシェーダー作成失敗", NULL, MB_OK);
+		return E_FAIL;
+	}
+	//頂点インプットレイアウトを定義	
+	D3D11_INPUT_ELEMENT_DESC layout[] =
+	{
+		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+	};
+	UINT numElements = sizeof(layout) / sizeof(layout[0]);
+	//頂点インプットレイアウトを作成
+	if (FAILED(m_d3dDevice->CreateInputLayout(layout, numElements, pCompiledShader->GetBufferPointer(), pCompiledShader->GetBufferSize(), &m_inputLayout)))
+	{
+		return FALSE;
+	}
+	//ブロブからピクセルシェーダー作成
+	if (FAILED(D3DX11CompileFromFile(L"Point.hlsl", NULL, NULL, "PS", "ps_5_0", 0, 0, NULL, &pCompiledShader, &pErrors, NULL)))
+	{
+		MessageBox(0, L"hlsl読み込み失敗", NULL, MB_OK);
+		return E_FAIL;
+	}
+	SAFE_RELEASE(pErrors);
+	if (FAILED(m_d3dDevice->CreatePixelShader(pCompiledShader->GetBufferPointer(), pCompiledShader->GetBufferSize(), NULL, &m_pixelShader)))
+	{
+		SAFE_RELEASE(pCompiledShader);
+		MessageBox(0, L"ピクセルシェーダー作成失敗", NULL, MB_OK);
+		return E_FAIL;
+	}
+	SAFE_RELEASE(pCompiledShader);
+	//コンスタントバッファー作成　ここでは変換行列渡し用
+	D3D11_BUFFER_DESC cb;
+	cb.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	cb.ByteWidth = sizeof(D3DMATRIX);
+	cb.ByteWidth = sizeof(SIMPLESHADER_CONSTANT_BUFFER);
+	cb.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	cb.MiscFlags = 0;
+	cb.StructureByteStride = 0;
+	cb.Usage = D3D11_USAGE_DYNAMIC;
+
+	if (FAILED(m_d3dDevice->CreateBuffer(&cb, NULL, &m_constantBuffer)))
+	{
+		return E_FAIL;
+	}
+	return S_OK;
+}
 
 
 

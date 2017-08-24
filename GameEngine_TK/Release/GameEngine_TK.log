@@ -16,12 +16,635 @@
   Assets\shield.FBX
   Assets\skydome.FBX
   Resources\SphereNode.FBX
+  LockonCamera.cpp
+  Boss.cpp
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(12): warning C4005: 'DXGI_STATUS_OCCLUDED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52391): note: 'DXGI_STATUS_OCCLUDED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(13): warning C4005: 'DXGI_STATUS_CLIPPED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52400): note: 'DXGI_STATUS_CLIPPED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(14): warning C4005: 'DXGI_STATUS_NO_REDIRECTION': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52409): note: 'DXGI_STATUS_NO_REDIRECTION' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(15): warning C4005: 'DXGI_STATUS_NO_DESKTOP_ACCESS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52418): note: 'DXGI_STATUS_NO_DESKTOP_ACCESS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(16): warning C4005: 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52427): note: 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(17): warning C4005: 'DXGI_STATUS_MODE_CHANGED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52436): note: 'DXGI_STATUS_MODE_CHANGED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(18): warning C4005: 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52445): note: 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(21): warning C4005: 'DXGI_ERROR_INVALID_CALL': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52460): note: 'DXGI_ERROR_INVALID_CALL' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(22): warning C4005: 'DXGI_ERROR_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52469): note: 'DXGI_ERROR_NOT_FOUND' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(23): warning C4005: 'DXGI_ERROR_MORE_DATA': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52478): note: 'DXGI_ERROR_MORE_DATA' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(24): warning C4005: 'DXGI_ERROR_UNSUPPORTED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52487): note: 'DXGI_ERROR_UNSUPPORTED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(25): warning C4005: 'DXGI_ERROR_DEVICE_REMOVED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52496): note: 'DXGI_ERROR_DEVICE_REMOVED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(26): warning C4005: 'DXGI_ERROR_DEVICE_HUNG': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52505): note: 'DXGI_ERROR_DEVICE_HUNG' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(27): warning C4005: 'DXGI_ERROR_DEVICE_RESET': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52515): note: 'DXGI_ERROR_DEVICE_RESET' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(28): warning C4005: 'DXGI_ERROR_WAS_STILL_DRAWING': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52524): note: 'DXGI_ERROR_WAS_STILL_DRAWING' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(29): warning C4005: 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52534): note: 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(30): warning C4005: 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52543): note: 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(31): warning C4005: 'DXGI_ERROR_DRIVER_INTERNAL_ERROR': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52553): note: 'DXGI_ERROR_DRIVER_INTERNAL_ERROR' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(32): warning C4005: 'DXGI_ERROR_NONEXCLUSIVE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52562): note: 'DXGI_ERROR_NONEXCLUSIVE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(33): warning C4005: 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52571): note: 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(34): warning C4005: 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52581): note: 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(35): warning C4005: 'DXGI_ERROR_REMOTE_OUTOFMEMORY': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52590): note: 'DXGI_ERROR_REMOTE_OUTOFMEMORY' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(917): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52795): note: 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(918): warning C4005: 'D3D11_ERROR_FILE_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52804): note: 'D3D11_ERROR_FILE_NOT_FOUND' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(919): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52814): note: 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(920): warning C4005: 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52823): note: 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d10.h(608): warning C4005: 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52771): note: 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d10.h(609): warning C4005: 'D3D10_ERROR_FILE_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52780): note: 'D3D10_ERROR_FILE_NOT_FOUND' の以前の定義を確認してください
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1269): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1269): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1273): error C2061: 構文エラー: 識別子 'DXGI_RGBA'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2541): error C3646: 'BufferType': 不明なオーバーライド指定子です
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2541): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C2143: 構文エラー: ';' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C2238: ';' の前に無効なトークンがあります。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2629): error C3646: 'ColorSpace': 不明なオーバーライド指定子です
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2629): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2650): error C2504: 'ID3D11VideoContext': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2654): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2662): error C2061: 構文エラー: 識別子 'ID3D11CryptoSession'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2672): error C2061: 構文エラー: 識別子 'ID3D11CryptoSession'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2678): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2688): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2694): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2700): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2706): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2712): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2718): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2726): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2738): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2746): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2758): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3846): error C2504: 'ID3D11VideoDevice': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3878): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3878): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3894): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3894): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(4241): error C2504: 'ID3D11VideoProcessorEnumerator': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(4247): error C2061: 構文エラー: 識別子 'DXGI_COLOR_SPACE_TYPE'
+  Enemy.cpp
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(12): warning C4005: 'DXGI_STATUS_OCCLUDED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52391): note: 'DXGI_STATUS_OCCLUDED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(13): warning C4005: 'DXGI_STATUS_CLIPPED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52400): note: 'DXGI_STATUS_CLIPPED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(14): warning C4005: 'DXGI_STATUS_NO_REDIRECTION': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52409): note: 'DXGI_STATUS_NO_REDIRECTION' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(15): warning C4005: 'DXGI_STATUS_NO_DESKTOP_ACCESS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52418): note: 'DXGI_STATUS_NO_DESKTOP_ACCESS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(16): warning C4005: 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52427): note: 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(17): warning C4005: 'DXGI_STATUS_MODE_CHANGED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52436): note: 'DXGI_STATUS_MODE_CHANGED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(18): warning C4005: 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52445): note: 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(21): warning C4005: 'DXGI_ERROR_INVALID_CALL': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52460): note: 'DXGI_ERROR_INVALID_CALL' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(22): warning C4005: 'DXGI_ERROR_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52469): note: 'DXGI_ERROR_NOT_FOUND' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(23): warning C4005: 'DXGI_ERROR_MORE_DATA': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52478): note: 'DXGI_ERROR_MORE_DATA' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(24): warning C4005: 'DXGI_ERROR_UNSUPPORTED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52487): note: 'DXGI_ERROR_UNSUPPORTED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(25): warning C4005: 'DXGI_ERROR_DEVICE_REMOVED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52496): note: 'DXGI_ERROR_DEVICE_REMOVED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(26): warning C4005: 'DXGI_ERROR_DEVICE_HUNG': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52505): note: 'DXGI_ERROR_DEVICE_HUNG' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(27): warning C4005: 'DXGI_ERROR_DEVICE_RESET': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52515): note: 'DXGI_ERROR_DEVICE_RESET' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(28): warning C4005: 'DXGI_ERROR_WAS_STILL_DRAWING': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52524): note: 'DXGI_ERROR_WAS_STILL_DRAWING' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(29): warning C4005: 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52534): note: 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(30): warning C4005: 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52543): note: 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(31): warning C4005: 'DXGI_ERROR_DRIVER_INTERNAL_ERROR': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52553): note: 'DXGI_ERROR_DRIVER_INTERNAL_ERROR' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(32): warning C4005: 'DXGI_ERROR_NONEXCLUSIVE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52562): note: 'DXGI_ERROR_NONEXCLUSIVE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(33): warning C4005: 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52571): note: 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(34): warning C4005: 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52581): note: 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(35): warning C4005: 'DXGI_ERROR_REMOTE_OUTOFMEMORY': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52590): note: 'DXGI_ERROR_REMOTE_OUTOFMEMORY' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(917): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52795): note: 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(918): warning C4005: 'D3D11_ERROR_FILE_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52804): note: 'D3D11_ERROR_FILE_NOT_FOUND' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(919): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52814): note: 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(920): warning C4005: 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52823): note: 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d10.h(608): warning C4005: 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52771): note: 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d10.h(609): warning C4005: 'D3D10_ERROR_FILE_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52780): note: 'D3D10_ERROR_FILE_NOT_FOUND' の以前の定義を確認してください
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1269): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1269): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1273): error C2061: 構文エラー: 識別子 'DXGI_RGBA'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2541): error C3646: 'BufferType': 不明なオーバーライド指定子です
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2541): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C2143: 構文エラー: ';' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C2238: ';' の前に無効なトークンがあります。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2629): error C3646: 'ColorSpace': 不明なオーバーライド指定子です
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2629): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2650): error C2504: 'ID3D11VideoContext': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2654): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2662): error C2061: 構文エラー: 識別子 'ID3D11CryptoSession'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2672): error C2061: 構文エラー: 識別子 'ID3D11CryptoSession'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2678): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2688): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2694): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2700): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2706): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2712): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2718): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2726): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2738): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2746): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2758): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3846): error C2504: 'ID3D11VideoDevice': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3878): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3878): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3894): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3894): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(4241): error C2504: 'ID3D11VideoProcessorEnumerator': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(4247): error C2061: 構文エラー: 識別子 'DXGI_COLOR_SPACE_TYPE'
+Game\Character\Enemy\Enemy.cpp(67): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+Game\Character\Enemy\Enemy.cpp(68): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+  Player.cpp
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(12): warning C4005: 'DXGI_STATUS_OCCLUDED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52391): note: 'DXGI_STATUS_OCCLUDED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(13): warning C4005: 'DXGI_STATUS_CLIPPED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52400): note: 'DXGI_STATUS_CLIPPED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(14): warning C4005: 'DXGI_STATUS_NO_REDIRECTION': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52409): note: 'DXGI_STATUS_NO_REDIRECTION' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(15): warning C4005: 'DXGI_STATUS_NO_DESKTOP_ACCESS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52418): note: 'DXGI_STATUS_NO_DESKTOP_ACCESS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(16): warning C4005: 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52427): note: 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(17): warning C4005: 'DXGI_STATUS_MODE_CHANGED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52436): note: 'DXGI_STATUS_MODE_CHANGED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(18): warning C4005: 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52445): note: 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(21): warning C4005: 'DXGI_ERROR_INVALID_CALL': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52460): note: 'DXGI_ERROR_INVALID_CALL' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(22): warning C4005: 'DXGI_ERROR_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52469): note: 'DXGI_ERROR_NOT_FOUND' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(23): warning C4005: 'DXGI_ERROR_MORE_DATA': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52478): note: 'DXGI_ERROR_MORE_DATA' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(24): warning C4005: 'DXGI_ERROR_UNSUPPORTED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52487): note: 'DXGI_ERROR_UNSUPPORTED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(25): warning C4005: 'DXGI_ERROR_DEVICE_REMOVED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52496): note: 'DXGI_ERROR_DEVICE_REMOVED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(26): warning C4005: 'DXGI_ERROR_DEVICE_HUNG': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52505): note: 'DXGI_ERROR_DEVICE_HUNG' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(27): warning C4005: 'DXGI_ERROR_DEVICE_RESET': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52515): note: 'DXGI_ERROR_DEVICE_RESET' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(28): warning C4005: 'DXGI_ERROR_WAS_STILL_DRAWING': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52524): note: 'DXGI_ERROR_WAS_STILL_DRAWING' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(29): warning C4005: 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52534): note: 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(30): warning C4005: 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52543): note: 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(31): warning C4005: 'DXGI_ERROR_DRIVER_INTERNAL_ERROR': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52553): note: 'DXGI_ERROR_DRIVER_INTERNAL_ERROR' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(32): warning C4005: 'DXGI_ERROR_NONEXCLUSIVE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52562): note: 'DXGI_ERROR_NONEXCLUSIVE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(33): warning C4005: 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52571): note: 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(34): warning C4005: 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52581): note: 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(35): warning C4005: 'DXGI_ERROR_REMOTE_OUTOFMEMORY': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52590): note: 'DXGI_ERROR_REMOTE_OUTOFMEMORY' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(917): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52795): note: 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(918): warning C4005: 'D3D11_ERROR_FILE_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52804): note: 'D3D11_ERROR_FILE_NOT_FOUND' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(919): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52814): note: 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(920): warning C4005: 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52823): note: 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d10.h(608): warning C4005: 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52771): note: 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d10.h(609): warning C4005: 'D3D10_ERROR_FILE_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52780): note: 'D3D10_ERROR_FILE_NOT_FOUND' の以前の定義を確認してください
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1269): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1269): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1273): error C2061: 構文エラー: 識別子 'DXGI_RGBA'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2541): error C3646: 'BufferType': 不明なオーバーライド指定子です
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2541): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C2143: 構文エラー: ';' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C2238: ';' の前に無効なトークンがあります。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2629): error C3646: 'ColorSpace': 不明なオーバーライド指定子です
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2629): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2650): error C2504: 'ID3D11VideoContext': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2654): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2662): error C2061: 構文エラー: 識別子 'ID3D11CryptoSession'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2672): error C2061: 構文エラー: 識別子 'ID3D11CryptoSession'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2678): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2688): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2694): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2700): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2706): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2712): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2718): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2726): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2738): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2746): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2758): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3846): error C2504: 'ID3D11VideoDevice': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3878): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3878): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3894): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3894): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(4241): error C2504: 'ID3D11VideoProcessorEnumerator': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(4247): error C2061: 構文エラー: 識別子 'DXGI_COLOR_SPACE_TYPE'
+  PlayerCommands.cpp
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(12): warning C4005: 'DXGI_STATUS_OCCLUDED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52391): note: 'DXGI_STATUS_OCCLUDED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(13): warning C4005: 'DXGI_STATUS_CLIPPED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52400): note: 'DXGI_STATUS_CLIPPED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(14): warning C4005: 'DXGI_STATUS_NO_REDIRECTION': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52409): note: 'DXGI_STATUS_NO_REDIRECTION' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(15): warning C4005: 'DXGI_STATUS_NO_DESKTOP_ACCESS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52418): note: 'DXGI_STATUS_NO_DESKTOP_ACCESS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(16): warning C4005: 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52427): note: 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(17): warning C4005: 'DXGI_STATUS_MODE_CHANGED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52436): note: 'DXGI_STATUS_MODE_CHANGED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(18): warning C4005: 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52445): note: 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(21): warning C4005: 'DXGI_ERROR_INVALID_CALL': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52460): note: 'DXGI_ERROR_INVALID_CALL' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(22): warning C4005: 'DXGI_ERROR_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52469): note: 'DXGI_ERROR_NOT_FOUND' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(23): warning C4005: 'DXGI_ERROR_MORE_DATA': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52478): note: 'DXGI_ERROR_MORE_DATA' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(24): warning C4005: 'DXGI_ERROR_UNSUPPORTED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52487): note: 'DXGI_ERROR_UNSUPPORTED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(25): warning C4005: 'DXGI_ERROR_DEVICE_REMOVED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52496): note: 'DXGI_ERROR_DEVICE_REMOVED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(26): warning C4005: 'DXGI_ERROR_DEVICE_HUNG': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52505): note: 'DXGI_ERROR_DEVICE_HUNG' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(27): warning C4005: 'DXGI_ERROR_DEVICE_RESET': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52515): note: 'DXGI_ERROR_DEVICE_RESET' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(28): warning C4005: 'DXGI_ERROR_WAS_STILL_DRAWING': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52524): note: 'DXGI_ERROR_WAS_STILL_DRAWING' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(29): warning C4005: 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52534): note: 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(30): warning C4005: 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52543): note: 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(31): warning C4005: 'DXGI_ERROR_DRIVER_INTERNAL_ERROR': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52553): note: 'DXGI_ERROR_DRIVER_INTERNAL_ERROR' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(32): warning C4005: 'DXGI_ERROR_NONEXCLUSIVE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52562): note: 'DXGI_ERROR_NONEXCLUSIVE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(33): warning C4005: 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52571): note: 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(34): warning C4005: 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52581): note: 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(35): warning C4005: 'DXGI_ERROR_REMOTE_OUTOFMEMORY': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52590): note: 'DXGI_ERROR_REMOTE_OUTOFMEMORY' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(917): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52795): note: 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(918): warning C4005: 'D3D11_ERROR_FILE_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52804): note: 'D3D11_ERROR_FILE_NOT_FOUND' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(919): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52814): note: 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(920): warning C4005: 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52823): note: 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d10.h(608): warning C4005: 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52771): note: 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d10.h(609): warning C4005: 'D3D10_ERROR_FILE_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52780): note: 'D3D10_ERROR_FILE_NOT_FOUND' の以前の定義を確認してください
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1269): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1269): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1273): error C2061: 構文エラー: 識別子 'DXGI_RGBA'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2541): error C3646: 'BufferType': 不明なオーバーライド指定子です
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2541): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C2143: 構文エラー: ';' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C2238: ';' の前に無効なトークンがあります。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2629): error C3646: 'ColorSpace': 不明なオーバーライド指定子です
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2629): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2650): error C2504: 'ID3D11VideoContext': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2654): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2662): error C2061: 構文エラー: 識別子 'ID3D11CryptoSession'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2672): error C2061: 構文エラー: 識別子 'ID3D11CryptoSession'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2678): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2688): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2694): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2700): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2706): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2712): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2718): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2726): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2738): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2746): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2758): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3846): error C2504: 'ID3D11VideoDevice': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3878): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3878): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3894): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3894): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(4241): error C2504: 'ID3D11VideoProcessorEnumerator': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(4247): error C2061: 構文エラー: 識別子 'DXGI_COLOR_SPACE_TYPE'
+  Game.cpp
+Game\Game.cpp(180): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+Game\Game.cpp(411): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+Game\Game.cpp(1103): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+  Lockon.cpp
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(12): warning C4005: 'DXGI_STATUS_OCCLUDED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52391): note: 'DXGI_STATUS_OCCLUDED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(13): warning C4005: 'DXGI_STATUS_CLIPPED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52400): note: 'DXGI_STATUS_CLIPPED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(14): warning C4005: 'DXGI_STATUS_NO_REDIRECTION': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52409): note: 'DXGI_STATUS_NO_REDIRECTION' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(15): warning C4005: 'DXGI_STATUS_NO_DESKTOP_ACCESS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52418): note: 'DXGI_STATUS_NO_DESKTOP_ACCESS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(16): warning C4005: 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52427): note: 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(17): warning C4005: 'DXGI_STATUS_MODE_CHANGED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52436): note: 'DXGI_STATUS_MODE_CHANGED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(18): warning C4005: 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52445): note: 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(21): warning C4005: 'DXGI_ERROR_INVALID_CALL': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52460): note: 'DXGI_ERROR_INVALID_CALL' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(22): warning C4005: 'DXGI_ERROR_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52469): note: 'DXGI_ERROR_NOT_FOUND' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(23): warning C4005: 'DXGI_ERROR_MORE_DATA': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52478): note: 'DXGI_ERROR_MORE_DATA' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(24): warning C4005: 'DXGI_ERROR_UNSUPPORTED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52487): note: 'DXGI_ERROR_UNSUPPORTED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(25): warning C4005: 'DXGI_ERROR_DEVICE_REMOVED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52496): note: 'DXGI_ERROR_DEVICE_REMOVED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(26): warning C4005: 'DXGI_ERROR_DEVICE_HUNG': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52505): note: 'DXGI_ERROR_DEVICE_HUNG' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(27): warning C4005: 'DXGI_ERROR_DEVICE_RESET': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52515): note: 'DXGI_ERROR_DEVICE_RESET' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(28): warning C4005: 'DXGI_ERROR_WAS_STILL_DRAWING': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52524): note: 'DXGI_ERROR_WAS_STILL_DRAWING' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(29): warning C4005: 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52534): note: 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(30): warning C4005: 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52543): note: 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(31): warning C4005: 'DXGI_ERROR_DRIVER_INTERNAL_ERROR': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52553): note: 'DXGI_ERROR_DRIVER_INTERNAL_ERROR' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(32): warning C4005: 'DXGI_ERROR_NONEXCLUSIVE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52562): note: 'DXGI_ERROR_NONEXCLUSIVE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(33): warning C4005: 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52571): note: 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(34): warning C4005: 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52581): note: 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(35): warning C4005: 'DXGI_ERROR_REMOTE_OUTOFMEMORY': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52590): note: 'DXGI_ERROR_REMOTE_OUTOFMEMORY' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(917): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52795): note: 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(918): warning C4005: 'D3D11_ERROR_FILE_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52804): note: 'D3D11_ERROR_FILE_NOT_FOUND' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(919): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52814): note: 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(920): warning C4005: 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52823): note: 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d10.h(608): warning C4005: 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52771): note: 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d10.h(609): warning C4005: 'D3D10_ERROR_FILE_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52780): note: 'D3D10_ERROR_FILE_NOT_FOUND' の以前の定義を確認してください
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1269): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1269): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1273): error C2061: 構文エラー: 識別子 'DXGI_RGBA'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2541): error C3646: 'BufferType': 不明なオーバーライド指定子です
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2541): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C2143: 構文エラー: ';' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C2238: ';' の前に無効なトークンがあります。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2629): error C3646: 'ColorSpace': 不明なオーバーライド指定子です
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2629): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2650): error C2504: 'ID3D11VideoContext': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2654): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2662): error C2061: 構文エラー: 識別子 'ID3D11CryptoSession'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2672): error C2061: 構文エラー: 識別子 'ID3D11CryptoSession'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2678): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2688): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2694): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2700): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2706): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2712): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2718): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2726): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2738): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2746): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2758): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3846): error C2504: 'ID3D11VideoDevice': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3878): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3878): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3894): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3894): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(4241): error C2504: 'ID3D11VideoProcessorEnumerator': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(4247): error C2061: 構文エラー: 識別子 'DXGI_COLOR_SPACE_TYPE'
+  Main.cpp
   Bullet.cpp
-     ライブラリ C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Release\GameEngine_TK.lib とオブジェクト C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Release\GameEngine_TK.exp を作成中
-  コード生成しています。
-  1 of 2751 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
-  コード生成が終了しました。
-  GameEngine_TK.vcxproj -> C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Release\GameEngine_TK.exe
-  GameEngine_TK.vcxproj -> C:\Users\s162087\Documents\GameEngine\GameEngine_TK\Release\GameEngine_TK.pdb (Full PDB)
+  EnemyState.cpp
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(12): warning C4005: 'DXGI_STATUS_OCCLUDED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52391): note: 'DXGI_STATUS_OCCLUDED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(13): warning C4005: 'DXGI_STATUS_CLIPPED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52400): note: 'DXGI_STATUS_CLIPPED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(14): warning C4005: 'DXGI_STATUS_NO_REDIRECTION': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52409): note: 'DXGI_STATUS_NO_REDIRECTION' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(15): warning C4005: 'DXGI_STATUS_NO_DESKTOP_ACCESS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52418): note: 'DXGI_STATUS_NO_DESKTOP_ACCESS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(16): warning C4005: 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52427): note: 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(17): warning C4005: 'DXGI_STATUS_MODE_CHANGED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52436): note: 'DXGI_STATUS_MODE_CHANGED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(18): warning C4005: 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52445): note: 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(21): warning C4005: 'DXGI_ERROR_INVALID_CALL': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52460): note: 'DXGI_ERROR_INVALID_CALL' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(22): warning C4005: 'DXGI_ERROR_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52469): note: 'DXGI_ERROR_NOT_FOUND' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(23): warning C4005: 'DXGI_ERROR_MORE_DATA': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52478): note: 'DXGI_ERROR_MORE_DATA' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(24): warning C4005: 'DXGI_ERROR_UNSUPPORTED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52487): note: 'DXGI_ERROR_UNSUPPORTED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(25): warning C4005: 'DXGI_ERROR_DEVICE_REMOVED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52496): note: 'DXGI_ERROR_DEVICE_REMOVED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(26): warning C4005: 'DXGI_ERROR_DEVICE_HUNG': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52505): note: 'DXGI_ERROR_DEVICE_HUNG' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(27): warning C4005: 'DXGI_ERROR_DEVICE_RESET': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52515): note: 'DXGI_ERROR_DEVICE_RESET' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(28): warning C4005: 'DXGI_ERROR_WAS_STILL_DRAWING': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52524): note: 'DXGI_ERROR_WAS_STILL_DRAWING' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(29): warning C4005: 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52534): note: 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(30): warning C4005: 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52543): note: 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(31): warning C4005: 'DXGI_ERROR_DRIVER_INTERNAL_ERROR': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52553): note: 'DXGI_ERROR_DRIVER_INTERNAL_ERROR' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(32): warning C4005: 'DXGI_ERROR_NONEXCLUSIVE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52562): note: 'DXGI_ERROR_NONEXCLUSIVE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(33): warning C4005: 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52571): note: 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(34): warning C4005: 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52581): note: 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(35): warning C4005: 'DXGI_ERROR_REMOTE_OUTOFMEMORY': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52590): note: 'DXGI_ERROR_REMOTE_OUTOFMEMORY' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(917): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52795): note: 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(918): warning C4005: 'D3D11_ERROR_FILE_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52804): note: 'D3D11_ERROR_FILE_NOT_FOUND' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(919): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52814): note: 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(920): warning C4005: 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52823): note: 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d10.h(608): warning C4005: 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52771): note: 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d10.h(609): warning C4005: 'D3D10_ERROR_FILE_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52780): note: 'D3D10_ERROR_FILE_NOT_FOUND' の以前の定義を確認してください
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1269): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1269): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1273): error C2061: 構文エラー: 識別子 'DXGI_RGBA'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2541): error C3646: 'BufferType': 不明なオーバーライド指定子です
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2541): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C2143: 構文エラー: ';' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C2238: ';' の前に無効なトークンがあります。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2629): error C3646: 'ColorSpace': 不明なオーバーライド指定子です
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2629): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2650): error C2504: 'ID3D11VideoContext': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2654): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2662): error C2061: 構文エラー: 識別子 'ID3D11CryptoSession'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2672): error C2061: 構文エラー: 識別子 'ID3D11CryptoSession'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2678): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2688): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2694): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2700): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2706): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2712): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2718): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2726): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2738): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2746): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2758): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3846): error C2504: 'ID3D11VideoDevice': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3878): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3878): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3894): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3894): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(4241): error C2504: 'ID3D11VideoProcessorEnumerator': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(4247): error C2061: 構文エラー: 識別子 'DXGI_COLOR_SPACE_TYPE'
+  PlayerState.cpp
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(12): warning C4005: 'DXGI_STATUS_OCCLUDED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52391): note: 'DXGI_STATUS_OCCLUDED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(13): warning C4005: 'DXGI_STATUS_CLIPPED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52400): note: 'DXGI_STATUS_CLIPPED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(14): warning C4005: 'DXGI_STATUS_NO_REDIRECTION': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52409): note: 'DXGI_STATUS_NO_REDIRECTION' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(15): warning C4005: 'DXGI_STATUS_NO_DESKTOP_ACCESS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52418): note: 'DXGI_STATUS_NO_DESKTOP_ACCESS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(16): warning C4005: 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52427): note: 'DXGI_STATUS_GRAPHICS_VIDPN_SOURCE_IN_USE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(17): warning C4005: 'DXGI_STATUS_MODE_CHANGED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52436): note: 'DXGI_STATUS_MODE_CHANGED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(18): warning C4005: 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52445): note: 'DXGI_STATUS_MODE_CHANGE_IN_PROGRESS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(21): warning C4005: 'DXGI_ERROR_INVALID_CALL': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52460): note: 'DXGI_ERROR_INVALID_CALL' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(22): warning C4005: 'DXGI_ERROR_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52469): note: 'DXGI_ERROR_NOT_FOUND' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(23): warning C4005: 'DXGI_ERROR_MORE_DATA': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52478): note: 'DXGI_ERROR_MORE_DATA' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(24): warning C4005: 'DXGI_ERROR_UNSUPPORTED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52487): note: 'DXGI_ERROR_UNSUPPORTED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(25): warning C4005: 'DXGI_ERROR_DEVICE_REMOVED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52496): note: 'DXGI_ERROR_DEVICE_REMOVED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(26): warning C4005: 'DXGI_ERROR_DEVICE_HUNG': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52505): note: 'DXGI_ERROR_DEVICE_HUNG' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(27): warning C4005: 'DXGI_ERROR_DEVICE_RESET': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52515): note: 'DXGI_ERROR_DEVICE_RESET' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(28): warning C4005: 'DXGI_ERROR_WAS_STILL_DRAWING': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52524): note: 'DXGI_ERROR_WAS_STILL_DRAWING' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(29): warning C4005: 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52534): note: 'DXGI_ERROR_FRAME_STATISTICS_DISJOINT' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(30): warning C4005: 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52543): note: 'DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(31): warning C4005: 'DXGI_ERROR_DRIVER_INTERNAL_ERROR': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52553): note: 'DXGI_ERROR_DRIVER_INTERNAL_ERROR' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(32): warning C4005: 'DXGI_ERROR_NONEXCLUSIVE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52562): note: 'DXGI_ERROR_NONEXCLUSIVE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(33): warning C4005: 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52571): note: 'DXGI_ERROR_NOT_CURRENTLY_AVAILABLE' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(34): warning C4005: 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52581): note: 'DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(35): warning C4005: 'DXGI_ERROR_REMOTE_OUTOFMEMORY': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52590): note: 'DXGI_ERROR_REMOTE_OUTOFMEMORY' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(917): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52795): note: 'D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(918): warning C4005: 'D3D11_ERROR_FILE_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52804): note: 'D3D11_ERROR_FILE_NOT_FOUND' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(919): warning C4005: 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52814): note: 'D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS' の以前の定義を確認してください
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d11.h(920): warning C4005: 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52823): note: 'D3D11_ERROR_DEFERRED_CONTEXT_MAP_WITHOUT_INITIAL_DISCARD' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d10.h(608): warning C4005: 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52771): note: 'D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS' の以前の定義を確認してください
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d10.h(609): warning C4005: 'D3D10_ERROR_FILE_NOT_FOUND': マクロが再定義されました。
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\winerror.h(52780): note: 'D3D10_ERROR_FILE_NOT_FOUND' の以前の定義を確認してください
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1269): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1269): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\shared\dxgi1_2.h(1273): error C2061: 構文エラー: 識別子 'DXGI_RGBA'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2541): error C3646: 'BufferType': 不明なオーバーライド指定子です
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2541): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C2143: 構文エラー: ';' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2554): error C2238: ';' の前に無効なトークンがあります。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2629): error C3646: 'ColorSpace': 不明なオーバーライド指定子です
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2629): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2650): error C2504: 'ID3D11VideoContext': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2654): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2662): error C2061: 構文エラー: 識別子 'ID3D11CryptoSession'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2672): error C2061: 構文エラー: 識別子 'ID3D11CryptoSession'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2678): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2688): error C2061: 構文エラー: 識別子 'ID3D11VideoDecoder'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2694): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2700): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2706): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2712): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2718): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2726): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2738): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2746): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(2758): error C2061: 構文エラー: 識別子 'ID3D11VideoProcessor'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3846): error C2504: 'ID3D11VideoDevice': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3878): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3878): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3894): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(3894): error C2143: 構文エラー: ',' が '*' の前にありません。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(4241): error C2504: 'ID3D11VideoProcessorEnumerator': 定義されていない基底クラスが宣言されています。
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\d3d11_1.h(4247): error C2061: 構文エラー: 識別子 'DXGI_COLOR_SPACE_TYPE'

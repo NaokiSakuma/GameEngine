@@ -11,6 +11,23 @@
 
 #pragma once
 
+
+#include <windows.h>
+
+#include <wrl/client.h>
+
+#include <d3d11_1.h>
+#include <d3d11.h>
+#include <d3dx10.h>
+#include <d3dx11.h>
+#include <DirectXMath.h>
+#include <DirectXColors.h>
+
+#include <algorithm>
+#include <exception>
+#include <memory>
+#include <stdexcept>
+
 #include "StepTimer.h"
 #include "Camera\DebugCamera\DebugCamera.h"
 #include <PrimitiveBatch.h>
@@ -30,6 +47,27 @@
 #include "ModelEffect\ModelEffect.h"
 #include "LandShape\LandShape.h"
 #include "Lockon\Lockon.h"
+
+
+#pragma comment(lib,"d3dCompiler.lib")
+
+//マクロ
+#define SAFE_RELEASE(x) if(x){x->Release(); x=NULL;}
+#define WINDOW_WIDTH 640 //ウィンドウ幅
+#define WINDOW_HEIGHT 480 //ウィンドウ高さ
+
+namespace DX
+{
+	inline void ThrowIfFailed(HRESULT hr)
+	{
+		if (FAILED(hr))
+		{
+			// Set a breakpoint on this line to catch DirectX API errors
+			throw std::exception();
+		}
+	}
+}
+
 // A basic game implementation that creates a D3D11 device and
 // provides a game loop.
 class Game
@@ -38,7 +76,7 @@ public:
 	Game();
 	~Game();
 	// Initialization and management
-	void Initialize(HWND window, int width, int height);
+	HRESULT Initialize(HWND window, int width, int height);
 
 	// Basic game loop
 	void Tick();
@@ -82,6 +120,11 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView>  m_renderTargetView;
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilView>  m_depthStencilView;
 
+	ID3D11Texture2D* m_backBuffer_DSTex;
+	ID3D11VertexShader* m_vertexShader;
+	ID3D11PixelShader* m_pixelShader;
+	ID3D11Buffer* m_constantBuffer;
+	ID3D11Buffer* m_vertexBuffer;
 	// Rendering loop timer.
 	DX::StepTimer                                   m_timer;
 
@@ -176,4 +219,22 @@ public:
 private: 
 	//ゲームのインスタンス
 	static Game* m_instance;
+
+	//必携
+public:
+	HRESULT MakeShader(LPSTR, LPSTR, LPSTR, void**, ID3DBlob**);
+	HRESULT InitModel();
+	HRESULT InitPolygon();
+	HRESULT InitShader();
+	//頂点の構造体
+	struct SimpleVertex
+	{
+		D3DXVECTOR3 Pos; //位置
+	};
+	//Simpleシェーダー用のコンスタントバッファーのアプリ側構造体 もちろんシェーダー内のコンスタントバッファーと一致している必要あり
+	struct SIMPLESHADER_CONSTANT_BUFFER
+	{
+		D3DXMATRIX mWVP;
+		D3DXVECTOR4 vColor;
+	};
 };
